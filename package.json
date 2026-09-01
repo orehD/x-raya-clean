@@ -1,0 +1,12 @@
+{
+  "name": "x-raya",
+  "version": "1.0.0",
+  "private": true,
+  "description": "X-Raya — сорсинг-агент (self-hosted)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

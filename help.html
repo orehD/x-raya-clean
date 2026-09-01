@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-Raya — справка</title>
+<script>(function(){try{var t=localStorage.getItem('xraya_theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+  :root{color-scheme:dark; --bg:#12100A; --panel:#1E190F; --panel2:#171309; --line:#332B18; --line2:#463A20;
+    --amber:#F2A93B; --amber-hi:#FFC96B; --amber-dim:rgba(242,169,59,.14);
+    --red:#E0472F; --txt:#EDE6D4; --muted:#9A9077;
+    --mono:'JetBrains Mono',Menlo,Consolas,monospace; --body:'IBM Plex Sans',-apple-system,sans-serif}
+  :root[data-theme="light"]{color-scheme:light; --bg:#EFE9DA; --panel:#F8F3E8; --panel2:#E9E1CE;
+    --line:#DBD1B9; --line2:#C6B994; --amber:#AF6D08; --amber-hi:#875000; --amber-dim:rgba(175,109,8,.15);
+    --red:#CE3E28; --txt:#231E13; --muted:#6C5F42}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:400 14px/1.65 var(--body);padding:34px 18px 80px;
+    display:flex;justify-content:center}
+  .wrap{width:100%;max-width:680px}
+  .logo{font:700 15px var(--mono);letter-spacing:.2em;color:var(--txt);text-decoration:none}
+  .logo b{color:var(--amber)}
+  h1{font:600 15px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin:26px 0 6px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:26px}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
+  details[open]{border-color:var(--line2)}
+  summary{cursor:pointer;padding:14px 16px;font:600 14px var(--body);list-style:none;display:flex;gap:10px;align-items:baseline}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:'▸';color:var(--amber);font-size:11px;flex:none;transition:transform .15s}
+  details[open] summary::before{transform:rotate(90deg)}
+  summary:hover{color:var(--amber-hi)}
+  .a{padding:0 16px 16px}
+  h3{font:600 10.5px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+  .a>h3:first-child{margin-top:2px}
+  .a p{margin:0 0 10px}
+  .a ul{margin:0 0 10px;padding-left:20px}
+  .a li{margin-bottom:5px}
+  b.k{font:600 12px var(--mono);background:var(--panel2);border:1px solid var(--line2);border-radius:5px;
+    padding:1px 7px;white-space:nowrap;color:var(--amber-hi)}
+  .a .m{color:var(--muted)}
+  .a code{font:400 12px var(--mono);background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .note{color:var(--muted);font-size:12.5px;margin-top:22px}
+  .back{display:inline-block;margin-top:26px;color:var(--muted);text-decoration:none;font:400 13px var(--mono)}
+  .back:hover{color:var(--amber)}
+  a{color:var(--amber)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="logo" href="/"><b>X</b>-RAYA</a>
+  <h1>Справка</h1>
+  <div class="sub">Три вещи, которые стоит знать: как искать, как работать с результатами и что даёт аккаунт.</div>
+
+  <details open>
+    <summary>Поиск: от запроса до готовых ссылок</summary>
+    <div class="a">
+      <h3>С чего начать</h3>
+      <p>Напиши в главном поле, кого ищешь, обычными словами — <code>сеньор python разработчик в Москве</code>, <code>логист ВЭД</code> — и нажми <b class="k">Выследить</b> (или Enter). X-Raya разберёт запрос на роль, грейд, город и стек и соберёт готовые поисковые запросы по 30+ каналам.</p>
+
+      <h3>Четыре вкладки над полем</h3>
+      <ul>
+        <li><b class="k">запрос</b> — опиши роль своими словами.</li>
+        <li><b class="k">вакансия</b> — вставь текст вакансии целиком: роль, город и требования разберутся сами. Запуск — <b class="k">Cmd/Ctrl + Enter</b>.</li>
+        <li><b class="k">контакты</b> — вставь ссылку на LinkedIn, email или телефон, чтобы раскрыть контакты человека, или <code>@никнейм</code>, чтобы проверить его профили на 16 площадках.</li>
+        <li><b class="k">подборка Candy</b> — опиши словами, кого собрать в сохранённую подборку ATS («бывшие сотрудники без негатива», «доходили до оффера, но не вышли»), и получи готовый JSON-фильтр. Синтаксис проверяется до выдачи: Candy на часть ошибок не жалуется, а просто отдаёт пустую выдачу, поэтому операторы, вложенность <code>nested_any</code> и типы полей сверяются со схемой автоматически. Дальше подборку можно уточнять словами — «добавь Москву», «убери стажёров».</li>
+      </ul>
+
+      <h3>Уточни то, что X-Raya понял</h3>
+      <p>После поиска появится «Профиль поиска» — должность, грейд, стек, локация. Меняй любое поле — запросы пересоберутся сразу. У каждой технологии есть выбор <b class="k">желательно / обязательно / исключить</b> и кнопка ⇄ — она расширяет технологию до группы аналогов: не только Kafka, а любой брокер сообщений.</p>
+      <p>Кнопка «Параметры поиска» открывает ручные фильтры: категория, специализация, грейд, город, компании. Галочка <b class="k">Контакты в профилях</b> оставляет только запросы, которые ищут страницы с email и телефоном. <b class="k">✕ Очистить всё</b> (или клик по логотипу) сбрасывает всё и возвращает на главный экран.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Результаты: как работать с выдачей</summary>
+    <div class="a">
+      <h3>Каналы и карточки</h3>
+      <p>Слева — группы каналов, клик фильтрует выдачу. Первая группа — <b class="k">Candy</b>: готовые запросы в базу кандидатов на её поисковом языке (specialization: / location: / file:), кнопка «Открыть» ведёт сразу в Candy. Сортировка: <b class="k">приоритет</b> — курируемый порядок, <b class="k">точные</b> — сначала самые узкие запросы, <b class="k">А–Я</b> — по алфавиту.</p>
+      <p>В каждой карточке: <b class="k">Открыть</b> — выполнить запрос в новой вкладке, <b class="k">Копировать</b> — забрать его текст, звёздочка ★ — в избранное. У группы есть <b class="k">Копировать все</b> и <b class="k">Открыть все</b>. Кнопка <b class="k">Поделиться</b> над результатами копирует ссылку на весь поиск — коллега откроет те же запросы без входа.</p>
+
+      <h3>Проверь, где есть кандидаты</h3>
+      <p><b class="k">Проверить выдачу</b> прогоняет запросы через Google и помечает каждую карточку: <b class="k">выдача есть</b>, <b class="k">мало · N</b> или <b class="k">пусто</b> — не трать время на пустые каналы. Для пустых X-Raya сам подберёт ослабленный вариант и предложит его прямо в карточке: <b class="k">Открыть</b> или <b class="k">Заменить в карточке</b>.</p>
+      <p class="m">Проверка запускается сама после каждого поиска — пустые каналы подсвечиваются без клика.</p>
+
+      <h3>Докрути запрос с AI</h3>
+      <p>В Google-карточках есть три кнопки (нужен вход): <b class="k">шире</b> — добавить синонимы и ослабить условия, <b class="k">уже</b> — сузить уточнениями и минус-словами, <b class="k">по-другому</b> — иной подход к поиску на той же площадке.</p>
+    </div>
+  </details>
+
+
+  <p class="note">Не нашёл ответа или что-то сломалось? <a href="/#support">Напиши в поддержку</a> — читаем всё.</p>
+  <p class="note">Поисковые запросы выполняются в твоём браузере и не сохраняются на сервере. Подробнее — в <a href="/privacy">политике данных</a>.</p>
+
+  <a class="back" href="/">← Вернуться к X-Raya</a>
+</div>
+</body>
+</html>

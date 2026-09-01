@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>X-Raya — статистика</title>
+<style>
+  :root{color-scheme:dark; --bg:#0B0A07; --panel:#14110B; --panel2:#0E0C07; --line:#282213; --line2:#3B3219;
+    --amber:#F2A93B; --amber-hi:#FFC96B; --amber-dim:rgba(242,169,59,.14); --txt:#EDE6D4; --muted:#9A9077;
+    --red:#E2705A; --green:#5FBF6B;
+    --mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:400 14px/1.5 var(--mono);padding:28px 18px}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin:0 0 4px}
+  .sub{color:var(--muted);font-size:12px;margin-bottom:24px}
+  .gate{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+  input{background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--txt);
+    font:400 13px var(--mono);padding:10px 13px;min-width:220px}
+  input:focus{outline:none;border-color:rgba(242,169,59,.5)}
+  button{background:var(--amber);color:#1A1508;border:none;border-radius:8px;cursor:pointer;
+    font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 18px}
+  button:hover{background:var(--amber-hi)}
+  .err{color:var(--red);font-size:12.5px;margin-top:10px;min-height:16px}
+
+  /* заголовок дашборда с переключателем периода */
+  .board{margin-top:34px}
+  .board:first-of-type{margin-top:20px}
+  .board-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+  .board-h h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin:0}
+  .board-h .note{font-size:11px;color:#6E6753;margin-left:auto}
+  .seg{display:inline-flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden}
+  .seg button{background:transparent;border:none;color:var(--muted);cursor:pointer;
+    font:500 11px var(--mono);letter-spacing:.04em;text-transform:none;padding:6px 13px}
+  .seg button.on{background:var(--amber-dim);color:var(--amber-hi)}
+  .seg button:hover{color:var(--txt)}
+
+  h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6E6753;margin:24px 0 10px}
+  h3:first-child{margin-top:0}
+
+  /* карточки: крупное число — люди, мелкое — сколько раз */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:15px 16px}
+  .kpi b{display:block;font-size:28px;color:var(--amber-hi);font-weight:600;line-height:1.15}
+  .kpi .lbl{display:block;font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+  .kpi .sec{display:block;font-size:11px;color:#6E6753;margin-top:7px;padding-top:7px;border-top:1px solid var(--line)}
+  .kpi.zero b{color:#5A5343}
+
+  /* воронка */
+  .fun{display:flex;flex-direction:column;gap:8px}
+  .fun-row{display:grid;grid-template-columns:170px 1fr 104px;gap:12px;align-items:center}
+  .fun-lbl{color:var(--txt);font-size:13px}
+  .fun-lbl small{display:block;color:#6E6753;font-size:10.5px}
+  .fun-track{background:var(--panel2);border-radius:7px;height:28px;overflow:hidden;border:1px solid var(--line)}
+  .fun-fill{height:100%;background:linear-gradient(90deg,rgba(242,169,59,.55),rgba(242,169,59,.28));
+    border-right:1px solid var(--amber);min-width:2px;transition:width .45s ease}
+  .fun-n{text-align:right;font:600 15px var(--mono);color:var(--amber-hi)}
+  .fun-n small{display:block;font-size:10px;color:#6E6753;font-weight:400}
+  .fun-n small.drop{color:var(--red)}
+
+  /* график по дням */
+  .chart{display:flex;align-items:flex-end;gap:5px;height:110px;margin-top:4px}
+  .chart .bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+  .chart .bar .b{width:100%;max-width:30px;background:var(--amber-dim);border:1px solid rgba(242,169,59,.4);
+    border-radius:4px 4px 0 0}
+  .chart .bar.today .b{background:var(--amber);border-color:var(--amber)}
+  .chart .bar .n{font-size:10px;color:var(--amber-hi)}
+  .chart .bar .d{font-size:9px;color:#6E6753;white-space:nowrap}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;color:#6E6753;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:10px;
+    padding:8px 10px;border-bottom:1px solid var(--line)}
+  td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--txt);vertical-align:top}
+  tr:hover td{background:var(--panel)}
+  .num{color:var(--amber-hi);font-weight:600;text-align:right;white-space:nowrap}
+  .muted{color:var(--muted)}
+  .hidden{display:none}
+  .pbar{height:6px;background:var(--amber);border-radius:3px;min-width:2px}
+  .barcell{width:34%}
+  .empty{color:#6E6753;font-size:12px;padding:14px 0}
+  .how{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+    margin-top:34px;color:var(--muted);font-size:11.5px;line-height:1.75}
+  .how b{color:var(--txt);font-weight:600}
+  .life{display:flex;gap:28px;flex-wrap:wrap}
+  .life div{font-size:22px;color:var(--amber-hi);font-weight:600}
+  .life div span{display:block;font-size:10.5px;color:#6E6753;font-weight:400;
+    letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+  @media (max-width:560px){
+    .fun-row{grid-template-columns:1fr 74px;grid-template-areas:"lbl n" "track track"}
+    .fun-lbl{grid-area:lbl} .fun-n{grid-area:n} .fun-track{grid-area:track}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>X-Raya · статистика</h1>
+  <div class="sub">Регистрации нет. Людей считаем по анонимному id браузера, действия — по счётчикам.</div>
+
+  <div id="gate">
+    <div class="gate">
+      <input type="password" id="tok" placeholder="пароль (STATS_TOKEN_X)" autocomplete="off">
+      <button onclick="load()">Показать</button>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div id="data" class="hidden">
+
+    <!-- ДАШБОРД 1: кто пришёл и дошёл ли до пользы -->
+    <div class="board">
+      <div class="board-h">
+        <h2>Люди и польза</h2>
+        <span class="seg">
+          <button data-w="d1" onclick="setWin('d1')">Сегодня</button>
+          <button data-w="d7" class="on" onclick="setWin('d7')">7 дней</button>
+          <button data-w="d30" onclick="setWin('d30')">30 дней</button>
+        </span>
+        <span class="note" id="winNote"></span>
+      </div>
+
+      <h3>Сколько человек дошло до каждой функции</h3>
+      <div class="kpis" id="kpis"></div>
+
+      <h3>Воронка за тот же период</h3>
+      <div class="fun" id="funnel"></div>
+
+      <h3>Возвраты</h3>
+      <div class="kpis" id="ret"></div>
+
+      <h3>По дням · 30 дней <span class="muted" id="chartLbl"></span></h3>
+      <div class="chart" id="chart"></div>
+    </div>
+
+    <!-- ДАШБОРД 2: что чинить -->
+    <div class="board">
+      <div class="board-h">
+        <h2>Что чинить</h2>
+        <span class="note">каналы и промахи — за 30 дней</span>
+      </div>
+
+      <h3>Что реально открывают</h3>
+      <table>
+        <thead><tr><th>Канал</th><th class="barcell"></th><th class="num">Открытий</th></tr></thead>
+        <tbody id="chans"></tbody>
+      </table>
+
+      <h3>Промахи движка · «пусто / не то» <span class="muted" id="missN"></span></h3>
+      <table>
+        <thead><tr><th>Запрос</th><th>Канал</th><th>Комментарий</th><th>Когда</th></tr></thead>
+        <tbody id="missT"></tbody>
+      </table>
+
+      <h3>Обратная связь <span class="muted" id="fbN"></span></h3>
+      <table>
+        <thead><tr><th>Сообщение</th><th>Email</th><th>Когда</th></tr></thead>
+        <tbody id="fbT"></tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:34px">Всего за всё время · только действия</h3>
+    <div class="life" id="life"></div>
+
+    <div class="how">
+      <b>Как это считается.</b> «Людей» и всё, что в воронке и возвратах, берётся из лога событий:
+      ключ — анонимный id браузера, который живёт в localStorage. Один человек с тремя вкладками
+      считается один раз, а пользователи за общим сетевым адресом не слипаются в одного.
+      Лог хранится <span id="ttlD">30</span> дней, поэтому «людей за всё время» здесь нет — таких данных просто не существует.<br>
+      «Всего за всё время» внизу — это счётчики действий, а не людей: сколько раз нажали, а не сколько человек нажало.
+      Поэтому число действий всегда больше числа людей, и сравнивать их между собой не нужно.<br>
+      Все числа в первом дашборде считаются за один и тот же период — тот, что выбран переключателем наверху.
+    </div>
+  </div>
+</div>
+
+<script>
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function fmtDate(iso){ try{ const d=new Date(iso); return d.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}); }catch(_){ return iso; } }
+  function plural(n,a,b,c){ const m=n%100,m1=n%10; return (m>10&&m<20)?c:(m1===1?a:(m1>1&&m1<5?b:c)); }
+
+  async function load(){
+    const tok = document.getElementById('tok').value.trim();
+    const err = document.getElementById('err');
+    err.textContent='';
+    if(!tok){ err.textContent='Введи пароль'; return; }
+    try{
+      const r = await fetch('/api/stats?token='+encodeURIComponent(tok));
+      const d = await r.json();
+      if(!r.ok) throw new Error(d.error||'ошибка');
+      localStorage.setItem('xraya_stats_tok', tok);
+      render(d);
+    }catch(e){ err.textContent = e.message; }
+  }
+
+  let DATA=null, WIN='d7';
+  function setWin(w){
+    WIN=w;
+    document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on', b.dataset.w===w));
+    if(DATA) renderWindow();
+  }
+
+  /* Дашборд 1 — всё из одного окна, поэтому цифры сходятся между блоками */
+  function renderWindow(){
+    const m = DATA.windows[WIN];
+    const per = WIN==='d1' ? 'сегодня' : WIN==='d7' ? 'за 7 дней' : 'за 30 дней';
+    document.getElementById('winNote').textContent = 'период: '+per+', с '+m.since;
+
+    // крупное число — люди, мелкое — сколько раз сделано
+    const cards = [
+      ['Людей', m.people, null, 'уникальных браузеров'],
+      ['Искали', m.reach.searches, m.actions.searches, 'запросов'],
+      ['Открывали ссылки', m.reach.opens, m.actions.opens, 'открытий'],
+      ['Собирали подборки', m.reach.candy, m.actions.candy, 'подборок'],
+      ['Брали контакты', m.reach.contacts, m.actions.contacts, 'открытий'],
+    ];
+    document.getElementById('kpis').innerHTML = cards.map(([lbl,people,acts,unit])=>
+      '<div class="kpi'+(people?'':' zero')+'"><b>'+people+'</b><span class="lbl">'+lbl+'</span>'+
+      (acts===null ? '<span class="sec">'+unit+'</span>'
+                   : '<span class="sec">'+acts+' '+unit+'</span>')+'</div>'
+    ).join('');
+
+    // воронка: те же множества, что и в карточках
+    const top = m.funnel[0].n || 1;
+    document.getElementById('funnel').innerHTML = m.funnel.map((s,i)=>{
+      const prev = i ? m.funnel[i-1].n : 0;
+      const conv = i && prev ? Math.round(s.n/prev*100) : null;
+      return '<div class="fun-row">'+
+        '<div class="fun-lbl">'+esc(s.step)+'<small>'+esc(s.hint||'')+'</small></div>'+
+        '<div class="fun-track"><div class="fun-fill" style="width:'+Math.max(2,Math.round(s.n/top*100))+'%"></div></div>'+
+        '<div class="fun-n">'+s.n+(conv===null?'<small>старт</small>':'<small'+(conv<25?' class="drop"':'')+'>'+conv+'% от пред.</small>')+'</div>'+
+      '</div>';
+    }).join('');
+
+    const r = m.retention;
+    document.getElementById('ret').innerHTML =
+      '<div class="kpi'+(r.returned?'':' zero')+'"><b>'+r.returned+'</b><span class="lbl">вернулись в другой день</span>'+
+        '<span class="sec">'+r.returnedPct+'% от '+r.total+'</span></div>'+
+      '<div class="kpi'+(r.d1?'':' zero')+'"><b>'+r.d1Pct+'%</b><span class="lbl">вернулись на следующий день</span>'+
+        '<span class="sec">'+r.d1+' из '+r.cohort+', у кого был шанс</span></div>';
+  }
+
+  /* Дашборд 2 и всё, что не зависит от переключателя */
+  function render(d){
+    DATA=d;
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('data').classList.remove('hidden');
+    document.getElementById('ttlD').textContent = d.evTtlDays || 30;
+    renderWindow();
+
+    // график всегда за 30 дней: по нему видно тренд, а не срез
+    const days = d.days||[], mx = days.reduce((m,x)=>Math.max(m,x.people),1);
+    document.getElementById('chartLbl').textContent = '· столбик = люди, число сверху = поиски';
+    document.getElementById('chart').innerHTML = days.map((x,i)=>{
+      const h = Math.round(x.people/mx*82)+4;
+      const showD = (i%3===0)||(i===days.length-1);
+      return '<div class="bar'+(i===days.length-1?' today':'')+'" title="'+x.date+': '+x.people+' '+
+        plural(x.people,'человек','человека','человек')+', '+x.searches+' '+plural(x.searches,'поиск','поиска','поисков')+'">'+
+        '<div class="n">'+(x.searches||'')+'</div>'+
+        '<div class="b" style="height:'+h+'px"></div>'+
+        '<div class="d">'+(showD?x.date.slice(8)+'.'+x.date.slice(5,7):'')+'</div></div>';
+    }).join('');
+
+    // каналы и промахи всегда за 30 дней — по короткому окну там нечего смотреть
+    const ch = (d.windows.d30.channels)||[];
+    const chMax = ch.reduce((m,x)=>Math.max(m,x.n),1);
+    document.getElementById('chans').innerHTML = ch.length ? ch.map(c=>
+      '<tr><td>'+esc(c.ch)+'</td><td class="barcell"><div class="pbar" style="width:'+Math.round(c.n/chMax*100)+'%"></div></td>'+
+      '<td class="num">'+c.n+'</td></tr>').join('')
+      : '<tr><td colspan="3" class="empty">Пока ни одной открытой ссылки.</td></tr>';
+
+    const ms = d.misses||[];
+    document.getElementById('missN').textContent = ms.length ? '· '+ms.length : '';
+    document.getElementById('missT').innerHTML = ms.length ? ms.map(m=>
+      '<tr><td>'+esc(m.q||'—')+'</td><td class="muted">'+esc(m.ch||'—')+'</td>'+
+      '<td class="muted">'+esc(m.note||'')+'</td><td class="muted">'+fmtDate(m.at)+'</td></tr>').join('')
+      : '<tr><td colspan="4" class="empty">Промахов не присылали. Кнопка «пусто / не то» — под результатами поиска.</td></tr>';
+
+    const fb = d.feedback||[];
+    document.getElementById('fbN').textContent = fb.length ? '· '+fb.length : '';
+    document.getElementById('fbT').innerHTML = fb.length ? fb.map(f=>
+      '<tr><td>'+esc(f.text||'')+'</td><td class="muted">'+esc(f.email||'—')+'</td>'+
+      '<td class="muted">'+fmtDate(f.at)+'</td></tr>').join('')
+      : '<tr><td colspan="3" class="empty">Сообщений пока нет.</td></tr>';
+
+    const L=d.lifetime||{};
+    document.getElementById('life').innerHTML = [
+      [L.searches,'поисков'],[L.candy,'подборок Candy'],[L.ai,'AI-разборов'],
+      [L.contacts,'контактов'],[L.feedback,'сообщений'],
+    ].map(([n,lbl])=>'<div>'+(n||0)+'<span>'+lbl+'</span></div>').join('');
+  }
+
+  const saved = localStorage.getItem('xraya_stats_tok');
+  if(saved){ document.getElementById('tok').value = saved; load(); }
+  document.getElementById('tok').addEventListener('keydown', e=>{ if(e.key==='Enter') load(); });
+</script>
+</body>
+</html>
