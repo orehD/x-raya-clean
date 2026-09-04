@@ -1,0 +1,46 @@
+[
+  {
+    "link_or_text": "Полезные ссылки для составления запросов:",
+    "note": null
+  },
+  {
+    "link_or_text": "https://candy-platform-search.tcsbank.ru/v2/Search/metadata/filter",
+    "note": "JSON Schema (формальное описание всех полей и операторов)"
+  },
+  {
+    "link_or_text": "https://gitlab.tcsbank.ru/itsa-candy-platform/search/-/blob/master/backend/src/search-service/Search.Dsl/PublicModel.cs",
+    "note": "поля, доступные для поиска"
+  },
+  {
+    "link_or_text": "https://gitlab.tcsbank.ru/candy/candy/-/blob/master/hr.candy/backend/src/candidates/Candidates.Primitives/PlainEventState.cs?ref_type=heads",
+    "note": "коды этапов отбора"
+  },
+  {
+    "link_or_text": "https://gitlab.tcsbank.ru/candy/candy/-/tree/master/hr.candy/backend/src/candidates/Candidates.Primitives?ref_type=heads",
+    "note": "что-то полезное"
+  },
+  {
+    "link_or_text": "https://hr.tbank.ru/peoplehub/administration/handbooks-v2/handbook/recruitment_stream_specializations",
+    "note": "маппинг атрибутов по Специализациям, можно найти id специализации"
+  },
+  {
+    "link_or_text": "https://candy.pages.devplatform.tcsbank.ru/candy-arch-repo/docs/master/systems/search/design-docs/HRC-31976-dynamic-filter-poc/?_highlight=dsl#%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81-filter-dsl",
+    "note": "как работает новый поиск. здесь есть пример правильного запроса, структура запроса верная, но он работает на прототипе!!! то есть поля там упрощенные, настоящие поля называются по-другому"
+  },
+  {
+    "link_or_text": "https://hr.tbank.ru/peoplehub/administration/handbooks-v2/handbook/dismissalgeneralreasons",
+    "note": "основные причины расторжения, бывшие сотрудники"
+  },
+  {
+    "link_or_text": "https://wiki.tcsbank.ru/pages/viewpage.action?pageId=7549561370",
+    "note": "новый расширенный поиск"
+  },
+  {
+    "link_or_text": "https://gitlab.tcsbank.ru/candy/candy/-/blob/master/hr.candy/backend/src/candidates/Candidates.Primitives/HiringProcessClosingReason.cs?ref_type=heads",
+    "note": "коды причин закрытия процесса"
+  },
+  {
+    "link_or_text": "если нужно Другое собеседование, нужно применить просто Собеседование, а потом тип интервью \"Другое\". Аналогично с техническим",
+    "note": null
+  }
+]

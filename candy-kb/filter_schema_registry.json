@@ -1,0 +1,1614 @@
+{
+  "source": "filter.json (JSON Schema draft-04, кэш от 2026-09-03)",
+  "operators": {
+    "text_match": {
+      "arity": "one",
+      "valueType": "string",
+      "format": null
+    },
+    "text_phrase": {
+      "arity": "one",
+      "valueType": "string",
+      "format": null
+    },
+    "int_eq": {
+      "arity": "one",
+      "valueType": "integer",
+      "format": "int32"
+    },
+    "int_one_of": {
+      "arity": "many",
+      "valueType": "integer"
+    },
+    "int_gt": {
+      "arity": "one",
+      "valueType": "integer",
+      "format": "int32"
+    },
+    "int_lt": {
+      "arity": "one",
+      "valueType": "integer",
+      "format": "int32"
+    },
+    "date_eq": {
+      "arity": "one",
+      "valueType": "string",
+      "format": null
+    },
+    "date_between": {
+      "arity": "range",
+      "valueType": "string"
+    },
+    "date_gt": {
+      "arity": "one",
+      "valueType": "string",
+      "format": null
+    },
+    "date_lt": {
+      "arity": "one",
+      "valueType": "string",
+      "format": null
+    },
+    "string_eq": {
+      "arity": "one",
+      "valueType": "string",
+      "format": null
+    },
+    "string_one_of": {
+      "arity": "many",
+      "valueType": "string"
+    },
+    "string_list_contains_any_of": {
+      "arity": "many",
+      "valueType": "string"
+    },
+    "string_list_contains_all_of": {
+      "arity": "many",
+      "valueType": "string"
+    },
+    "int_list_contains_any_of": {
+      "arity": "many",
+      "valueType": "integer"
+    },
+    "int_list_contains_all_of": {
+      "arity": "many",
+      "valueType": "integer"
+    },
+    "text_list_matches_any_of": {
+      "arity": "many",
+      "valueType": "string"
+    },
+    "text_list_matches_all_of": {
+      "arity": "many",
+      "valueType": "string"
+    },
+    "text_list_phrase": {
+      "arity": "one",
+      "valueType": "string",
+      "format": null
+    },
+    "bool_eq": {
+      "arity": "one",
+      "valueType": "boolean",
+      "format": null
+    }
+  },
+  "enums": {
+    "Gender": [
+      "Male",
+      "Female",
+      "Any"
+    ],
+    "HiringProcessState": [
+      "InProgress",
+      "Finish"
+    ],
+    "ContactType": [
+      "Unknown",
+      "Email",
+      "Phone",
+      "Skype",
+      "Telegram",
+      "Viber",
+      "Whatsapp",
+      "Signal",
+      "Icq",
+      "Facebook",
+      "Vk",
+      "Ok",
+      "Instagram",
+      "Twitter",
+      "YouTube",
+      "Tiktok",
+      "Github",
+      "Gitlab",
+      "BitBucket",
+      "HeadHunter",
+      "LinkedIn",
+      "AmazingHiring",
+      "Habr",
+      "CareerHabr",
+      "RabotaRu",
+      "Superjob",
+      "ZarplataRu",
+      "Other"
+    ],
+    "EmployeeStatusType": [
+      "Unknown",
+      "None",
+      "Induction",
+      "Employed",
+      "Dismissed",
+      "Ambiguous"
+    ],
+    "SpeechEvaluationResult": [
+      "NoRemarks",
+      "NonCriticalRemarks",
+      "CriticalRemarks"
+    ],
+    "EducationLevel": [
+      "Higher",
+      "UnfinishedHigher",
+      "SecondarySpecial",
+      "Secondary"
+    ],
+    "MeetupOccupation": [
+      "LocalCompany",
+      "ForeignCompany",
+      "SelfEmployed",
+      "Student",
+      "School"
+    ],
+    "MeetupExperience": [
+      "Junior",
+      "Middle",
+      "Senior",
+      "Lead"
+    ],
+    "SelectionProgram": [
+      "Start"
+    ]
+  },
+  "fields": {
+    "Candidate": {
+      "name": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "surname": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "patronymic": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "birthDay": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthMonth": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthdate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "gender": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "Gender"
+      },
+      "locationId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "location": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "citizenshipId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "citizenship": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "specializationIds": {
+        "ops": [
+          "string_list_contains_all_of",
+          "string_list_contains_any_of"
+        ],
+        "nested": false
+      },
+      "hiringProcesses": {
+        "ops": [],
+        "nested": true
+      },
+      "contacts": {
+        "ops": [],
+        "nested": true
+      },
+      "tagsIds": {
+        "ops": [
+          "string_list_contains_all_of",
+          "string_list_contains_any_of"
+        ],
+        "nested": false
+      },
+      "tags": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "employeeStatus": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "EmployeeStatusType"
+      },
+      "employeeDismissalReasonId": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "employeeDismissalReason": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "employeeDismissalReasonIsNegative": {
+        "ops": [
+          "bool_eq"
+        ],
+        "nested": false
+      },
+      "employeeDismissalDate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "speechEvaluationResult": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "SpeechEvaluationResult"
+      },
+      "speechEvaluationRatedByMasterId": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "speechEvaluationRatedAtUtc": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "educations": {
+        "ops": [],
+        "nested": true
+      },
+      "workExperience": {
+        "ops": [],
+        "nested": true
+      },
+      "uniqueIdentifiers": {
+        "ops": [],
+        "nested": true
+      },
+      "facts": {
+        "ops": [],
+        "nested": true
+      },
+      "meetups": {
+        "ops": [],
+        "nested": true
+      },
+      "internships": {
+        "ops": [],
+        "nested": true
+      },
+      "resumes": {
+        "ops": [],
+        "nested": true
+      },
+      "changedUtc": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "files": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "recruitersMasterIds": {
+        "ops": [
+          "int_list_contains_all_of",
+          "int_list_contains_any_of"
+        ],
+        "nested": false
+      },
+      "offices": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "levels": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "interviewTypes": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      }
+    },
+    "HiringProcess": {
+      "specializationId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "closingReasonsIds": {
+        "ops": [
+          "int_list_contains_all_of",
+          "int_list_contains_any_of"
+        ],
+        "nested": false
+      },
+      "events": {
+        "ops": [],
+        "nested": true
+      },
+      "assigneesMasterIds": {
+        "ops": [
+          "int_list_contains_all_of",
+          "int_list_contains_any_of"
+        ],
+        "nested": false
+      },
+      "state": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "HiringProcessState"
+      }
+    },
+    "HiringProcessEvent": {
+      "plainEventState": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "createdUtc": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      }
+    },
+    "StructuredContact": {
+      "type": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "ContactType"
+      },
+      "value": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      }
+    },
+    "Education": {
+      "faculty": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "organizationName": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "specialization": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "educationLevel": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "EducationLevel"
+      },
+      "graduationYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      }
+    },
+    "WorkExperience": {
+      "title": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "organization": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "cityId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "city": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "dateStart": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "dateEnd": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "organizationUrl": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "description": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      }
+    },
+    "UniqueIdentifier": {
+      "code": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "value": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      }
+    },
+    "Fact": {
+      "sourceCode": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "sourceId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "name": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "surname": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "patronymic": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "birthDay": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthMonth": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthdate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "gender": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "Gender"
+      },
+      "locationId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "location": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "citizenshipId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "citizenship": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "contacts": {
+        "ops": [],
+        "nested": true
+      },
+      "tagsIds": {
+        "ops": [
+          "string_list_contains_all_of",
+          "string_list_contains_any_of"
+        ],
+        "nested": false
+      },
+      "tags": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "employeeStatus": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "employeeDismissalReasonId": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "employeeDismissalReason": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "employeeDismissalReasonIsNegative": {
+        "ops": [
+          "bool_eq"
+        ],
+        "nested": false
+      },
+      "employeeDismissalDate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "speechEvaluationResult": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "speechEvaluationRatedByMasterId": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "speechEvaluationRatedAtUtc": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "educations": {
+        "ops": [],
+        "nested": true
+      },
+      "workExperience": {
+        "ops": [],
+        "nested": true
+      },
+      "uniqueIdentifiers": {
+        "ops": [],
+        "nested": true
+      }
+    },
+    "Meetup": {
+      "id": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "title": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "format": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "cityId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "city": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "startUtc": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "endUtc": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "name": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "surname": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "participantCity": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "occupation": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "MeetupOccupation"
+      },
+      "company": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "experience": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "MeetupExperience"
+      },
+      "specializationId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "specialization": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "programmingLanguages": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "comment": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "marketingCommunicationConsentGivenAt": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "personalDataProcessingConsentGivenAt": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "contacts": {
+        "ops": [],
+        "nested": true
+      }
+    },
+    "Internship": {
+      "id": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "title": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "program": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "SelectionProgram"
+      },
+      "streamId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "stream": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "specializationsIds": {
+        "ops": [
+          "string_list_contains_all_of",
+          "string_list_contains_any_of"
+        ],
+        "nested": false
+      },
+      "specializations": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "examsStartDate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "examsFinishDate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "name": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "surname": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "patronymic": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "birthDay": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "preferredLearningCity": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "schoolCityId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "schoolCity": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "schoolId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "school": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "schoolGraduationYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "universityCityId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "universityCity": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "universityId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "university": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "universityFacultyId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "universityFaculty": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "universityChairId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "universityChair": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "universityGraduationYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "companyName": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "position": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "about": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "bankClient": {
+        "ops": [
+          "bool_eq"
+        ],
+        "nested": false
+      },
+      "marketingCommunicationConsentGivenAt": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "personalDataProcessingConsentGivenAt": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "eduAccountId": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "contacts": {
+        "ops": [],
+        "nested": true
+      }
+    },
+    "Resume": {
+      "name": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "surname": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "patronymic": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "birthDay": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthMonth": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "birthdate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "gender": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false,
+        "enum": "Gender"
+      },
+      "citizenshipId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "citizenship": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "locationId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "location": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "declaredSpecialization": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "about": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "declaredSkills": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "InferredSkills": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "hobbies": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "languages": {
+        "ops": [],
+        "nested": true
+      },
+      "preferredSchedules": {
+        "ops": [
+          "text_list_matches_all_of",
+          "text_list_matches_any_of",
+          "text_list_phrase"
+        ],
+        "nested": false
+      },
+      "additionalEducation": {
+        "ops": [],
+        "nested": true
+      },
+      "higherEducation": {
+        "ops": [],
+        "nested": true
+      },
+      "workExperienceTotalMonths": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "workExperienceTotalYears": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "workExperience": {
+        "ops": [],
+        "nested": true
+      },
+      "preferredLocations": {
+        "ops": [],
+        "nested": true
+      },
+      "contacts": {
+        "ops": [],
+        "nested": true
+      },
+      "createdUtc": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      }
+    },
+    "ResumeLanguage": {
+      "language": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "level": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      }
+    },
+    "ResumeAdditionalEducation": {
+      "name": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "type": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "year": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      }
+    },
+    "ResumeHigherEducation": {
+      "university": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "faculty": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "major": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "degree": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "startYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      },
+      "endYear": {
+        "ops": [
+          "int_eq",
+          "int_gt",
+          "int_lt",
+          "int_one_of"
+        ],
+        "nested": false
+      }
+    },
+    "ResumeWorkExperience": {
+      "company": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "locationId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "location": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "position": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "description": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      },
+      "startDate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "endDate": {
+        "ops": [
+          "date_between",
+          "date_eq",
+          "date_gt",
+          "date_lt"
+        ],
+        "nested": false
+      },
+      "isCurrent": {
+        "ops": [
+          "bool_eq"
+        ],
+        "nested": false
+      },
+      "isIt": {
+        "ops": [
+          "bool_eq"
+        ],
+        "nested": false
+      }
+    },
+    "ResumePreferredLocations": {
+      "locationId": {
+        "ops": [
+          "string_eq",
+          "string_one_of"
+        ],
+        "nested": false
+      },
+      "location": {
+        "ops": [
+          "text_match",
+          "text_phrase"
+        ],
+        "nested": false
+      }
+    }
+  }
+}

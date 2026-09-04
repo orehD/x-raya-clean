@@ -1,0 +1,205 @@
+[
+  {
+    "name": "Универсальный поиск (очищенные кандидаты)",
+    "requester": null,
+    "owner": "Саша",
+    "note": "https://wiki.tcsbank.ru/pages/viewpage.action?pageId=7830905055",
+    "filters_description": "Исключить текущих сотрудников, бывших сотрудников с негативной причиной ухода или по низкой эффективности/пропавших,\nсотрудников, которые уволились после 01.04.2026\nс непройденной СБ за все время\nчитеров\n\nисключить с причинами отказа по контрофферу и софтам за последние 2 месяца\nисключить с причина отказа по локации за последние 6 месяцев"
+  },
+  {
+    "name": "Проверенные",
+    "requester": null,
+    "owner": "Саша",
+    "note": "https://wiki.tcsbank.ru/pages/viewpage.action?pageId=7731444992",
+    "filters_description": "кандидат однажды успешно проходил наш hr-скрининг ИЛИ\nкандидат однажды успешно проходил наше интервью ИЛИ\nкандидат однажды успешно проходил наше финальное интервью\nисключить текущих сотрудников, бывших сотрудников с негативной причиной увольнения или по причине низкой эффективности/пропавших\nисключить сотрудников, которые уволились после 01.04.2026\nисключить с этапом \"СБ не пройдено\" за все время\nисключить с тэгом читер"
+  },
+  {
+    "name": "Внутренние аудиторы (для корп.найма)",
+    "requester": null,
+    "owner": "Саша",
+    "note": "собирала потребность в чате с рекрутерами корп.найма, подборка нужна Вике Подлесной",
+    "filters_description": "специализация \"внутренний аудитор\" + локация Москва. исключить кандидатов с негативной ОС  на этапе \"Другое собеседование\" и \"Просмотр резюме заказчиками\" за последние три года"
+  },
+  {
+    "name": "Корпдев (для корп.найма)",
+    "requester": null,
+    "owner": "Саша",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hhyydnd7wfh44nxsdbcgn1qn",
+    "filters_description": "для Даши Гришиной. специализация: общекорпоративное развитие + топ-вузы (+ РЭШ)  и иностранные вузы"
+  },
+  {
+    "name": "Подборка для тимлидов",
+    "requester": null,
+    "owner": "Олеся",
+    "note": "полгода назад не прошел собес (менеджмент, язык или системный дизайн). языки: джава, го, котлин, питон. Исключить тех, кто два месяца назад был в работе",
+    "filters_description": null
+  },
+  {
+    "name": "ML PM",
+    "requester": null,
+    "owner": "Саша",
+    "note": "https://wiki.tcsbank.ru/pages/viewpage.action?pageId=8442164004",
+    "filters_description": "Ключевые слова + университеты + заявленные специализации"
+  },
+  {
+    "name": "Джуны ПА/БА",
+    "requester": "a.d.kukushkina",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18her38snjujdcwgk7rotuktd6",
+    "filters_description": "Джуны ПА/БА, которых отклоняли по причине \"студент/наличие отпусков\" за последний год примерно"
+  },
+  {
+    "name": "БА",
+    "requester": null,
+    "owner": "Саша",
+    "note": "https://time.tbank.ru/tinkoff/pl/18heqzug17wf7dsuqmf1uj8sfw",
+    "filters_description": "Нетрудоустроенные, которые с начала 2024 прошли тех. секцию на миддла и выше под крышкой"
+  },
+  {
+    "name": "Нормативное сопровождение",
+    "requester": "i.a.prokhorova",
+    "owner": "Саша",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hhxwft6sxez4jdcaxpzhogdr",
+    "filters_description": "нормативное сопровождение + опыт в банке за последние 2-3 года. - исключения\nпо ключевым словам: бухгалтерский учет+ ПФИ/ производные финансовые инструменты/ форвард/фьючерс/своп/ деривативы/цфа/цифровые финансовые активы/ценные бумаг"
+  },
+  {
+    "name": "Общекорпоративное развитие",
+    "requester": "d.p.grishina",
+    "owner": "Саша",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hhyydnd7wfh44nxsdbcgn1qn",
+    "filters_description": "кандидаты из компаний доноров с ключевыми словами про стратегию в опыте за последние пять лет и с ключевыми словами про стратегию в заявленной специализации"
+  },
+  {
+    "name": "ДОРАБОТКА Внутренний аудит (СВА)",
+    "requester": "d.p.grishina",
+    "owner": "Саша",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hhyzq9sfzkq1bnba4is1byia",
+    "filters_description": null
+  },
+  {
+    "name": "ДОРАБОТКА Бывшие риски",
+    "requester": null,
+    "owner": "Саша",
+    "note": null,
+    "filters_description": "Исключить бывших с причиной ухода по низкой эффективности"
+  },
+  {
+    "name": "Юристы",
+    "requester": "e.maslennikova",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hi7fnx8or4bfurub95o347tr",
+    "filters_description": null
+  },
+  {
+    "name": "Финансы",
+    "requester": "v.podlesnaya",
+    "owner": "Олеся",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hjsn6ez7x6xhd7i5tsrbnsze",
+    "filters_description": null
+  },
+  {
+    "name": "БА с английским",
+    "requester": "m.tyukacheva",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hjue9zobwos6eoyxetirwn5i",
+    "filters_description": null
+  },
+  {
+    "name": "ПА с английским",
+    "requester": "m.tyukacheva",
+    "owner": "Олеся",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hjueqk3ouim6w8mnbi4famcr",
+    "filters_description": null
+  },
+  {
+    "name": "Go 14 грейда из Нижнего Новгорода",
+    "requester": null,
+    "owner": "?",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hmi8xhe3udmcecbtubbdnufn",
+    "filters_description": "Возможно ограничимся расширенным поиском"
+  },
+  {
+    "name": "SRE",
+    "requester": "e.a.shornikova  p.bezborodova",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hmrc8iwjyebgsd1o4eojb1tw",
+    "filters_description": "Не делали фильтр по грейдам"
+  },
+  {
+    "name": "Product Manager",
+    "requester": "d.d.evseev",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hms7d39jx5f9x5ddfxxyjaka",
+    "filters_description": "Хотелось бы выгрузить из Базы Продактов, имеющих хорошую экспертизу в Discovery. Те опыт работы с А/В тестами, гипотезами, исследованиями\nЖелательно имеющих опыт работы с В2С продуктом"
+  },
+  {
+    "name": "TL из Саратова уровня Middle-Senior",
+    "requester": "a.z.vyazovaya",
+    "owner": "Саша",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hnfgg5ebxqqep68tt8cz9wea",
+    "filters_description": "Можно ограничиться расширенным поиском"
+  },
+  {
+    "name": "Java c опытом в крупных компаниях и профильным высшем образованием",
+    "requester": "a.z.vyazovaya",
+    "owner": "Саша",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hnfgz8ysrn331jx3dc563tuw",
+    "filters_description": "Специализация: Java\nУровень кандидата: Junior/Junior+\nС опытом от 1,5- 2 года в крупных компаниях. С профильным высшем образованием."
+  },
+  {
+    "name": "Риск-менеджер (Экосистемная безопасность)",
+    "requester": "k.i.bagaeva",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hrwbtksxr79cdhphq3mxmmga",
+    "filters_description": "Опыт от 1,5 года и позицию именно Риск-менеджера, Тимлида риск-аналитиков, опыт в финансовом секторе"
+  },
+  {
+    "name": "Опытные продуктовые дизайнеры",
+    "requester": "el.a.demidova",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hs8ydhh7s1x4zc4886sqso96",
+    "filters_description": "Нужно две подборки: \n1. Продуктовые дизайнеры с финальным уровнем у нас Staff/TeamLead/Head с опытом управления командами от 2-х лет из Москвы\n2. Тоже самое, что и 1), но которые потенциально могут быть такого уровня. Берём общий опыт от 5 лет"
+  },
+  {
+    "name": "Scala",
+    "requester": "p.korotkikh_x000D_",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hta494hxxfuccg3i1cds39qn",
+    "filters_description": "Обязательно фреймворки cats и zio, либо cats, либо zio\nне akka и другие\nТакже обязательно ФП - функциональное программирование, а не ООП (Объектно-ориентированное программирование)"
+  },
+  {
+    "name": "Java с финальным уровнем junior | junior+",
+    "requester": "m.papina",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18htinufqjzdm83rfuyjwqh6w1",
+    "filters_description": "Высшее техническое образование или неоконченное высшее (сейчас 4-5 курс)\nОт полугода до 2 лет опыта коммерческой разработки на Java. Исключить фулстек разработчиков и фрилансеров._x000D_\n_x000D_\n_x000D_"
+  },
+  {
+    "name": "Продуктовые методологи",
+    "requester": "k.i.bagaeva, v.podberezkina",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hwq3wmy3swxayq9crw7d5ipr",
+    "filters_description": "Опыт в страховании юридических лиц/корпоративном страховании (желательно от 5 лет)_x000D_\nВозраст желательно до 45 лет"
+  },
+  {
+    "name": "Юристы HQ",
+    "requester": "ekat.alekseeva, d.p.grishina",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hxgt8yojstddhmpun4y5gxea",
+    "filters_description": "до 32 лет, с высшим юридическим образованием, с опытом работы  от 1 - 5 лет в ВУЗе. МГУ, НИУ ВШЭ, МГИМО, МГЮА, РАНХиГС, РУДН, Финансовый университет при Правительстве_x000D_"
+  },
+  {
+    "name": "Бизнес-аналитик (технолог)_x000D_",
+    "requester": "k.a.makarova",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hyq43t8juxqfxe1j3arimafr",
+    "filters_description": "Если можно прочекать англ. - от B2_x000D_\nПо результатам технической секции - сильный блок - Проектный менеджмент, либо прописано в отчете, что сильный проджект"
+  },
+  {
+    "name": "Продуктовый менеджмент_x000D_",
+    "requester": "i.v.ryabkova",
+    "owner": "Настя",
+    "note": "https://time.tbank.ru/tinkoff/pl/18hyrb64jbt778gjkp5hx4qdke",
+    "filters_description": "Привет! Хочу глянуть продактов от уровня мидл/мидл плюс/синьор в нашей базе с локацией Новосибирск. От этапа первичный контак до отказов от офферов за 23-25 год, если так можно. Если нет, подскажите, как еще могу задать параметры?"
+  }
+]

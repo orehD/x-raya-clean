@@ -1,0 +1,1256 @@
+[
+  {
+    "recruitment_stream_specialization_id": "b01169bb-93df-47c0-b844-02c997ec1de2",
+    "status": "Архивная",
+    "name": "Орг. развитие",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "f02f5e33-996c-4212-8af1-83030cc1ba16",
+    "status": "Активная",
+    "name": "Корпоративные юристы",
+    "recruitment_stream": "Юриспруденция"
+  },
+  {
+    "recruitment_stream_specialization_id": "d8dad5be-055c-45c3-9051-d889a898328b",
+    "status": "Активная",
+    "name": "Analytics Engineer",
+    "recruitment_stream": "Data"
+  },
+  {
+    "recruitment_stream_specialization_id": "d9e6b4f2-92c1-4817-bad8-145dc0d72494",
+    "status": "Активная",
+    "name": "Работа с блогерами",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "7931d619-50e0-4724-8a2e-cf2619f2c82b",
+    "status": "Активная",
+    "name": "Управление клиентским сервисом",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "60b3139f-a296-41a3-b299-f606083628c8",
+    "status": "Активная",
+    "name": "General HR",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "0e712c6c-82ff-405b-a0a1-30c7c0f413cd",
+    "status": "Активная",
+    "name": "1C Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "091880e8-e32b-40f9-a376-35d5fc08b52f",
+    "status": "Активная",
+    "name": "Общекорпоративное развитие",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "45962503-21e7-4ded-9c0c-96422b7638e8",
+    "status": "Архивная",
+    "name": "Биржевая поддержка",
+    "recruitment_stream": "Инвестиции"
+  },
+  {
+    "recruitment_stream_specialization_id": "5fe9b027-65fc-4b9f-8721-51c1551a85c2",
+    "status": "Активная",
+    "name": "Системный аналитик",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "7f2ac438-627d-4f53-9c27-9e340b097e31",
+    "status": "Активная",
+    "name": "Финансовые аналитики модели аллокации",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "25e19595-ca7c-4f6c-ad5e-844b6d3ecb15",
+    "status": "Активная",
+    "name": "Внут. коммуникации",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "553a5578-3a52-404e-b0f1-b5efcb2e2848",
+    "status": "Активная",
+    "name": "Контроль режима санкций",
+    "recruitment_stream": "Compliance"
+  },
+  {
+    "recruitment_stream_specialization_id": "a838cbfd-f627-417a-b606-c64dab2318c0",
+    "status": "Активная",
+    "name": "Специалист финансового рынка",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "72e59e0f-b1c7-4559-a867-5701e855e463",
+    "status": "Активная",
+    "name": "Развитие продуктов глобальных рынков",
+    "recruitment_stream": "Инвестиции"
+  },
+  {
+    "recruitment_stream_specialization_id": "425e41b5-9df7-4d26-8d98-86e6abd7c580",
+    "status": "Активная",
+    "name": "Бренд дизайн",
+    "recruitment_stream": "Дизайн"
+  },
+  {
+    "recruitment_stream_specialization_id": "8bf431ba-b9ac-4a26-a050-4853a73a48f9",
+    "status": "Активная",
+    "name": "T&D Leads",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "5151ba48-c7e9-4bd4-b36d-91fbbd9000ea",
+    "status": "Активная",
+    "name": "QA Load",
+    "recruitment_stream": "QA"
+  },
+  {
+    "recruitment_stream_specialization_id": "e1466793-3190-409c-aa71-88d735e7cf6f",
+    "status": "Активная",
+    "name": "Project Manager",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "581dfa8c-ad16-47a9-8ba6-4d0a21884572",
+    "status": "Активная",
+    "name": "Продуктовый дизайн",
+    "recruitment_stream": "Дизайн"
+  },
+  {
+    "recruitment_stream_specialization_id": "24e2e514-7114-439d-811c-646a78f72bcd",
+    "status": "Активная",
+    "name": "Web аналитик",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "f6bc9264-f1d2-4e0d-98b3-f677bc4994c8",
+    "status": "Архивная",
+    "name": "NoSQL/NewSQL DBA",
+    "recruitment_stream": "DBA"
+  },
+  {
+    "recruitment_stream_specialization_id": "d9505a83-9144-42b5-8079-3c4ab781fb35",
+    "status": "Активная",
+    "name": ".NET Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "e30efe98-3a08-41ba-8841-58b5fce06ee9",
+    "status": "Активная",
+    "name": "Benefits",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "a7fb04af-abee-4a3c-85fd-e2b871d25d98",
+    "status": "Активная",
+    "name": "Развитие тех. сопровождения НДО",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "01eb0789-0f50-4a6f-825e-326d2cd7008d",
+    "status": "Активная",
+    "name": "CX исследования",
+    "recruitment_stream": "CX исследования"
+  },
+  {
+    "recruitment_stream_specialization_id": "7d19b12d-0543-40be-bf3a-c8f5d0450e89",
+    "status": "Активная",
+    "name": "Продуктовый методолог",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "8a7ce8be-c092-4e34-8e29-bf48e782f0e2",
+    "status": "Активная",
+    "name": "Scala Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "cb779cc1-c4e0-41a0-8d4f-58657907043b",
+    "status": "Активная",
+    "name": "Staff Engineer",
+    "recruitment_stream": "Staff"
+  },
+  {
+    "recruitment_stream_specialization_id": "b8ab8c3c-cfdb-413d-82af-b80d51536fbf",
+    "status": "Активная",
+    "name": "JS React Native Developer",
+    "recruitment_stream": "JavaScript"
+  },
+  {
+    "recruitment_stream_specialization_id": "98885c7f-b670-4ab5-88a8-4883bc5eb8b8",
+    "status": "Активная",
+    "name": "Контент-менеджмент",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "93bd4432-4d5b-4487-a63e-2de83cac5f79",
+    "status": "Активная",
+    "name": "Поисковое продвижение (SEO)",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "090c12aa-fd50-4c1f-a0b1-528967cb593e",
+    "status": "Активная",
+    "name": "PSD manager",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "4a57a87e-1a8f-4531-927d-42f260dbaf4a",
+    "status": "Активная",
+    "name": "UX-редактор",
+    "recruitment_stream": "Редактура"
+  },
+  {
+    "recruitment_stream_specialization_id": "e85f31e9-0e0f-4b74-a9a5-3e29b236e866",
+    "status": "Активная",
+    "name": "Развитие сервиса",
+    "recruitment_stream": "Развитие сервиса"
+  },
+  {
+    "recruitment_stream_specialization_id": "a34eed00-7e6c-4ef5-90c8-6efae7478d3a",
+    "status": "Активная",
+    "name": "DBA",
+    "recruitment_stream": "SRE"
+  },
+  {
+    "recruitment_stream_specialization_id": "484c850c-1fc8-4a63-885b-b23053036f2a",
+    "status": "Активная",
+    "name": "Risk Portfolio Analyst",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "7fb390a2-bd53-4a83-b5e9-1cc8d006c6ca",
+    "status": "Активная",
+    "name": "QA Front",
+    "recruitment_stream": "QA"
+  },
+  {
+    "recruitment_stream_specialization_id": "5f019e4a-d119-411e-9c19-2be2254b747d",
+    "status": "Отклоненная",
+    "name": "Контент менеджер",
+    "recruitment_stream": "Инвестиции"
+  },
+  {
+    "recruitment_stream_specialization_id": "5a52bd3a-61f4-4528-aae8-1791ea49d548",
+    "status": "Активная",
+    "name": "Локализация",
+    "recruitment_stream": "Редактура"
+  },
+  {
+    "recruitment_stream_specialization_id": "78b06142-b3ba-458d-a2b6-00b447f45446",
+    "status": "Активная",
+    "name": "Кросс-селл маркетинг",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "c54dd112-471c-4311-a581-091f3df37fd0",
+    "status": "Активная",
+    "name": "Маркетинговые материалы",
+    "recruitment_stream": "Оффлайн маркетинг"
+  },
+  {
+    "recruitment_stream_specialization_id": "8d663323-b98e-4b47-8b7d-91581dd6896f",
+    "status": "Активная",
+    "name": "Продуктовый аналитик",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "bb0e5169-d898-41c4-b1c4-860ae3dc5c00",
+    "status": "Архивная",
+    "name": "Росбанк Интеграция (по совместительству HQ)",
+    "recruitment_stream": "Росбанк интеграция"
+  },
+  {
+    "recruitment_stream_specialization_id": "16174a69-027f-44f9-8b7f-1e674005ef26",
+    "status": "Активная",
+    "name": "Юристы HQ",
+    "recruitment_stream": "Юриспруденция"
+  },
+  {
+    "recruitment_stream_specialization_id": "03aeb181-e976-47c3-bcac-a168f385f860",
+    "status": "Активная",
+    "name": "Финансовый мониторинг",
+    "recruitment_stream": "Compliance"
+  },
+  {
+    "recruitment_stream_specialization_id": "f18451fb-b6f7-46f9-84bf-6480a786126d",
+    "status": "Активная",
+    "name": "IT project manager",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "ed691e48-8dac-490d-a27a-591fa74e631b",
+    "status": "Активная",
+    "name": "Развитие инвестиционных продуктов",
+    "recruitment_stream": "Инвестиции"
+  },
+  {
+    "recruitment_stream_specialization_id": "774cca39-7fae-4228-9615-d6df79c3b383",
+    "status": "Активная",
+    "name": "C&B",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "652ed2f1-53dd-43f6-b7c1-f48864e5a683",
+    "status": "Архивная",
+    "name": "Avaya Engineers",
+    "recruitment_stream": "Инженерные должности"
+  },
+  {
+    "recruitment_stream_specialization_id": "1ecfb10a-bde1-4fff-b389-4711a35674c6",
+    "status": "Активная",
+    "name": "Information security",
+    "recruitment_stream": "Information security"
+  },
+  {
+    "recruitment_stream_specialization_id": "1edbf15d-e2b7-435b-9b82-a3ea06fe2e9f",
+    "status": "Активная",
+    "name": "Core Technical Development",
+    "recruitment_stream": "Инженерные должности"
+  },
+  {
+    "recruitment_stream_specialization_id": "1d749fa7-86e4-468f-bd42-18283d4ec79a",
+    "status": "Активная",
+    "name": "Аналитик рисков (DA)",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "73e2b356-aae5-48f5-b580-74742ccff62f",
+    "status": "Активная",
+    "name": "Compensations",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "5fb2b42f-9680-4ad1-a063-49882e4987b1",
+    "status": "Активная",
+    "name": "Full stack Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "1027dbd8-cb37-4f05-a1e2-0a4d626c388e",
+    "status": "Активная",
+    "name": "JS Angular Developer",
+    "recruitment_stream": "JavaScript"
+  },
+  {
+    "recruitment_stream_specialization_id": "205100ca-80b9-4a32-b425-ddc1c6fcb299",
+    "status": "Отклоненная",
+    "name": "Разработчик телеком сервисов",
+    "recruitment_stream": "Телеком"
+  },
+  {
+    "recruitment_stream_specialization_id": "8b7c7a14-fdcb-4795-9a5f-6c78a6a46a54",
+    "status": "Активная",
+    "name": "Security Engineer",
+    "recruitment_stream": "Information security"
+  },
+  {
+    "recruitment_stream_specialization_id": "d3c2cee4-c467-40f2-bb34-a09f72770c4f",
+    "status": "Активная",
+    "name": "Data Engineer",
+    "recruitment_stream": "Data"
+  },
+  {
+    "recruitment_stream_specialization_id": "ee8236f8-ec92-46c7-9ef2-f08093caf7de",
+    "status": "Активная",
+    "name": "PHP Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "799b09bb-679b-4bcb-b2f7-788326bbb712",
+    "status": "Активная",
+    "name": "Безопасность",
+    "recruitment_stream": "Безопасность"
+  },
+  {
+    "recruitment_stream_specialization_id": "323cb9d7-ba36-468e-85b6-c07ad18da5ff",
+    "status": "Активная",
+    "name": "Развитие и оптимизация рекламных продуктов",
+    "recruitment_stream": "Рекламная платформа Т-ads"
+  },
+  {
+    "recruitment_stream_specialization_id": "a50a4d1a-1474-44ac-8726-08a249d3faaa",
+    "status": "Активная",
+    "name": "TeamLead Бизнес-анализа",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "053683cf-d466-492e-9bc3-f6144a3bf67d",
+    "status": "Активная",
+    "name": "Партнер по компенсациям",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "f0ea9482-8afa-4ded-b74c-d65f3dce96df",
+    "status": "Активная",
+    "name": "Менеджмент по оптимизации процессов",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "8ee960eb-f918-4539-99ee-4cf43b063c2a",
+    "status": "Активная",
+    "name": "JS React Developer",
+    "recruitment_stream": "JavaScript"
+  },
+  {
+    "recruitment_stream_specialization_id": "af4e5b06-a8e7-4fd9-9916-94974f7de9ec",
+    "status": "Активная",
+    "name": "Медицинский эксперт",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "4bf4b911-f80d-4ce7-8ca5-bc61ae1343ed",
+    "status": "Активная",
+    "name": "Управление оффлайн маркетинга",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "88f6a03b-bff5-4621-b50a-fd2ebe9b02b0",
+    "status": "Активная",
+    "name": "Академический менеджер продукта ЦУ",
+    "recruitment_stream": "Центральный Университет"
+  },
+  {
+    "recruitment_stream_specialization_id": "da21cb59-a4ef-4d66-9127-e22ed3d3c213",
+    "status": "Активная",
+    "name": "QA Auto",
+    "recruitment_stream": "QA"
+  },
+  {
+    "recruitment_stream_specialization_id": "b6108eac-352b-43f7-acac-7e9167087b65",
+    "status": "Активная",
+    "name": "Академическое управление ЦУ",
+    "recruitment_stream": "Центральный Университет"
+  },
+  {
+    "recruitment_stream_specialization_id": "36299402-b580-4093-95d3-9c00c81003b0",
+    "status": "Активная",
+    "name": "Правовая поддержка процессов трудовых отношений",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "ab4ec737-9c8c-4d84-a96e-4f2859cf06d2",
+    "status": "Активная",
+    "name": "Технический писатель",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "7fc87809-892c-48d4-8b0d-e2a4d273db56",
+    "status": "Активная",
+    "name": "IT Teamlead",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "9e15c977-4f51-463d-8ce4-e69ba0d0f558",
+    "status": "Архивная",
+    "name": "Support Engineer 3rd line",
+    "recruitment_stream": "Support Engineer"
+  },
+  {
+    "recruitment_stream_specialization_id": "7dce0c26-7c65-4b5f-8edd-9b07349d904e",
+    "status": "Активная",
+    "name": "Маркетинговый аналитик",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "3685eece-6905-48a7-9391-293847af15c4",
+    "status": "Архивная",
+    "name": "РБ_HQ_non_IT_non_Digital",
+    "recruitment_stream": "РБ"
+  },
+  {
+    "recruitment_stream_specialization_id": "d5957630-d064-423d-ac96-38e4a2f1fdfd",
+    "status": "Активная",
+    "name": "Android Developer",
+    "recruitment_stream": "Mobile"
+  },
+  {
+    "recruitment_stream_specialization_id": "340b349b-3ba8-4af6-979b-fbf5f2921397",
+    "status": "Активная",
+    "name": "Банковский риск-менеджмент",
+    "recruitment_stream": "Риск-менеджмент"
+  },
+  {
+    "recruitment_stream_specialization_id": "a1703fa5-80b0-46fe-8cfa-e508bf90a5a5",
+    "status": "Активная",
+    "name": "Таргетированная реклама",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "48862454-0286-41ce-b9b1-2868a9e04e59",
+    "status": "Активная",
+    "name": "JS Vue.js Developer",
+    "recruitment_stream": "JavaScript"
+  },
+  {
+    "recruitment_stream_specialization_id": "c3272902-32f8-4025-ab70-22b813271425",
+    "status": "Активная",
+    "name": "Антикоррупционный и этический комплаенс",
+    "recruitment_stream": "Compliance"
+  },
+  {
+    "recruitment_stream_specialization_id": "97b7485e-77bd-4c62-9d94-91b537b722bf",
+    "status": "Архивная",
+    "name": "Oracle DBA",
+    "recruitment_stream": "DBA"
+  },
+  {
+    "recruitment_stream_specialization_id": "e2c772eb-5d45-4a43-a2d7-6594f8935729",
+    "status": "Активная",
+    "name": "Machine Learning",
+    "recruitment_stream": "ML"
+  },
+  {
+    "recruitment_stream_specialization_id": "dd86a4b2-3e54-4449-9310-003baa098791",
+    "status": "Активная",
+    "name": "Архитектор телеком решений",
+    "recruitment_stream": "Телеком"
+  },
+  {
+    "recruitment_stream_specialization_id": "4a5ae5a4-9c8e-41a6-8f81-651e06ac389d",
+    "status": "Активная",
+    "name": "Внутренний аудит (СВА)",
+    "recruitment_stream": "Compliance"
+  },
+  {
+    "recruitment_stream_specialization_id": "aac6324c-8c39-43c8-abca-8b96dfa127b3",
+    "status": "Активная",
+    "name": "Правовое сопровождение бизнеса",
+    "recruitment_stream": "Юриспруденция"
+  },
+  {
+    "recruitment_stream_specialization_id": "c3d06049-0a16-4174-9011-1050eb56c0e9",
+    "status": "Активная",
+    "name": "Медиаменеджмент",
+    "recruitment_stream": "Редактура"
+  },
+  {
+    "recruitment_stream_specialization_id": "13689410-586f-4708-806e-e7e822cb3d8b",
+    "status": "Активная",
+    "name": "Правовое сопровождение маркетинга и интеллектуальной собственности",
+    "recruitment_stream": "Юриспруденция"
+  },
+  {
+    "recruitment_stream_specialization_id": "b63333d0-92a9-4d0b-8b90-32f8b596b7e3",
+    "status": "Активная",
+    "name": "Развитие бизнеса",
+    "recruitment_stream": "Развитие продаж"
+  },
+  {
+    "recruitment_stream_specialization_id": "58f5d3cd-8c04-4c84-86b8-c0e3bb6e8826",
+    "status": "Активная",
+    "name": "Диспут-менеджер",
+    "recruitment_stream": "Экосистемная безопасность"
+  },
+  {
+    "recruitment_stream_specialization_id": "479381c9-42cc-4129-a5e0-93e0abb87707",
+    "status": "Активная",
+    "name": "Режиссер",
+    "recruitment_stream": "Медиареклама"
+  },
+  {
+    "recruitment_stream_specialization_id": "7180ee80-4210-4f4b-b4f4-6fe8f9f384cd",
+    "status": "Отклоненная",
+    "name": "Дизайн-менеджер",
+    "recruitment_stream": "Дизайн"
+  },
+  {
+    "recruitment_stream_specialization_id": "0531ebbd-0ebc-4757-99bc-7e1004236785",
+    "status": "Активная",
+    "name": "QA Backend",
+    "recruitment_stream": "QA"
+  },
+  {
+    "recruitment_stream_specialization_id": "4ca6b81a-3093-421f-ae54-1665532e0085",
+    "status": "Активная",
+    "name": "Финансовый бизнес-партнер",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "3070b23d-7fe6-4e9f-a93b-f41594510777",
+    "status": "Активная",
+    "name": "Разработка TWork процедур",
+    "recruitment_stream": "BPM"
+  },
+  {
+    "recruitment_stream_specialization_id": "d1c3e521-2896-4f2a-9108-6b4b85e14053",
+    "status": "Активная",
+    "name": "Продуктовый редактор",
+    "recruitment_stream": "Редактура"
+  },
+  {
+    "recruitment_stream_specialization_id": "ab1b2a79-3237-46e8-926b-c34a3ab645ec",
+    "status": "Активная",
+    "name": "Маркетинговые коммуникации",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "7effc322-03ec-480d-8981-c2c7e6c39685",
+    "status": "Активная",
+    "name": "Менеджер контентных проектов",
+    "recruitment_stream": "Редактура"
+  },
+  {
+    "recruitment_stream_specialization_id": "4ac196cd-04d5-4ee0-a473-5a12f2e6754d",
+    "status": "Активная",
+    "name": "Финансовый аналитик данных",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "8747eed9-f761-481f-8c99-ec79afad0d23",
+    "status": "Активная",
+    "name": "Стажеры IT",
+    "recruitment_stream": "Стажеры"
+  },
+  {
+    "recruitment_stream_specialization_id": "4bd94c3a-3929-4d88-9f52-3d39e573c9b6",
+    "status": "Активная",
+    "name": "Quantitative Developer",
+    "recruitment_stream": "Развитие продуктов глобальных рынков"
+  },
+  {
+    "recruitment_stream_specialization_id": "4ad7ce33-5a40-47cd-8f75-992cd3f5ac53",
+    "status": "Активная",
+    "name": "Аналитик экосистемной безопасности",
+    "recruitment_stream": "Экосистемная безопасность"
+  },
+  {
+    "recruitment_stream_specialization_id": "0070ffb8-1409-4a4b-95bb-d80f0ff32828",
+    "status": "Активная",
+    "name": "Risk Data Scientist",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "92ac0c00-3ecf-4d42-88b1-e04f8b2b1256",
+    "status": "Активная",
+    "name": "ML Ops",
+    "recruitment_stream": "ML"
+  },
+  {
+    "recruitment_stream_specialization_id": "058803ab-cef8-4e54-9231-bce316307efa",
+    "status": "Активная",
+    "name": "Графический дизайн",
+    "recruitment_stream": "Дизайн"
+  },
+  {
+    "recruitment_stream_specialization_id": "afd45b20-cfe8-414e-8c54-111028fcc83f",
+    "status": "Активная",
+    "name": "Продюсер",
+    "recruitment_stream": "Медиареклама"
+  },
+  {
+    "recruitment_stream_specialization_id": "b8201d58-c0ea-41bb-80da-266bb9dd5eea",
+    "status": "Архивная",
+    "name": "Postgres DBA",
+    "recruitment_stream": "DBA"
+  },
+  {
+    "recruitment_stream_specialization_id": "33601396-e984-4b25-97c7-1c91572bf418",
+    "status": "Активная",
+    "name": "Digital Marketing",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "430bb1da-5179-4c3f-bfe0-5a394fcbeef3",
+    "status": "Активная",
+    "name": "Регуляторная отчетность",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "9bb8daf1-95a1-4804-a2f9-02b3e20e949f",
+    "status": "Отклоненная",
+    "name": "Рекрутмент BigOps",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "459917cb-3629-4664-b331-77197407a74d",
+    "status": "Активная",
+    "name": "Корпоративное финансирование",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "be2c9963-e3f2-48f2-9dd0-cc2380d124e3",
+    "status": "Активная",
+    "name": "Анализ сомнительных операций",
+    "recruitment_stream": "Compliance"
+  },
+  {
+    "recruitment_stream_specialization_id": "338ec10b-419c-4e21-9290-78028725e21e",
+    "status": "Активная",
+    "name": "Стажеры non-IT",
+    "recruitment_stream": "Стажеры"
+  },
+  {
+    "recruitment_stream_specialization_id": "8563371d-f3f0-43f2-b2fa-cb3c497c4ed2",
+    "status": "Архивная",
+    "name": "Дистрибуция",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "0711623d-1495-4571-9b24-5035db09344f",
+    "status": "Активная",
+    "name": "Нормативное сопровождение",
+    "recruitment_stream": "Банковские операции/Платежные транзакции"
+  },
+  {
+    "recruitment_stream_specialization_id": "01e471b0-c96c-4426-bead-bb7b9c866e3b",
+    "status": "Активная",
+    "name": "HR Бизнес-партнер",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "fd3c3144-51c4-4409-b77e-7068c3a5a9c5",
+    "status": "Активная",
+    "name": "Стажеры Digital",
+    "recruitment_stream": "Стажеры"
+  },
+  {
+    "recruitment_stream_specialization_id": "5cae5505-7e1c-41ea-951a-23165a5b49cf",
+    "status": "Активная",
+    "name": "Управление compliance",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "e3960380-206e-4298-8268-5c5a1c12c2e7",
+    "status": "Активная",
+    "name": "Управление медиа",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "d709b576-abeb-4fb3-aae6-518e7e3f2a97",
+    "status": "Активная",
+    "name": "Цифровые государственные сервисы",
+    "recruitment_stream": "Гос.сервисы"
+  },
+  {
+    "recruitment_stream_specialization_id": "3e692b2d-fde0-4f05-85d5-4d38e8558608",
+    "status": "Активная",
+    "name": "Кастодиальный бизнес",
+    "recruitment_stream": "Инвестиции"
+  },
+  {
+    "recruitment_stream_specialization_id": "f698cfa7-6816-4d15-86d7-3e74e58c8523",
+    "status": "Архивная",
+    "name": "NLP engineer",
+    "recruitment_stream": "ML"
+  },
+  {
+    "recruitment_stream_specialization_id": "3ff46a20-a469-4485-bc3d-c6663b01105c",
+    "status": "Активная",
+    "name": "Storage Engineer",
+    "recruitment_stream": "SRE"
+  },
+  {
+    "recruitment_stream_specialization_id": "dab0c6aa-e0a0-420b-b935-c1c908ac4f83",
+    "status": "Активная",
+    "name": "Трейдеры инвестиций",
+    "recruitment_stream": "Инвестиции"
+  },
+  {
+    "recruitment_stream_specialization_id": "5d11def8-3d8e-4ecc-abde-c837025d243b",
+    "status": "Активная",
+    "name": "Партнерский маркетинг",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "90acf942-b24f-4a79-ab8c-63edd1db18a0",
+    "status": "Активная",
+    "name": "TeamLead Продуктовой аналитики",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "5a86b5a0-5e52-4594-b6ad-dbb063cd3207",
+    "status": "Активная",
+    "name": "Развитие платежных решений",
+    "recruitment_stream": "Развитие платежных решений"
+  },
+  {
+    "recruitment_stream_specialization_id": "bfb2f368-a79f-43d4-9384-e42f51c7b85c",
+    "status": "Активная",
+    "name": "R&D Engineer",
+    "recruitment_stream": "R&D"
+  },
+  {
+    "recruitment_stream_specialization_id": "8e827f90-c892-4e7a-a347-4e5d0122c2e4",
+    "status": "Активная",
+    "name": "Закупки",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "c47069df-acc3-4d69-ac38-77f305bbe5ed",
+    "status": "Активная",
+    "name": "Менеджер операционной эффективности НДО",
+    "recruitment_stream": "Поддержка ATM/Cash"
+  },
+  {
+    "recruitment_stream_specialization_id": "df30f600-bda5-49e1-ad5c-4b18f77f16c0",
+    "status": "Активная",
+    "name": "Управление взысканием",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "a246b411-c5a4-4dcf-b9f7-0e93ae45288c",
+    "status": "Активная",
+    "name": "Репутационный маркетинг (SERM)",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "04efd18a-91a6-4df3-82a1-9dda4e9f03d5",
+    "status": "Активная",
+    "name": "Управление инвестиций",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "194a9925-9cdd-44af-971e-a07e3838f529",
+    "status": "Активная",
+    "name": "Технология расчетов",
+    "recruitment_stream": "Банковские операции/Платежные транзакции"
+  },
+  {
+    "recruitment_stream_specialization_id": "565d1f6e-9da3-42ca-86ce-ba13564cf993",
+    "status": "Активная",
+    "name": "Аналитик CX",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "ebddc59d-185c-4c04-9167-e15cbc6bfb54",
+    "status": "Активная",
+    "name": "Бизнес-партнер по информационной безопасности",
+    "recruitment_stream": "Information security"
+  },
+  {
+    "recruitment_stream_specialization_id": "3690368e-eb0d-4d90-946d-eed5f908fd58",
+    "status": "Активная",
+    "name": "Technical product manager",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "238892b3-a857-492f-94d4-e46270bb4aea",
+    "status": "Активная",
+    "name": "ИТ аудит",
+    "recruitment_stream": "Compliance"
+  },
+  {
+    "recruitment_stream_specialization_id": "07b56d86-cad9-44de-b494-6a8b523ef9b8",
+    "status": "Активная",
+    "name": "IOS Developer",
+    "recruitment_stream": "Mobile"
+  },
+  {
+    "recruitment_stream_specialization_id": "859c6e72-45fd-4224-8d6c-676d54f310bf",
+    "status": "Архивная",
+    "name": "РБ_HQ_IT",
+    "recruitment_stream": "РБ"
+  },
+  {
+    "recruitment_stream_specialization_id": "f5688cdd-6e9e-4d84-befc-09e5a5dc78fb",
+    "status": "Активная",
+    "name": "Управление онлайн привлечения",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "1bb478c4-b042-459f-aa91-c45d097ad13c",
+    "status": "Отклоненная",
+    "name": "DBA (удалить)",
+    "recruitment_stream": "SRE"
+  },
+  {
+    "recruitment_stream_specialization_id": "4af145f6-9dc8-4e13-ac25-f2cdfa184ab2",
+    "status": "Активная",
+    "name": "Маркетинг",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "cbe69acd-429b-4e71-8cd9-ab05b09e5827",
+    "status": "Активная",
+    "name": "Windows Engineer",
+    "recruitment_stream": "SRE"
+  },
+  {
+    "recruitment_stream_specialization_id": "1d859578-e817-4f28-982d-203cba0edc2d",
+    "status": "Активная",
+    "name": "Работа с медиа-контрагентами",
+    "recruitment_stream": "Медиареклама"
+  },
+  {
+    "recruitment_stream_specialization_id": "eaae23d7-5c65-4bd6-aead-a039dafb2944",
+    "status": "Активная",
+    "name": "Управление кадровым администрированием",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "4316f0f6-8433-4dbf-b915-b3b48b78264d",
+    "status": "Ожидающая",
+    "name": "Руководитель найма",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "d980c0ab-88ab-4f3c-91f7-487e944a8449",
+    "status": "Активная",
+    "name": "Казначейство",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "bfd74cbd-d1f6-4e72-85ba-4dfbd3599df8",
+    "status": "Активная",
+    "name": "PR",
+    "recruitment_stream": "PR"
+  },
+  {
+    "recruitment_stream_specialization_id": "6da5d119-468a-4b9c-87e0-bcc90c04a2c1",
+    "status": "Активная",
+    "name": "Python Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "cf1cf853-9fef-47f2-93b3-3355f7500c35",
+    "status": "Активная",
+    "name": "Rust Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "19bdd5d0-8ce5-4054-8fc6-c4f1d6c847fc",
+    "status": "Активная",
+    "name": "Core engineering development",
+    "recruitment_stream": "Инженерные должности"
+  },
+  {
+    "recruitment_stream_specialization_id": "49f07d8c-bd74-48d2-b4cc-cc115b321f3d",
+    "status": "Активная",
+    "name": "COO в линии",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "705d8905-06e9-4017-b400-a6f9a07f482d",
+    "status": "Активная",
+    "name": "Platform data engineer",
+    "recruitment_stream": "Data"
+  },
+  {
+    "recruitment_stream_specialization_id": "e5a3f296-19fc-42fa-908e-9cee89acbc2e",
+    "status": "Активная",
+    "name": "Бухгалтерия",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "d77a0f66-ebf4-448f-85f1-a20b5cfecc59",
+    "status": "Активная",
+    "name": "Автоматизация отчетности",
+    "recruitment_stream": "Автоматизация бизнес-процессов"
+  },
+  {
+    "recruitment_stream_specialization_id": "da85cb34-2069-4285-8772-700bfc7b212f",
+    "status": "Активная",
+    "name": "Ивент-маркетинг",
+    "recruitment_stream": "Оффлайн маркетинг"
+  },
+  {
+    "recruitment_stream_specialization_id": "52c29dae-d80b-4a8a-a419-6b11714beb2a",
+    "status": "Активная",
+    "name": "GR",
+    "recruitment_stream": "Юриспруденция"
+  },
+  {
+    "recruitment_stream_specialization_id": "12897c30-0090-4da4-9380-0246f67728cb",
+    "status": "Активная",
+    "name": "ML Product Manager",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "92a72a7d-3158-4bad-a226-2e7aba9642eb",
+    "status": "Активная",
+    "name": "Менеджер проектов образования",
+    "recruitment_stream": "Центральный Университет"
+  },
+  {
+    "recruitment_stream_specialization_id": "91323c87-6172-4de5-b4b1-174d3db4a918",
+    "status": "Активная",
+    "name": "Налоги",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "9378ea42-85bc-4712-ac0b-67f79415e08b",
+    "status": "Активная",
+    "name": "Внутренний контроль (СВК)",
+    "recruitment_stream": "Compliance"
+  },
+  {
+    "recruitment_stream_specialization_id": "58ba35e2-5a94-4426-a2fe-86a5c0c617a3",
+    "status": "Активная",
+    "name": "QA Mobile",
+    "recruitment_stream": "QA"
+  },
+  {
+    "recruitment_stream_specialization_id": "a5fa5af3-d726-4b9b-bab5-59b27d568d72",
+    "status": "Активная",
+    "name": "Актуарии",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "b9d22b46-291e-4125-9b83-6b66473c7cf3",
+    "status": "Активная",
+    "name": "Аналитик рисков",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "57fee2d0-e7ea-4adf-ba4a-a0d28c8b729e",
+    "status": "Активная",
+    "name": "C++ Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "a69d8560-7ed3-4293-8cb7-2599a919963e",
+    "status": "Активная",
+    "name": "Аналитик моделей рисков",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "07df8934-bd95-451b-84f2-fcc16f3c227e",
+    "status": "Активная",
+    "name": "Golang Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "4848a78b-e1a8-4246-afb7-511ae3686b2c",
+    "status": "Архивная",
+    "name": "Дизайнер выпуска",
+    "recruitment_stream": "Дизайн"
+  },
+  {
+    "recruitment_stream_specialization_id": "9816aadc-ef3b-4f53-b1cd-c431b3df9f9f",
+    "status": "Архивная",
+    "name": "Депозитарий",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "b030b7d4-6a28-4bdb-abd1-b908158d303f",
+    "status": "Активная",
+    "name": "Back-end Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "27f0be16-aff3-4076-b5c7-f52acc22d549",
+    "status": "Активная",
+    "name": "Haskell Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "e5fadd28-a463-454c-aab4-5e935961def9",
+    "status": "Активная",
+    "name": "Node.js",
+    "recruitment_stream": "JavaScript"
+  },
+  {
+    "recruitment_stream_specialization_id": "2546a949-f159-45d8-b315-3f821dc7c5ca",
+    "status": "Архивная",
+    "name": "Росбанк интеграция (NDA)",
+    "recruitment_stream": "Росбанк интеграция"
+  },
+  {
+    "recruitment_stream_specialization_id": "b92a87c2-1af1-4ac3-8707-a2778b3beaa5",
+    "status": "Активная",
+    "name": "Data Center Core",
+    "recruitment_stream": "Центры обработки данных"
+  },
+  {
+    "recruitment_stream_specialization_id": "54744ce3-0a59-4162-989c-138b91a74c00",
+    "status": "Активная",
+    "name": "SRE",
+    "recruitment_stream": "SRE"
+  },
+  {
+    "recruitment_stream_specialization_id": "f383f31f-64a4-4bb4-988e-082e029c89b5",
+    "status": "Активная",
+    "name": "Контекстная и медийная реклама",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "5df4a0e3-dea7-4ef0-bffd-c8170231d38f",
+    "status": "Активная",
+    "name": "Бизнес-аналитик (технолог)",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "0216eee1-8781-488e-971a-8193b07f060f",
+    "status": "Активная",
+    "name": "Копирайтер",
+    "recruitment_stream": "Редактура"
+  },
+  {
+    "recruitment_stream_specialization_id": "ffb9e99f-8a8f-4830-9f5b-b9bc59250ce4",
+    "status": "Активная",
+    "name": "Java Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "0585cb3e-3d2a-4b17-b873-1c5e876ea641",
+    "status": "Активная",
+    "name": "LMC-комплаенс",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "1d01e0d9-57a7-41b6-878b-28b2d42613c7",
+    "status": "Активная",
+    "name": "Oracle PL/SQL Developer",
+    "recruitment_stream": "Back-end"
+  },
+  {
+    "recruitment_stream_specialization_id": "c0977e25-6430-4151-9dbb-e126dacd4f7b",
+    "status": "Активная",
+    "name": "Общекорпоративное управление",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "efc9d65a-3893-4515-9691-639b32c41ded",
+    "status": "Активная",
+    "name": "1C аналитик",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "9b1696a9-96f0-47a6-9c78-10919c01556e",
+    "status": "Активная",
+    "name": "Мобильный аналитик",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "cce5c52b-ea30-41be-b107-f514123b6000",
+    "status": "Активная",
+    "name": "BPM аналитик",
+    "recruitment_stream": "BPM"
+  },
+  {
+    "recruitment_stream_specialization_id": "25d14d30-4b37-4d06-b0b5-82ec0dd3704c",
+    "status": "Активная",
+    "name": "Офис менеджмент",
+    "recruitment_stream": "АХО"
+  },
+  {
+    "recruitment_stream_specialization_id": "15833154-7516-4fd6-9e9a-f3c3187f1df9",
+    "status": "Активная",
+    "name": "Специализация ДГПХ",
+    "recruitment_stream": "ИСУП"
+  },
+  {
+    "recruitment_stream_specialization_id": "9f48d248-713d-46c9-a62b-dc243fbb65eb",
+    "status": "Активная",
+    "name": "Развитие Антифрод",
+    "recruitment_stream": "Экосистемная безопасность"
+  },
+  {
+    "recruitment_stream_specialization_id": "cad6ac37-770d-44e0-bf09-ea216718f445",
+    "status": "Архивная",
+    "name": "РБ_HQ_Digital",
+    "recruitment_stream": "РБ"
+  },
+  {
+    "recruitment_stream_specialization_id": "a6abfe72-fb17-4d9e-b20d-1610be6f187d",
+    "status": "Активная",
+    "name": "IT group manager",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "d1eaab88-b405-4044-9681-b5f9d416268b",
+    "status": "Активная",
+    "name": "Продуктовый аналитик (DS)",
+    "recruitment_stream": "Analyst"
+  },
+  {
+    "recruitment_stream_specialization_id": "fb0cf72d-d255-4cfc-b6e0-d3d6711c15a5",
+    "status": "Активная",
+    "name": "Бренд работодателя",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "35109a5e-1404-4ef1-8d5b-ea64c80b3641",
+    "status": "Активная",
+    "name": "Финансовые аналитики и менеджеры",
+    "recruitment_stream": "Финансы"
+  },
+  {
+    "recruitment_stream_specialization_id": "eafa89a1-b3e8-4e58-81a4-bffb9cd032c9",
+    "status": "Активная",
+    "name": "MDM Engineer",
+    "recruitment_stream": "SRE"
+  },
+  {
+    "recruitment_stream_specialization_id": "03029fa6-8946-460c-acfd-6e6ad2605548",
+    "status": "Активная",
+    "name": "Network Engineer",
+    "recruitment_stream": "SRE"
+  },
+  {
+    "recruitment_stream_specialization_id": "af71eef6-a6c2-4168-949f-acebff9e83dc",
+    "status": "Активная",
+    "name": "Правовое сопровождение залогового кредитования",
+    "recruitment_stream": "Юриспруденция"
+  },
+  {
+    "recruitment_stream_specialization_id": "da838c2c-cc7b-44e3-9dd7-0e288d47ec08",
+    "status": "Активная",
+    "name": "Риск-менеджер",
+    "recruitment_stream": "Экосистемная безопасность"
+  },
+  {
+    "recruitment_stream_specialization_id": "2868858f-1ede-498f-8511-8e919a6ec7c8",
+    "status": "Активная",
+    "name": "Product manager",
+    "recruitment_stream": "Управление продуктами и проектами"
+  },
+  {
+    "recruitment_stream_specialization_id": "3e607a55-c74e-4262-9a01-afc2ceca9b1f",
+    "status": "Активная",
+    "name": "T&D manager",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "b871b283-66d4-4fa0-abc5-d1632291bbff",
+    "status": "Активная",
+    "name": "Адаптация",
+    "recruitment_stream": "Управление персоналом"
+  },
+  {
+    "recruitment_stream_specialization_id": "f82bd8ef-c91f-4325-a6de-4da5c23cb0f6",
+    "status": "Активная",
+    "name": "Управление страхования",
+    "recruitment_stream": "Управление"
+  },
+  {
+    "recruitment_stream_specialization_id": "34ac0eeb-9440-44d0-bdc9-c30caae62b97",
+    "status": "Ожидающая",
+    "name": "CRM-маркетинг",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "0b06443a-f058-46c9-97b4-1dc29a13d19a",
+    "status": "Активная",
+    "name": "Бизнес-аналитик BI",
+    "recruitment_stream": "Data"
+  },
+  {
+    "recruitment_stream_specialization_id": "524d0796-5631-4be5-9d4f-aef95b898be0",
+    "status": "Активная",
+    "name": "Развитие процессов операционной платформы",
+    "recruitment_stream": "Операционная платформа"
+  },
+  {
+    "recruitment_stream_specialization_id": "d85b1f13-ba62-497d-b1af-8b3995119ce5",
+    "status": "Активная",
+    "name": "Риск-менеджмент инвестиций",
+    "recruitment_stream": "Инвестиции"
+  },
+  {
+    "recruitment_stream_specialization_id": "98b2ad47-e4de-4da4-af06-70aa88b9e510",
+    "status": "Активная",
+    "name": "SMM",
+    "recruitment_stream": "Онлайн привлечение"
+  },
+  {
+    "recruitment_stream_specialization_id": "beddd434-6949-420e-b36f-1bae34758f27",
+    "status": "Активная",
+    "name": "Продуктовый аналитик (DA)",
+    "recruitment_stream": "Analyst"
+  }
+]

@@ -1,0 +1,2346 @@
+Новый расширенный поиск инструкция из 
+интерфейса
+Расширенный поиск состоит из основных и вложенных полей. Поля сгруппированы по смыслу.
+Например, в основное поле workExperience входят вложенные поля title, organizationName и др:  
+Мы конкретизируем понятие опыт работы и можем уточнить, что нас интересует именно позиция, название организации или 
+другое поле.
+Как сформировать поисковой запрос:
+Обрати внимание: названия полей чувствительны к заглавным буквам, используется camelCase.
+Пример поискового запроса:
+employeeStatus.status: 3 (так мы найдем всех кандидатов со статусом "Трудоустроен")
+Мы можем использовать несколько основных полей в запросе:
+location: Омск AND birthYear: 1999 
+Вложенные поля могут содержать свои вложенные поля:
+resumes.higherEducation.university: МФТИ (в основное поле Резюме входит вложенное поле Высшее образование, в которое 
+входит поле Университет)
+Ответственный: 
+ 
+Aleksandra Sheveleva
+Последняя дата обновления: 
+ 
+21.05.2026
+основное поле.вложенное поле: "значение"
+
+Поля, доступные для поиска:
+Источник данных
+Основное поле
+Вложенные поля
+Вложенные поля 
+вложенного поля
+Пример использования
+Карточка кандидата
+mainId
+name - имя
+surname - фамилия
+ - отчество
+patronymic
+birthDay - день рождения
+birthMonth - месяц рождения
+birthYear - год рождения
+birthYear:>=2008
+кандидаты от 2008 года рождения
+birthdate - дата рождения в 
+формате гггг.мм.дд
+gender - пол, принимает 
+значения: 
+Мужской = 0,
+Женский = 1,
+Любой = 2
+locationId - индентификатор 
+локации из справочника dadata.ru
+location - локация
+На текущий момент нельзя написать запрос таким образом, чтобы в нем использовались поля из 
+основного и вложенного полей документа.
+ то есть такой запрос не сработает:
+workExperience.organizationName: Ozon AND changedUtc:<2022-01-01
+так как используется 
+ changedUtc и 
+ organizationName 
+основное поле
+вложенное поле
+другого основного 
+ workExperience
+поля
+Так же нельзя написать запрос, обращающийся к нескольким разным вложенным полям. 
+ Такие запросы не сработают:
+workExperience.organizationName: Ozon AND employeeStatus.status: 4
+Используются вложенные поля
+основных полей - workExperience и employeeStatus
+ разных 
+educations.educationLevel: 1 AND resumes.languages.language: Английский
+Используются вложенные поля разных основных полей - educations и resumes
+ Такие запросы сработают:
+meetups.application.city: Москва AND meetups.application.programmingLanguages: Java
+Используются разные вложенные поля 
+ основного поля application - city и programmingLanguages
+одного
+resumes.workExperience.records.position : "Team Lead" AND (resumes.workExperience.records.isCurrent : true)
+Используются вложенные поля 
+ вложенного поля records
+одного
+location: Санкт-Петербург AND files:"Senior Golang" AND levels: Senior
+Используются разные основные поля без вложенности
+
+citizenshipId - идентификатор 
+гражданства, принимает значения:
+Россия = 2
+Беларусь = 3
+Казахстан = 4
+Украина = 5
+Киргизия = 6
+Армения = 7
+Узбекистан = 8
+Азербайджан = 9
+Молдова = 10
+Таджикистан = 11
+Другое = 100
+citizenshipId:3
+кандидаты с гражданством Беларуси
+citizenship - гражданство
+citizenship: Беларусь
+тоже кандидаты с гражданством 
+Беларусь
+contacts - контакты
+ - тип, принимает 
+type
+значения: 
+Unknown = 0,
+Email = 1,
+Phone = 2,
+Skype = 3,
+Telegram = 4,
+Viber = 5,
+Whatsapp = 6,
+Signal = 7,
+Icq = 8,
+Facebook = 9,
+Vk = 10,
+Ok = 11,
+Instagram = 12,
+Twitter = 13,
+YouTube = 14,
+Tiktok = 15,
+Github = 16,
+Gitlab = 17,
+BitBucket = 18,
+HeadHunter = 19,
+LinkedIn = 20,
+AmazingHiring = 21,
+Habr = 22,
+CareerHabr = 23,
+RabotaRu = 24,
+Superjob = 25,
+ZarplataRu = 26,
+Other = 2147483647
+contacts.type: 23
+кандидаты, у которых в карточке есть 
+ссылка на Хабр Карьеру
+ - значение
+value
+contacts.type: 23 AND contacts.value: 
+"anna"
+кандидат с контактом на Хабр Карьере 
+со значением  "anna", то есть кандидат 
+с контактом https://career.habr.com/an
+na
+tags - тэги
+-tags: читер*
+исключает кандидатов с тэгом читер* 
+(звездочка в конце означает, что 
+после слова "читер" могут быть другие 
+символы)
+Статус сотрудника
+employeeStatus - статус 
+сотрудника
+status - статус, принимает 
+значения:
+ = 0,
+  = 1,
+  = 2,
+ = 3,
+ = 4,
+  = 5
+employeeStatus.status: 4
+уволенные сотрудники
+peopleHubDismissalGeneralRe
+asonId - идентификатор 
+причины увольнения
+peopleHubDismissalGeneralRe
+ason - причина увольнения
+
+peopleHubDismissalGeneralRe
+asonIsNegative - флаг 
+негативной причины 
+увольнения, принимает 
+значения: 
+Уволен без негативной 
+причины = false
+Уволен с негативной 
+причиной = true 
+Что относится к негативным 
+причинам отказа, смотри 
+ isNegative = 
+здесь в фильтре
+да
+employeeStatus.
+peopleHubDismissalGeneralReasonIsNeg
+ative: false
+кандидаты - бывшие сотрудники без 
+негативной причины увольнения
+peopleHubDismissalDate - дат
+а увольнения
+speechEvaluation - оценка речи
+result - результат оценки 
+речи, принимает значения:
+  = 0,
+   = 1,
+  = 2
+-speechEvaluation.result: 2
+исключит кандидатов с критичными 
+замечаниями оценки речи
+ratedByInitiatorMasterId - Mas
+ter_id рекрутера, 
+оценившего речь
+ratedAtUtc - дата оценки речи
+-speechEvaluation.result: 2 AND 
+speechEvaluation.ratedAtUtc: >2026-03-
+01
+исключит кандидатов с критичными 
+замечаниями по речи, оценка речи 
+которых произошла после 1 марта 2026
+Резюме с hh, 
+полученные в 
+результате отклика 
+кандидата на hh
+ Если ты хочешь 
+искать по 
+всем резюме 
+кандидата, используй 
+запрос по резюме: 
+resumes.
+higherEducation...
+educations - образования
+faculty - факультет
+educations.specialization: 
+("Информатика и вычислительная 
+техника" OR "ИВТ")
+кандидаты с образованием по 
+специальности "Информатика и 
+вычислительная техника"
+organizationName - название 
+организации
+specialization - специализация
+educationLevel - уровень 
+образования
+graduationYear - год 
+окончания обучения
+Резюме с hh, 
+полученные в 
+результате отклика 
+кандидата на hh
+ Если ты хочешь 
+искать по 
+всем резюме 
+кандидата, используй 
+запрос по резюме: 
+resumes.
+workExperience...
+workExperience - опыт работы
+title - позиция
+workExperience.title: "Инвестиционный 
+аналитик" AND workExperience.city: 
+Москва
+кандидаты, которые указывали в 
+резюме должность "Инвестиционный 
+аналитик" и город места работы 
+Москва
+organizationName - название 
+места работы
+cityId - идентификатор 
+города места работы
+city - город места работы
+dateStart - дата старта 
+работы
+dateEnd - дата окончания 
+работы
+organizationUrl - ссылка на 
+организацию
+
+description - описание 
+обязанностей
+workExperience.description: 
+("проектирование архитектуры" AND 
+"управление командой")
+кандидаты, которые указывали в 
+резюме в описании обязанностей 
+словосочетания "проектирование 
+архитектуры" и "управление командой"
+uniqueIdentifiers - уникальные 
+идентификаторы
+code - код, принимает 
+значения: 
+"MasterId"
+"CustomerId"
+"LkkId"
+"TWorkId"
+"CandidateCardId"
+"EduAccountId"
+"EstaffId"
+"HeadHunterUserId"
+uniqueIdentifiers.code: "MasterId" AND 
+uniqueIdentifiers.value: 111111
+кандидат с MasterId 111111
+value - значение
+Данные митапов, 
+которые посещал 
+кандидат
+meetups - митапы
+meetup - данные митапа
+id - идентификатор 
+митапа
+title - название митапа
+meetups.meetup.title: "t-sync conf."
+кандидаты с митапа t-sync conf.
+format - формат 
+проведения митапа, 
+принимает значения:
+online
+ofline
+hybrid
+meetups.meetup.format: ofline AND 
+meetups.meetup.city: Воронеж
+кандидаты, которые офлайн посещали 
+митап в Воронеже
+cityId - идентификатор 
+города
+city - город
+startUtc - дата начала 
+митапа в формате гггг-мм-
+дд
+meetups.meetup.format: online AND 
+meetups.meetup.startUtc:>2026-01-01
+кандидаты, посещавшие онлайн 
+митап, который стартовал до 1 января 
+2026 года
+endUtc - дата окончания 
+митапа в формате гггг-мм-
+дд
+Данные анкеты, с 
+которой кандидат 
+откликнулся на митап
+application - анкета 
+кандидата с митапа
+name - имя
+surname - фамилия
+city - город
+occupation - тип 
+занятости участника, 
+принимает значения:
+Работа в российской 
+компании = 0
+Работа в 
+иностранной 
+компании = 1
+Самозанятый = 2
+Студент = 3
+Школьник = 4
+meetups.application.occupation: 1
+кандидаты, которые указали в анкете 
+с митапа, что работают в иностранной 
+компании
+company - компания
+meetups.application.company: "Ozon"
+кандидаты, которые в анкете для 
+митапа указали, что работают в Ozon
+
+experience - опыт, 
+принимает значения:
+Junior = 0
+Middle = 1
+Senior = 2
+Lead = 3
+meetups.application.experience: 3
+кандидаты, которые в анкете для 
+митапа указали уровень Lead
+specializationId - 
+идентификатор 
+специализации
+specialization - 
+специализация
+meetups.application.specialization: 
+"Product manager"
+кандидаты, которые в анкете для 
+митапа указали  специализацию 
+Product manager
+programmingLanguages - 
+языки программирования
+meetups.application.
+programmingLanguages: Java
+кандидаты, которые в анкете для 
+митапа указали ЯП Java
+comment - комментарий
+marketingCommunicationC
+onsentGivenAt - дата 
+согласия на получения 
+маркетинговых рассылок
+personalDataProcessingCon
+sentGivenAt - дата 
+согласия на обработку 
+персональных данных
+contacts:
+type
+value
+meetups.application.contacts.type:2
+кандидаты, которые в анкете для 
+митапа указали номер телефона
+Данные стажировок, 
+отбор на которые 
+проходил кандидат
+internships - стажировки
+selection - информация о 
+стажировке
+id - идентификатор 
+стажировки
+title - название 
+стажировки
+program - программа
+streamId - 
+идентификатор стрима
+stream - стрим
+specializationsIds - 
+идентификатор 
+специализации
+specializations - 
+специализация
+examsStartDate - дата 
+начала экзаменов
+examsFinishDate - дата 
+окончания экзаменов
+Данные анкет 
+стажеров, 
+полученных при 
+отборе на стажировку
+application - анкета 
+кандидата со стажировки
+ 
+id - идентификатор 
+анкеты
+name - имя
+surname - фамилия
+patronymic - отчество
+birthDay - день рождения
+preferredLearningCity - 
+предпочитаемый город 
+обучения
+
+school:
+cityId
+city
+schoolId
+school
+graduationYear
+university:
+cityId
+city
+universityId
+university
+facultyId
+faculty
+chairId
+chair
+graduationYear
+occupation:
+companyName
+position
+about - о себе
+bankClient - является 
+клиентом:
+True - да
+False - нет
+marketingCommunicationC
+onsentGivenAt - дата 
+согласия на получения 
+маркетинговых рассылок
+personalDataProcessingCon
+sentGivenAt - дата 
+согласия на обработку 
+персональных данных
+eduAccountId - 
+идентификатор аккаунта 
+на edu
+contacts:
+type
+value
+Резюме
+resumes - резюме
+name - имя
+surname - фамилия
+patronymic - отчество
+birthDay - день рождения
+birthMonth - месяц рождения
+birthYear - год рождения
+birthdate - дата рождения
+gender - пол
+citizenshipId - идентификатор
+гражданства
+citizenship - гражданство
+locationId - идентификатор 
+локации
+location - локация
+declaredSpecialization - 
+заявленная специализация
+resumes.declaredSpecialization: "ML 
+Product"
+кандидаты, которые указывали в 
+резюме специализацию "ML Product"
+about - о себе
+declaredSkills - заявленные 
+навыки 
+
+inferredSkills - предполагаем
+ые навыки
+hobbies - хобби
+languages - иностранные 
+языки
+language - язык
+level - уровень
+preferredSchedules - 
+предпочитаемый формат 
+работы
+additionalEducation - 
+дополнительное образование
+name - название 
+образования
+type - тип
+year - год
+higherEducation - высшее 
+образование
+university - униерситет
+faculty - факультет
+major - специальность 
+degree - степень 
+(бакалавр/магистр)
+startYear - год начала 
+обучения
+endYear - год окончания 
+обучения
+workExperience - опыт работы
+totalMonths - количество 
+месяцев опыта
+totalYears - количество 
+лет опыта
+records:
+company
+locationId
+location
+position
+description
+startDate
+endDate
+isCurrent
+isIt
+resumes.workExperience.records.
+company: "Positive Technologies" AND 
+resumes.workExperience.records.
+isCurrent: true
+кандидаты, работающие на текущий 
+момент в Positive Technologies
+preferredLocations - предпочи
+таемые локации
+locationId - 
+идентификатор локации
+location - локация 
+contacts - контакты
+type - тип контакта
+value - значение контакта
+nonStructuredContacts - 
+неструктурированные 
+контакты
+createdUtc - дата создания
+Процессы отбора
+changedUtc - дата любого 
+изменения в карточке кандидата
+files - файлы в карточке кандидата
+recruitersIds - ID рекрутеров, 
+которые хотя бы 1 раз внесли 
+изменение в процессы отбора в 
+карточке кандидата
+recruitersMasterIds - Master_id 
+рекрутеров, которые хотя бы 1 
+раз внесли изменение в процессы 
+отбора в карточке кандидата
+offices - офисы выхода кандидата 
+на работу
+specializations - специализации, 
+по которым кандидат проходил 
+отбор
+specializations:(Product Manager)
+кандидаты специализации Product 
+Manager
+
+levels - финальный уровень 
+кандидата, принимает значения:
+Junior
+Junior+
+Middle
+Middle+
+Senior
+Senior+
+levels:(Middle OR Middle+ OR Senior)
+кандидаты уровня Middle, Middle+ и 
+Senior 
+interviewTypes - типы интервью, 
+принимает значения: 
+Техническое интервью
+Финальное интервью
+interviewTypes: "Техническое 
+интервью"
+кандидаты, которым было назначено 
+техническое интервью
+hiringProcesses - процессы отбора
+vacancyId - id вакансии, на 
+которую проходил отбор 
+кандидат
+lastEventState - статус 
+последнего этапа отбора в 
+рамках выбранного процесса
+events - 
+createdUtc
+plainEventState
+Из чего состоит запрос
+Запрос разбирается на 
+(то что мы ищем) и 
+(помощники в поиске). 
+термы 
+ 
+операторы 
+Варианты термов:
+Java - поиск одного слова
+"System Design" - поиск фразы целиком в указанном порядке слов (при обрамлении фразы в "")
+{
+  "mainId": "",
+  "name": "",
+  "surname": "",
+  "patronymic": "",
+  "birthDay": 1,
+  "birthMonth": 1,
+  "birthYear": 1990,
+  "birthdate": "1990-01-01",
+  "gender": 1,
+  "locationId": "",
+  "location": "",
+  "citizenshipId": 1,
+  "citizenship": "",
+  "contacts": [
+    {
+      "type": 1,
+      "value": ""
+    }
+  ],
+  "nonStructuredContacts": [""],
+  "tagsIds": [""],
+  "tags": [""],
+  "employeeStatus": {
+    "status": 1,
+    "peopleHubDismissalGeneralReasonId": 1,
+    "peopleHubDismissalGeneralReason": "",
+    "peopleHubDismissalGeneralReasonIsNegative": false,
+    "peopleHubDismissalDate": ""
+  },
+  "speechEvaluation": {
+    "result": 1,
+
+    "ratedByInitiatorMasterId": 1000,
+    "ratedAtUtc": ""
+  },
+  "educations": [
+    {
+      "faculty": "",
+      "organizationName": "",
+      "specialization": "",
+      "educationLevel": 1,
+      "graduationYear": 2010
+    }
+  ],
+  "workExperience": [
+    {
+      "title": "",
+      "organizationName": "",
+      "cityId": "",
+      "city": "",
+      "dateStart": "2024-03-15",
+      "dateEnd": "2025-04-02",
+      "organizationUrl": "",
+      "description": ""
+    }
+  ],
+  "uniqueIdentifiers": [
+    {
+      "code": "",
+      "value": ""
+    }
+  ],
+  "facts": [
+    {
+      "id": "d35a23ca-f93d-4d18-b0a3-d2cc38d8422c",
+      "sourceCode": "",
+      "sourceId": "",
+      "name": "",
+      "surname": "",
+      "patronymic": "",
+      "birthDay": 1,
+      "birthMonth": 1,
+      "birthYear": 1990,
+      "birthdate": "1990-01-01",
+      "gender": 1,
+      "locationId": "",
+      "location": "",
+      "citizenshipId": 1,
+      "citizenship": "",
+      "contacts": [
+        {
+          "type": 1,
+          "value": ""
+        }
+      ],
+      "nonStructuredContacts": [""],
+      "tagsIds": [""],
+      "tags": [""],
+      "employeeStatus": {
+        "status": 1,
+        "peopleHubDismissalGeneralReasonId": 1,
+        "peopleHubDismissalGeneralReason": "",
+        "peopleHubDismissalGeneralReasonIsNegative": false,
+        "peopleHubDismissalDate": ""
+      },
+      "speechEvaluation": {
+        "result": 1,
+        "ratedByInitiatorMasterId": 1000,
+        "ratedAtUtc": ""
+      },
+      "educations": [
+        {
+          "faculty": "",
+
+          "organizationName": "",
+          "specialization": "",
+          "educationLevel": 1,
+          "graduationYear": 2010
+        }
+      ],
+      "workExperience": [
+        {
+          "title": "",
+          "organizationName": "",
+          "cityId": "",
+          "city": "",
+          "dateStart": "2024-05-09",
+          "dateEnd": "2025-05-01",
+          "organizationUrl": "",
+          "description": ""
+        }
+      ],
+      "uniqueIdentifiers": [
+        {
+          "code": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "meetups": [
+    {
+      "meetup": {
+        "id": "",
+        "title": "",
+        "format": "",
+        "cityId": "",
+        "city": "",
+        "startUtc": "",
+        "endUtc": ""
+      },
+      "application": {
+        "name": "",
+        "surname": "",
+        "city": "",
+        "occupation": 1,
+        "company": "",
+        "experience": 1,
+        "specializationId": "",
+        "specialization": "",
+        "programmingLanguages": "",
+        "comment": "",
+        "marketingCommunicationConsentGivenAt": "",
+        "personalDataProcessingConsentGivenAt": "",
+        "contacts": [
+          {
+            "type": 1,
+            "value": ""
+          }
+        ]
+      }
+    }
+  ],
+  "internships": [
+    {
+      "selection": {
+        "id": "",
+        "title": "",
+        "program": 1,
+        "streamId": "",
+        "stream": "",
+        "specializationsIds": [""],
+        "specializations": [""],
+        "examsStartDate": "",
+        "examsFinishDate": ""
+
+      },
+      "application": {
+        "id": "",
+        "name": "",
+        "surname": "",
+        "patronymic": "",
+        "birthDay": "2010-12-29",
+        "preferredLearningCity": "",
+        "school": {
+          "cityId": "",
+          "city": "",
+          "schoolId": "",
+          "school": "",
+          "graduationYear": 2005
+        },
+        "university": {
+          "cityId": "",
+          "city": "",
+          "universityId": "",
+          "university": "",
+          "facultyId": "",
+          "faculty": "",
+          "chairId": "",
+          "chair": "",
+          "graduationYear": 2010
+        },
+        "occupation": {
+          "companyName": "",
+          "position": ""
+        },
+        "about": "",
+        "bankClient": true,
+        "marketingCommunicationConsentGivenAt": "",
+        "personalDataProcessingConsentGivenAt": "",
+        "eduAccountId": 50000,
+        "contacts": [
+          {
+            "type": 1,
+            "value": ""
+          }
+        ]
+      }
+    }
+  ],
+  "resumes": [
+    {
+      "name": "",
+      "surname": "",
+      "patronymic": "",
+      "birthDay": 1,
+      "birthMonth": 1,
+      "birthYear": 1990,
+      "birthdate": "1990-01-01",
+      "gender": 1,
+      "citizenshipId": 1,
+      "citizenship": "",
+      "locationId": "",
+      "location": "",
+      "declaredSpecialization": "",
+      "about": "",
+      "declaredSkills": [""],
+      "inferredSkills": [""],
+      "hobbies": [""],
+      "languages": [
+        {
+          "language": "",
+          "level": ""
+        }
+      ],
+      "preferredSchedules": [""],
+      "additionalEducation": [
+
+        {
+          "name": "",
+          "type": "",
+          "year": 2012
+        }
+      ],
+      "higherEducation": [
+        {
+          "university": "",
+          "faculty": "",
+          "major": "",
+          "degree": "",
+          "startYear": 2015,
+          "endYear": 2010
+        }
+      ],
+      "workExperience": {
+        "totalMonths": 36,
+        "totalYears": 3,
+        "records": [
+          {
+            "company": "",
+            "locationId": "",
+            "location": "",
+            "position": "",
+            "description": "",
+            "startDate": "2020-12-24",
+            "endDate": "2023-08-31",
+            "isCurrent": false,
+            "isIt": true
+          }
+        ]
+      },
+      "preferredLocations": [
+        {
+          "locationId": "",
+          "location": ""
+        }
+      ],
+      "contacts": [
+        {
+          "type": 1,
+          "value": ""
+        }
+      ],
+      "nonStructuredContacts": [""],
+      "createdUtc": ""
+    }
+  ],
+  "changedUtc": "",
+  "files": [""],
+  "recruitersIds": [""],
+  "recruitersMasterIds": [1000],
+  "accessMasterIds": [10000],
+  "offices": [""],
+  "specializations": [""],
+  "levels": [""],
+  "interviewTypes": [""],
+  "hiringProcesses": [
+    {
+      "vacancyId": "",
+      "lastEventState": 46,
+      "events": [
+        {
+          "createdUtc": "",
+          "plainEventState": 16
+        }
+      ]
+    }
+  ]
+}
+
+На текущий момент нельзя написать запрос таким образом, чтобы в нем использовались поля из основного и вложенных 
+полей документа.
+Так же нельзя написать запрос, обращающийся к нескольким разным вложенным полям.
+Гражданства
+ = 2
+ = 3
+ = 4
+ = 5
+ = 6
+ = 7
+ = 8
+ = 9
+ = 10
+ = 11
+ = 100
+Пол
+Male = 0,
+Female = 1,
+Any = 2
+Вложенные поля
+contacts
+educations
+workExperience
+uniqueIdentifiers
+facts
+facts.contacts
+facts.educations
+facts.workExperience
+facts.uniqueIdentifiers
+meetups
+meetups.application.contacts
+internships
+internships.application.contacts
+resumes
+resumes.languages
+resumes.additionalEducation
+resumes.higherEducation
+resumes.workExperience.records
+resumes.preferredLocations
+resumes.contacts
+hiringProcesses
+hiringProcesses.events
+
+Тип контакта
+Unknown = 0,
+Email = 1,
+Phone = 2,
+Skype = 3,
+Telegram = 4,
+Viber = 5,
+Whatsapp = 6,
+Signal = 7,
+Icq = 8,
+Facebook = 9,
+Vk = 10,
+Ok = 11,
+Instagram = 12,
+Twitter = 13,
+YouTube = 14,
+Tiktok = 15,
+Github = 16,
+Gitlab = 17,
+BitBucket = 18,
+HeadHunter = 19,
+LinkedIn = 20,
+AmazingHiring = 21,
+Habr = 22,
+CareerHabr = 23,
+RabotaRu = 24,
+Superjob = 25,
+ZarplataRu = 26,
+Other = 2147483647
+Статус сотрудника
+Unknown = 0,
+None = 1,
+Induction = 2,
+Employed = 3,
+Dismissed = 4,
+Ambiguous = 5
+Результат оценки речи
+NoRemarks = 0,
+NonCriticalRemarks = 1,
+CriticalRemarks = 2
+Уровень образования
+Higher = 0,
+UnfinishedHigher = 1,
+SecondarySpecial = 2,
+Secondary = 3
+
+Тип занятости участника митапа
+LocalCompany = 0,
+ForeignCompany = 1,
+SelfEmployed = 2,
+Student = 3,
+School = 4
+Опыт участника митапа
+Junior = 0,
+Middle = 1,
+Senior = 2,
+Lead = 3
+Коды уникальных идентификаторов
+"MasterId"
+"CustomerId"
+"LkkId"
+"TWorkId"
+"CandidateCardId"
+"EduAccountId"
+"EstaffId"
+"HeadHunterUserId"
+Операторы
+Имена полей
+Поиск терм в конкретном поле
+Логические операторы
+При поисковом запросе, содержащем набор терм, в выдаче будет список кандидатов, у которых найден
+ из 
+ хотя бы один терм
+запроса. Например при указании 
+ поиск выведет и кандидатов Java, и кандидатов Kotlin, и кандидатов 
+Java Kotlin Scala
+Scala. 
+Для лучшего управления выдачей используются логические операторы.
++. Указанный терм обязателен у кандидата 
+-. Указанный терм у кандидата быть не должен
+отсутствие оператора. Наличие терма опционально. 
+Примеры:
+surname:.  Кандидаты с фамилией Иванов
+location:( -). Кандидаты из Москвы или Санкт-Петербурга
+location:( ).      . 
+location:" " . Кандидаты из Нижнего Новгорода. Терм является фразой, поэтому он обрамлен кавычками.
+file:Scala. Кандидаты со словом Scala в файле резюме
+_exists_:location , либо 
+Кандидаты с указаным местоположением 
+location:*. 
+
+ Более знакомые операторы 
+, 
+  и 
+  (либо 
+ , 
+  и  ) тоже поддерживаются, но их использование зачастую 
+AND OR
+NOT
+&&
+||
+!
+сложнее. 
+ (дубль примера выше): 
+Пример
+(Java OR (Java AND Kotlin)) AND NOT Scala
+Подстановочные символы
+?. Замена 1 символа
+* для замены нуля или более символов. Используй данную возможность осторожно, для большого количества  в 
+*
+запросе могут потребоваться большие вычислительные мощности.
+Экранирование
+Символы  
+ используются как операторы. Для использования в термах 
++ - = && || > < ! ( ) { } [ ] ^ " ~ * ? : \ /
+их необходимо экранировать обратным слэшем  
+\
+Примеры:
+contacts.value:\+79999999999 
+tag:" \"  \""
+Акцент
+^.      . 
+Пример:
+Допустим, необходимо найти всех кандидатов с Java в резюме, но особенно тех, у кого есть еще и Kotlin.  +Java 
++Kotlin^2
+Приблизительное расстояние
+Так как фразы предполагают поиск слов строго в указанном порядке друг за другом, существует способ ослабить это 
+ограничение. Оператор используется, чтобы указать допустимое расстояние между словами в фразе, оно указывается 
+~
+числом после оператора. Однако, чем ближе слова друг к другу, тем выше будет результат в выдаче.
+Пример: под запрос 
+ подойдет кандидат с текстом в резюме "опыт работы с Angular", и не подойдет 
+" Angular"~2
+кандидат с текстом "опыт работы с TypeScript, Angular"
+Интервалы
+Можно искать попадание поля в интервал, используя квадратные и фигурные скобки. Квадратные используются для 
+включающего интервала, фигурные - для исключающего
+Примеры:
+Кандидат родился в 2000 году:
+    
+ 
+birthdate:[2000-01-01 TO 2000-12-31]
+    
+ 
+birthdate:{1999-12-31 TO 2001-01-01}
+Скобки можно комбинировать
+    
+ 
+birthdate:[2000-01-01 TO 2001-01-01}
+Можно использовать  для открытых интервалов
+*
+    
+ 
+birthdate:[2000-01-01 TO *]
++Java Kotlin -Scala.  кандидатов, в резюме которых точно есть Java, нет Scala и возможно есть Kotlin (он 
+поднимет кандидата в выдаче).
+Примеры:
+level:Senior? . Кандидаты с уровнем Senior+ или Senior-     
+email:ivanov*@gmail.com . Кандидаты с почтой в который точно неизвестно окончание логина
+name:* AND surname: . Кандидат имя которого Александр или Алексей 
+
+Также для открытых интервалов можно использовать и такой синтаксис: 
+    
+ 
+birthdate:>=2000-01-01
+    
+ 
+birthdate:>2000-01-01
+    
+ 
+birthdate:<=2000-01-01
+    
+ 
+birthdate:<2000-01-01
+По кандидату не было изменений до какой-то даты:
+    changedUtc:<2022-01-01
+Более сложные операторы
+Регулярные выражения обрамляются слэшами. Пример: 
+ 
+name:/joh?n(ath[oa]n)/
+Оператор приблизительного расстояния   можно применять и на слове, это позволяет искать перестановки соседних 
+~
+букв. Пример: 
+  или 
+ 
+name:~
+name:~2
+Шаблон подсказка для работы с расширенным поиском
+Шаблон- подсказка для упрощения работы с расширенным поиском
+Расширенный поиск состоит из основных и вложенных полей. Поля сгруппированы по смыслу.
+Например, в основное поле workExperience входят вложенные поля title, organizationName и др:  
+Мы конкретизируем понятие опыт работы и можем уточнить, что нас интересует именно позиция, название организации или 
+другое поле.
+Как сформировать поисковой запрос:
+Обрати внимание: названия полей чувствительны к заглавным буквам, используется camelCase.
+Ответственный: 
+ 
+Aleksandra Sheveleva
+Последняя дата обновления: 
+ 
+21.05.2026
+основное поле.вложенное поле: "значение"
+
+Пример поискового запроса:
+employeeStatus.status: 3 (так мы найдем всех кандидатов со статусом "Трудоустроен")
+Мы можем использовать несколько основных полей в запросе:
+location: Омск AND birthYear: 1999 
+Вложенные поля могут содержать свои вложенные поля:
+resumes.higherEducation.university: МФТИ (в основное поле Резюме входит вложенное поле Высшее образование, в которое 
+входит поле Университет)
+Поля, доступные для поиска:
+Источник данных
+Основное поле
+Вложенные поля
+Вложенные поля 
+вложенного поля
+Пример использования
+Карточка кандидата
+mainId
+name - имя
+surname - фамилия
+ - отчество
+patronymic
+birthDay - день рождения
+birthMonth - месяц рождения
+На текущий момент нельзя написать запрос таким образом, чтобы в нем использовались поля из 
+основного и вложенного полей документа.
+ то есть такой запрос не сработает:
+workExperience.organizationName: Ozon AND changedUtc:<2022-01-01
+так как используется 
+ changedUtc и 
+ organizationName 
+основное поле
+вложенное поле
+другого основного 
+ workExperience
+поля
+Так же нельзя написать запрос, обращающийся к нескольким разным вложенным полям. 
+ Такие запросы не сработают:
+workExperience.organizationName: Ozon AND employeeStatus.status: 4
+Используются вложенные поля
+основных полей - workExperience и employeeStatus
+ разных 
+educations.educationLevel: 1 AND resumes.languages.language: Английский
+Используются вложенные поля разных основных полей - educations и resumes
+ Такие запросы сработают:
+meetups.application.city: Москва AND meetups.application.programmingLanguages: Java
+Используются разные вложенные поля 
+ основного поля application - city и programmingLanguages
+одного
+resumes.workExperience.records.position : "Team Lead" AND (resumes.workExperience.records.isCurrent : true)
+Используются вложенные поля 
+ вложенного поля records
+одного
+location: Санкт-Петербург AND files:"Senior Golang" AND levels: Senior
+Используются разные основные поля без вложенности
+
+birthYear - год рождения
+birthYear:>=2008
+кандидаты от 2008 года рождения
+birthdate - дата рождения в 
+формате гггг.мм.дд
+gender - пол, принимает 
+значения: 
+Мужской = 0,
+Женский = 1,
+Любой = 2
+locationId - индентификатор 
+локации из справочника dadata.ru
+location - локация
+citizenshipId - идентификатор 
+гражданства, принимает значения:
+Россия = 2
+Беларусь = 3
+Казахстан = 4
+Украина = 5
+Киргизия = 6
+Армения = 7
+Узбекистан = 8
+Азербайджан = 9
+Молдова = 10
+Таджикистан = 11
+Другое = 100
+citizenshipId:3
+кандидаты с гражданством Беларуси
+citizenship - гражданство
+citizenship: Беларусь
+тоже кандидаты с гражданством 
+Беларусь
+contacts - контакты
+ - тип, принимает 
+type
+значения: 
+Unknown = 0,
+Email = 1,
+Phone = 2,
+Skype = 3,
+Telegram = 4,
+Viber = 5,
+Whatsapp = 6,
+Signal = 7,
+Icq = 8,
+Facebook = 9,
+Vk = 10,
+Ok = 11,
+Instagram = 12,
+Twitter = 13,
+YouTube = 14,
+Tiktok = 15,
+Github = 16,
+Gitlab = 17,
+BitBucket = 18,
+HeadHunter = 19,
+LinkedIn = 20,
+AmazingHiring = 21,
+Habr = 22,
+CareerHabr = 23,
+RabotaRu = 24,
+Superjob = 25,
+ZarplataRu = 26,
+Other = 2147483647
+contacts.type: 23
+кандидаты, у которых в карточке есть 
+ссылка на Хабр Карьеру
+ - значение
+value
+contacts.type: 23 AND contacts.value: 
+"anna"
+кандидат с контактом на Хабр Карьере 
+со значением  "anna", то есть кандидат 
+с контактом https://career.habr.com/an
+na
+tags - тэги
+-tags: читер*
+исключает кандидатов с тэгом читер* 
+(звездочка в конце означает, что 
+после слова "читер" могут быть другие 
+символы)
+
+Статус сотрудника
+employeeStatus - статус 
+сотрудника
+status - статус, принимает 
+значения:
+ = 0,
+  = 1,
+  = 2,
+ = 3,
+ = 4,
+  = 5
+employeeStatus.status: 4
+уволенные сотрудники
+peopleHubDismissalGeneralRe
+asonId - идентификатор 
+причины увольнения
+peopleHubDismissalGeneralRe
+ason - причина увольнения
+peopleHubDismissalGeneralRe
+asonIsNegative - флаг 
+негативной причины 
+увольнения, принимает 
+значения: 
+Уволен без негативной 
+причины = false
+Уволен с негативной 
+причиной = true 
+Что относится к негативным 
+причинам отказа, смотри 
+ isNegative = 
+здесь в фильтре
+да
+employeeStatus.
+peopleHubDismissalGeneralReasonIsNeg
+ative: false
+кандидаты - бывшие сотрудники без 
+негативной причины увольнения
+peopleHubDismissalDate - дат
+а увольнения
+speechEvaluation - оценка речи
+result - результат оценки 
+речи, принимает значения:
+  = 0,
+   = 1,
+  = 2
+-speechEvaluation.result: 2
+исключит кандидатов с критичными 
+замечаниями оценки речи
+ratedByInitiatorMasterId - Mas
+ter_id рекрутера, 
+оценившего речь
+ratedAtUtc - дата оценки речи
+-speechEvaluation.result: 2 AND 
+speechEvaluation.ratedAtUtc: >2026-03-
+01
+исключит кандидатов с критичными 
+замечаниями по речи, оценка речи 
+которых произошла после 1 марта 2026
+Резюме с hh, 
+полученные в 
+результате отклика 
+кандидата на hh
+ Если ты хочешь 
+искать по 
+всем резюме 
+кандидата, используй 
+запрос по резюме: 
+resumes.
+higherEducation...
+educations - образования
+faculty - факультет
+educations.specialization: 
+("Информатика и вычислительная 
+техника" OR "ИВТ")
+кандидаты с образованием по 
+специальности "Информатика и 
+вычислительная техника"
+organizationName - название 
+организации
+specialization - специализация
+educationLevel - уровень 
+образования
+graduationYear - год 
+окончания обучения
+Резюме с hh, 
+полученные в 
+результате отклика 
+кандидата на hh
+ Если ты хочешь 
+искать по 
+всем резюме 
+кандидата, используй 
+workExperience - опыт работы
+title - позиция
+workExperience.title: "Инвестиционный 
+аналитик" AND workExperience.city: 
+Москва
+кандидаты, которые указывали в 
+резюме должность "Инвестиционный 
+аналитик" и город места работы 
+Москва
+organizationName - название 
+места работы
+
+запрос по резюме: 
+resumes.
+workExperience...
+cityId - идентификатор 
+города места работы
+city - город места работы
+dateStart - дата старта 
+работы
+dateEnd - дата окончания 
+работы
+organizationUrl - ссылка на 
+организацию
+description - описание 
+обязанностей
+workExperience.description: 
+("проектирование архитектуры" AND 
+"управление командой")
+кандидаты, которые указывали в 
+резюме в описании обязанностей 
+словосочетания "проектирование 
+архитектуры" и "управление командой"
+uniqueIdentifiers - уникальные 
+идентификаторы
+code - код, принимает 
+значения: 
+"MasterId"
+"CustomerId"
+"LkkId"
+"TWorkId"
+"CandidateCardId"
+"EduAccountId"
+"EstaffId"
+"HeadHunterUserId"
+uniqueIdentifiers.code: "MasterId" AND 
+uniqueIdentifiers.value: 111111
+кандидат с MasterId 111111
+value - значение
+Данные митапов, 
+которые посещал 
+кандидат
+meetups - митапы
+meetup - данные митапа
+id - идентификатор 
+митапа
+title - название митапа
+meetups.meetup.title: "t-sync conf."
+кандидаты с митапа t-sync conf.
+format - формат 
+проведения митапа, 
+принимает значения:
+online
+ofline
+hybrid
+meetups.meetup.format: ofline AND 
+meetups.meetup.city: Воронеж
+кандидаты, которые офлайн посещали 
+митап в Воронеже
+cityId - идентификатор 
+города
+city - город
+startUtc - дата начала 
+митапа в формате гггг-мм-
+дд
+meetups.meetup.format: online AND 
+meetups.meetup.startUtc:>2026-01-01
+кандидаты, посещавшие онлайн 
+митап, который стартовал до 1 января 
+2026 года
+endUtc - дата окончания 
+митапа в формате гггг-мм-
+дд
+Данные анкеты, с 
+которой кандидат 
+откликнулся на митап
+application - анкета 
+кандидата с митапа
+name - имя
+surname - фамилия
+city - город
+occupation - тип 
+занятости участника, 
+принимает значения:
+Работа в российской 
+компании = 0
+Работа в 
+иностранной 
+компании = 1
+Самозанятый = 2
+Студент = 3
+Школьник = 4
+meetups.application.occupation: 1
+кандидаты, которые указали в анкете 
+с митапа, что работают в иностранной 
+компании
+
+company - компания
+meetups.application.company: "Ozon"
+кандидаты, которые в анкете для 
+митапа указали, что работают в Ozon
+experience - опыт, 
+принимает значения:
+Junior = 0
+Middle = 1
+Senior = 2
+Lead = 3
+meetups.application.experience: 3
+кандидаты, которые в анкете для 
+митапа указали уровень Lead
+specializationId - 
+идентификатор 
+специализации
+specialization - 
+специализация
+meetups.application.specialization: 
+"Product manager"
+кандидаты, которые в анкете для 
+митапа указали  специализацию 
+Product manager
+programmingLanguages - 
+языки программирования
+meetups.application.
+programmingLanguages: Java
+кандидаты, которые в анкете для 
+митапа указали ЯП Java
+comment - комментарий
+marketingCommunicationC
+onsentGivenAt - дата 
+согласия на получения 
+маркетинговых рассылок
+personalDataProcessingCon
+sentGivenAt - дата 
+согласия на обработку 
+персональных данных
+contacts:
+type
+value
+meetups.application.contacts.type:2
+кандидаты, которые в анкете для 
+митапа указали номер телефона
+Данные стажировок, 
+отбор на которые 
+проходил кандидат
+internships - стажировки
+selection - информация о 
+стажировке
+id - идентификатор 
+стажировки
+title - название 
+стажировки
+program - программа
+streamId - 
+идентификатор стрима
+stream - стрим
+specializationsIds - 
+идентификатор 
+специализации
+specializations - 
+специализация
+examsStartDate - дата 
+начала экзаменов
+examsFinishDate - дата 
+окончания экзаменов
+Данные анкет 
+стажеров, 
+полученных при 
+отборе на стажировку
+application - анкета 
+кандидата со стажировки
+ 
+id - идентификатор 
+анкеты
+name - имя
+surname - фамилия
+patronymic - отчество
+birthDay - день рождения
+preferredLearningCity - 
+предпочитаемый город 
+обучения
+
+school:
+cityId
+city
+schoolId
+school
+graduationYear
+university:
+cityId
+city
+universityId
+university
+facultyId
+faculty
+chairId
+chair
+graduationYear
+occupation:
+companyName
+position
+about - о себе
+bankClient - является 
+клиентом:
+True - да
+False - нет
+marketingCommunicationC
+onsentGivenAt - дата 
+согласия на получения 
+маркетинговых рассылок
+personalDataProcessingCon
+sentGivenAt - дата 
+согласия на обработку 
+персональных данных
+eduAccountId - 
+идентификатор аккаунта 
+на edu
+contacts:
+type
+value
+Резюме
+resumes - резюме
+name - имя
+surname - фамилия
+patronymic - отчество
+birthDay - день рождения
+birthMonth - месяц рождения
+birthYear - год рождения
+birthdate - дата рождения
+gender - пол
+citizenshipId - идентификатор
+гражданства
+citizenship - гражданство
+locationId - идентификатор 
+локации
+location - локация
+declaredSpecialization - 
+заявленная специализация
+resumes.declaredSpecialization: "ML 
+Product"
+кандидаты, которые указывали в 
+резюме специализацию "ML Product"
+about - о себе
+declaredSkills - заявленные 
+навыки 
+
+inferredSkills - предполагаем
+ые навыки
+hobbies - хобби
+languages - иностранные 
+языки
+language - язык
+level - уровень
+preferredSchedules - 
+предпочитаемый формат 
+работы
+additionalEducation - 
+дополнительное образование
+name - название 
+образования
+type - тип
+year - год
+higherEducation - высшее 
+образование
+university - униерситет
+faculty - факультет
+major - специальность 
+degree - степень 
+(бакалавр/магистр)
+startYear - год начала 
+обучения
+endYear - год окончания 
+обучения
+workExperience - опыт работы
+totalMonths - количество 
+месяцев опыта
+totalYears - количество 
+лет опыта
+records:
+company
+locationId
+location
+position
+description
+startDate
+endDate
+isCurrent
+isIt
+resumes.workExperience.records.
+company: "Positive Technologies" AND 
+resumes.workExperience.records.
+isCurrent: true
+кандидаты, работающие на текущий 
+момент в Positive Technologies
+preferredLocations - предпочи
+таемые локации
+locationId - 
+идентификатор локации
+location - локация 
+contacts - контакты
+type - тип контакта
+value - значение контакта
+nonStructuredContacts - 
+неструктурированные 
+контакты
+createdUtc - дата создания
+Процессы отбора
+changedUtc - дата любого 
+изменения в карточке кандидата
+changedUtc:<2026-06-01
+кандидаты, у которых не было 
+изменений в карточке после 1 июня 
+2026
+files - файлы в карточке кандидата
+recruitersIds - ID рекрутеров, 
+которые хотя бы 1 раз внесли 
+изменение в процессы отбора в 
+карточке кандидата
+recruitersMasterIds - Master_id 
+рекрутеров, которые хотя бы 1 
+раз внесли изменение в процессы 
+отбора в карточке кандидата
+offices - офисы выхода кандидата 
+на работу
+specializations - специализации, 
+по которым кандидат проходил 
+отбор
+specializations:(Product Manager)
+кандидаты специализации Product 
+Manager
+
+levels - финальный уровень 
+кандидата, принимает значения:
+Junior
+Junior+
+Middle
+Middle+
+Senior
+Senior+
+levels:(Middle OR Middle+ OR Senior)
+кандидаты уровня Middle, Middle+ и 
+Senior 
+interviewTypes - типы интервью, 
+принимает значения: 
+Техническое интервью
+Финальное интервью
+interviewTypes: "Техническое 
+интервью"
+кандидаты, которым было назначено 
+техническое интервью
+hiringProcesses - процессы отбора
+vacancyId - id вакансии, на 
+которую проходил отбор 
+кандидат
+lastEventState - статус 
+последнего этапа отбора в 
+рамках выбранного процесса
+events - 
+createdUtc
+plainEventState
+Из чего состоит запрос
+Запрос разбирается на 
+(то что мы ищем) и 
+(помощники в поиске). 
+термы 
+ 
+операторы 
+Варианты термов:
+Java - поиск одного слова
+"System Design" - поиск фразы целиком в указанном порядке слов (при обрамлении фразы в "")
+{
+  "mainId": "",
+  "name": "",
+  "surname": "",
+  "patronymic": "",
+  "birthDay": 1,
+  "birthMonth": 1,
+  "birthYear": 1990,
+  "birthdate": "1990-01-01",
+  "gender": 1,
+  "locationId": "",
+  "location": "",
+  "citizenshipId": 1,
+  "citizenship": "",
+  "contacts": [
+    {
+      "type": 1,
+      "value": ""
+    }
+  ],
+  "nonStructuredContacts": [""],
+  "tagsIds": [""],
+  "tags": [""],
+  "employeeStatus": {
+    "status": 1,
+    "peopleHubDismissalGeneralReasonId": 1,
+    "peopleHubDismissalGeneralReason": "",
+    "peopleHubDismissalGeneralReasonIsNegative": false,
+    "peopleHubDismissalDate": ""
+  },
+  "speechEvaluation": {
+    "result": 1,
+
+    "ratedByInitiatorMasterId": 1000,
+    "ratedAtUtc": ""
+  },
+  "educations": [
+    {
+      "faculty": "",
+      "organizationName": "",
+      "specialization": "",
+      "educationLevel": 1,
+      "graduationYear": 2010
+    }
+  ],
+  "workExperience": [
+    {
+      "title": "",
+      "organizationName": "",
+      "cityId": "",
+      "city": "",
+      "dateStart": "2024-03-15",
+      "dateEnd": "2025-04-02",
+      "organizationUrl": "",
+      "description": ""
+    }
+  ],
+  "uniqueIdentifiers": [
+    {
+      "code": "",
+      "value": ""
+    }
+  ],
+  "facts": [
+    {
+      "id": "d35a23ca-f93d-4d18-b0a3-d2cc38d8422c",
+      "sourceCode": "",
+      "sourceId": "",
+      "name": "",
+      "surname": "",
+      "patronymic": "",
+      "birthDay": 1,
+      "birthMonth": 1,
+      "birthYear": 1990,
+      "birthdate": "1990-01-01",
+      "gender": 1,
+      "locationId": "",
+      "location": "",
+      "citizenshipId": 1,
+      "citizenship": "",
+      "contacts": [
+        {
+          "type": 1,
+          "value": ""
+        }
+      ],
+      "nonStructuredContacts": [""],
+      "tagsIds": [""],
+      "tags": [""],
+      "employeeStatus": {
+        "status": 1,
+        "peopleHubDismissalGeneralReasonId": 1,
+        "peopleHubDismissalGeneralReason": "",
+        "peopleHubDismissalGeneralReasonIsNegative": false,
+        "peopleHubDismissalDate": ""
+      },
+      "speechEvaluation": {
+        "result": 1,
+        "ratedByInitiatorMasterId": 1000,
+        "ratedAtUtc": ""
+      },
+      "educations": [
+        {
+          "faculty": "",
+
+          "organizationName": "",
+          "specialization": "",
+          "educationLevel": 1,
+          "graduationYear": 2010
+        }
+      ],
+      "workExperience": [
+        {
+          "title": "",
+          "organizationName": "",
+          "cityId": "",
+          "city": "",
+          "dateStart": "2024-05-09",
+          "dateEnd": "2025-05-01",
+          "organizationUrl": "",
+          "description": ""
+        }
+      ],
+      "uniqueIdentifiers": [
+        {
+          "code": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "meetups": [
+    {
+      "meetup": {
+        "id": "",
+        "title": "",
+        "format": "",
+        "cityId": "",
+        "city": "",
+        "startUtc": "",
+        "endUtc": ""
+      },
+      "application": {
+        "name": "",
+        "surname": "",
+        "city": "",
+        "occupation": 1,
+        "company": "",
+        "experience": 1,
+        "specializationId": "",
+        "specialization": "",
+        "programmingLanguages": "",
+        "comment": "",
+        "marketingCommunicationConsentGivenAt": "",
+        "personalDataProcessingConsentGivenAt": "",
+        "contacts": [
+          {
+            "type": 1,
+            "value": ""
+          }
+        ]
+      }
+    }
+  ],
+  "internships": [
+    {
+      "selection": {
+        "id": "",
+        "title": "",
+        "program": 1,
+        "streamId": "",
+        "stream": "",
+        "specializationsIds": [""],
+        "specializations": [""],
+        "examsStartDate": "",
+        "examsFinishDate": ""
+
+      },
+      "application": {
+        "id": "",
+        "name": "",
+        "surname": "",
+        "patronymic": "",
+        "birthDay": "2010-12-29",
+        "preferredLearningCity": "",
+        "school": {
+          "cityId": "",
+          "city": "",
+          "schoolId": "",
+          "school": "",
+          "graduationYear": 2005
+        },
+        "university": {
+          "cityId": "",
+          "city": "",
+          "universityId": "",
+          "university": "",
+          "facultyId": "",
+          "faculty": "",
+          "chairId": "",
+          "chair": "",
+          "graduationYear": 2010
+        },
+        "occupation": {
+          "companyName": "",
+          "position": ""
+        },
+        "about": "",
+        "bankClient": true,
+        "marketingCommunicationConsentGivenAt": "",
+        "personalDataProcessingConsentGivenAt": "",
+        "eduAccountId": 50000,
+        "contacts": [
+          {
+            "type": 1,
+            "value": ""
+          }
+        ]
+      }
+    }
+  ],
+  "resumes": [
+    {
+      "name": "",
+      "surname": "",
+      "patronymic": "",
+      "birthDay": 1,
+      "birthMonth": 1,
+      "birthYear": 1990,
+      "birthdate": "1990-01-01",
+      "gender": 1,
+      "citizenshipId": 1,
+      "citizenship": "",
+      "locationId": "",
+      "location": "",
+      "declaredSpecialization": "",
+      "about": "",
+      "declaredSkills": [""],
+      "inferredSkills": [""],
+      "hobbies": [""],
+      "languages": [
+        {
+          "language": "",
+          "level": ""
+        }
+      ],
+      "preferredSchedules": [""],
+      "additionalEducation": [
+
+        {
+          "name": "",
+          "type": "",
+          "year": 2012
+        }
+      ],
+      "higherEducation": [
+        {
+          "university": "",
+          "faculty": "",
+          "major": "",
+          "degree": "",
+          "startYear": 2015,
+          "endYear": 2010
+        }
+      ],
+      "workExperience": {
+        "totalMonths": 36,
+        "totalYears": 3,
+        "records": [
+          {
+            "company": "",
+            "locationId": "",
+            "location": "",
+            "position": "",
+            "description": "",
+            "startDate": "2020-12-24",
+            "endDate": "2023-08-31",
+            "isCurrent": false,
+            "isIt": true
+          }
+        ]
+      },
+      "preferredLocations": [
+        {
+          "locationId": "",
+          "location": ""
+        }
+      ],
+      "contacts": [
+        {
+          "type": 1,
+          "value": ""
+        }
+      ],
+      "nonStructuredContacts": [""],
+      "createdUtc": ""
+    }
+  ],
+  "changedUtc": "",
+  "files": [""],
+  "recruitersIds": [""],
+  "recruitersMasterIds": [1000],
+  "accessMasterIds": [10000],
+  "offices": [""],
+  "specializations": [""],
+  "levels": [""],
+  "interviewTypes": [""],
+  "hiringProcesses": [
+    {
+      "vacancyId": "",
+      "lastEventState": 46,
+      "events": [
+        {
+          "createdUtc": "",
+          "plainEventState": 16
+        }
+      ]
+    }
+  ]
+}
+
+На текущий момент нельзя написать запрос таким образом, чтобы в нем использовались поля из основного и вложенных 
+полей документа.
+Так же нельзя написать запрос, обращающийся к нескольким разным вложенным полям.
+Гражданства
+ = 2
+ = 3
+ = 4
+ = 5
+ = 6
+ = 7
+ = 8
+ = 9
+ = 10
+ = 11
+ = 100
+Пол
+Male = 0,
+Female = 1,
+Any = 2
+Вложенные поля
+contacts
+educations
+workExperience
+uniqueIdentifiers
+facts
+facts.contacts
+facts.educations
+facts.workExperience
+facts.uniqueIdentifiers
+meetups
+meetups.application.contacts
+internships
+internships.application.contacts
+resumes
+resumes.languages
+resumes.additionalEducation
+resumes.higherEducation
+resumes.workExperience.records
+resumes.preferredLocations
+resumes.contacts
+hiringProcesses
+hiringProcesses.events
+
+Тип контакта
+Unknown = 0,
+Email = 1,
+Phone = 2,
+Skype = 3,
+Telegram = 4,
+Viber = 5,
+Whatsapp = 6,
+Signal = 7,
+Icq = 8,
+Facebook = 9,
+Vk = 10,
+Ok = 11,
+Instagram = 12,
+Twitter = 13,
+YouTube = 14,
+Tiktok = 15,
+Github = 16,
+Gitlab = 17,
+BitBucket = 18,
+HeadHunter = 19,
+LinkedIn = 20,
+AmazingHiring = 21,
+Habr = 22,
+CareerHabr = 23,
+RabotaRu = 24,
+Superjob = 25,
+ZarplataRu = 26,
+Other = 2147483647
+Статус сотрудника
+Unknown = 0,
+None = 1,
+Induction = 2,
+Employed = 3,
+Dismissed = 4,
+Ambiguous = 5
+Результат оценки речи
+NoRemarks = 0,
+NonCriticalRemarks = 1,
+CriticalRemarks = 2
+Уровень образования
+Higher = 0,
+UnfinishedHigher = 1,
+SecondarySpecial = 2,
+Secondary = 3
+
+Тип занятости участника митапа
+LocalCompany = 0,
+ForeignCompany = 1,
+SelfEmployed = 2,
+Student = 3,
+School = 4
+Опыт участника митапа
+Junior = 0,
+Middle = 1,
+Senior = 2,
+Lead = 3
+Коды уникальных идентификаторов
+"MasterId"
+"CustomerId"
+"LkkId"
+"TWorkId"
+"CandidateCardId"
+"EduAccountId"
+"EstaffId"
+"HeadHunterUserId"
+Операторы
+Имена полей
+Поиск терм в конкретном поле
+Логические операторы
+При поисковом запросе, содержащем набор терм, в выдаче будет список кандидатов, у которых найден
+ из 
+ хотя бы один терм
+запроса. Например при указании 
+ поиск выведет и кандидатов Java, и кандидатов Kotlin, и кандидатов 
+Java Kotlin Scala
+Scala. 
+Для лучшего управления выдачей используются логические операторы.
++. Указанный терм обязателен у кандидата 
+-. Указанный терм у кандидата быть не должен
+отсутствие оператора. Наличие терма опционально. 
+Примеры:
+surname:.  Кандидаты с фамилией Иванов
+location:( -). Кандидаты из Москвы или Санкт-Петербурга
+location:( ).      . 
+location:" " . Кандидаты из Нижнего Новгорода. Терм является фразой, поэтому он обрамлен кавычками.
+file:Scala. Кандидаты со словом Scala в файле резюме
+_exists_:location , либо 
+Кандидаты с указаным местоположением 
+location:*. 
+
+ Более знакомые операторы 
+, 
+  и 
+  (либо 
+ , 
+  и  ) тоже поддерживаются, но их использование зачастую 
+AND OR
+NOT
+&&
+||
+!
+сложнее. 
+ (дубль примера выше): 
+Пример
+(Java OR (Java AND Kotlin)) AND NOT Scala
+Подстановочные символы
+?. Замена 1 символа
+* для замены нуля или более символов. Используй данную возможность осторожно, для большого количества  в 
+*
+запросе могут потребоваться большие вычислительные мощности.
+Экранирование
+Символы  
+ используются как операторы. Для использования в термах 
++ - = && || > < ! ( ) { } [ ] ^ " ~ * ? : \ /
+их необходимо экранировать обратным слэшем  
+\
+Примеры:
+contacts.value:\+79999999999 
+tag:" \"  \""
+Акцент
+^.      . 
+Пример:
+Допустим, необходимо найти всех кандидатов с Java в резюме, но особенно тех, у кого есть еще и Kotlin.  +Java 
++Kotlin^2
+Приблизительное расстояние
+Так как фразы предполагают поиск слов строго в указанном порядке друг за другом, существует способ ослабить это 
+ограничение. Оператор используется, чтобы указать допустимое расстояние между словами в фразе, оно указывается 
+~
+числом после оператора. Однако, чем ближе слова друг к другу, тем выше будет результат в выдаче.
+Пример: под запрос 
+ подойдет кандидат с текстом в резюме "опыт работы с Angular", и не подойдет 
+" Angular"~2
+кандидат с текстом "опыт работы с TypeScript, Angular"
+Интервалы
+Можно искать попадание поля в интервал, используя квадратные и фигурные скобки. Квадратные используются для 
+включающего интервала, фигурные - для исключающего
+Примеры:
+Кандидат родился в 2000 году:
+    
+ 
+birthdate:[2000-01-01 TO 2000-12-31]
+    
+ 
+birthdate:{1999-12-31 TO 2001-01-01}
+Скобки можно комбинировать
+    
+ 
+birthdate:[2000-01-01 TO 2001-01-01}
+Можно использовать  для открытых интервалов
+*
+    
+ 
+birthdate:[2000-01-01 TO *]
++Java Kotlin -Scala.  кандидатов, в резюме которых точно есть Java, нет Scala и возможно есть Kotlin (он 
+поднимет кандидата в выдаче).
+Примеры:
+level:Senior? . Кандидаты с уровнем Senior+ или Senior-     
+email:ivanov*@gmail.com . Кандидаты с почтой в который точно неизвестно окончание логина
+name:* AND surname: . Кандидат имя которого Александр или Алексей 
+
+Также для открытых интервалов можно использовать и такой синтаксис: 
+    
+ 
+birthdate:>=2000-01-01
+    
+ 
+birthdate:>2000-01-01
+    
+ 
+birthdate:<=2000-01-01
+    
+ 
+birthdate:<2000-01-01
+По кандидату не было изменений до какой-то даты:
+    changedUtc:<2022-01-01
+Более сложные операторы
+Регулярные выражения обрамляются слэшами. Пример: 
+ 
+name:/joh?n(ath[oa]n)/
+Оператор приблизительного расстояния   можно применять и на слове, это позволяет искать перестановки соседних 
+~
+букв. Пример: 
+  или 
+ 
+name:~
+name:~2
+Шаблон подсказка для работы с расширенным поиском
+Шаблон- подсказка для упрощения работы с расширенным поиском

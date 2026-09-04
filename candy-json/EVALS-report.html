@@ -1,0 +1,440 @@
+<title>Эвалы движка подборок</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#F5F7F9;
+  --card:#FFFFFF;
+  --ink:#131922;
+  --muted:#5B6674;
+  --faint:#8792A1;
+  --line:#E1E6EC;
+  --accent:#1F6B64;      /* полнота — глубокий тил */
+  --accent-soft:#DCEBE8;
+  --warm:#A9652F;        /* точность — охра */
+  --warm-soft:#F4E7DA;
+  --bad:#9E3B3B;
+  --shadow:0 1px 2px rgba(19,25,34,.05), 0 8px 24px -12px rgba(19,25,34,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F131A;
+    --card:#161C25;
+    --ink:#E7ECF2;
+    --muted:#9AA5B3;
+    --faint:#6E7A8A;
+    --line:#232B36;
+    --accent:#5FB5AA;
+    --accent-soft:#17322F;
+    --warm:#D2914F;
+    --warm-soft:#33251A;
+    --bad:#D77373;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F131A;
+  --card:#161C25;
+  --ink:#E7ECF2;
+  --muted:#9AA5B3;
+  --faint:#6E7A8A;
+  --line:#232B36;
+  --accent:#5FB5AA;
+  --accent-soft:#17322F;
+  --warm:#D2914F;
+  --warm-soft:#33251A;
+  --bad:#D77373;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px 96px}
+.col{max-width:68ch}
+
+/* ── шапка ── */
+header{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:48px}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 18px
+}
+h1{
+  font-family:"Bricolage Grotesque","IBM Plex Sans",sans-serif;
+  font-weight:700;font-size:clamp(34px,5.2vw,54px);line-height:1.06;
+  letter-spacing:-.02em;margin:0 0 20px;text-wrap:balance;
+}
+.lede{font-size:19px;line-height:1.6;color:var(--muted);margin:0;max-width:60ch}
+
+/* ── типографика ── */
+h2{
+  font-family:"Bricolage Grotesque","IBM Plex Sans",sans-serif;
+  font-weight:700;font-size:26px;line-height:1.2;letter-spacing:-.015em;
+  margin:0 0 6px;text-wrap:balance;
+}
+h3{
+  font-family:"Bricolage Grotesque","IBM Plex Sans",sans-serif;
+  font-weight:500;font-size:18px;line-height:1.3;margin:0 0 8px;
+}
+p{margin:0 0 16px}
+strong{font-weight:600}
+section{margin-bottom:64px;display:flex;flex-direction:column;gap:20px}
+.sec-head{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}
+.sec-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;color:var(--accent);letter-spacing:.1em;
+}
+code{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.88em;background:var(--accent-soft);color:var(--ink);
+  padding:.1em .38em;border-radius:4px;
+}
+
+/* ── метрические плитки ── */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.tile{
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:18px 18px 16px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:4px;
+}
+.tile .num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-variant-numeric:tabular-nums;
+  font-size:34px;line-height:1;font-weight:500;letter-spacing:-.02em;
+}
+.tile .lbl{font-size:13px;font-weight:600;letter-spacing:.01em}
+.tile .hint{font-size:12.5px;color:var(--muted);line-height:1.45}
+.tile.recall .num{color:var(--accent)}
+.tile.prec .num{color:var(--warm)}
+
+/* ── две выборки ── */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.panel{
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);
+}
+.panel .tag{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+}
+.panel p{margin:0;font-size:14.5px;color:var(--muted)}
+.panel .score{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-variant-numeric:tabular-nums;font-size:22px;font-weight:500;
+}
+.panel.a .score{color:var(--faint)}
+.panel.b .score{color:var(--accent)}
+.quote{
+  font-size:14.5px;color:var(--ink);border-left:2px solid var(--line);
+  padding-left:12px;font-style:italic;
+}
+
+/* ── таблицы ── */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);font-weight:400;white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--accent-soft)}
+td.n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.step{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--faint);white-space:nowrap}
+tr.peak td{font-weight:600}
+tr.peak td.n{color:var(--accent)}
+.dim{color:var(--muted)}
+
+/* ── списки-выводы ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.finding{
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:18px;display:flex;flex-direction:column;gap:7px;box-shadow:var(--shadow);
+}
+.finding h3{margin:0}
+.finding p{margin:0;font-size:14.5px;color:var(--muted)}
+.finding.win{border-top:3px solid var(--accent)}
+.finding.miss{border-top:3px solid var(--warm)}
+
+ol.rules{margin:0;padding-left:0;list-style:none;counter-reset:r;display:flex;flex-direction:column;gap:14px}
+ol.rules li{counter-increment:r;padding-left:44px;position:relative}
+ol.rules li::before{
+  content:counter(r,decimal-leading-zero);
+  position:absolute;left:0;top:1px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
+  color:var(--accent);border:1px solid var(--line);border-radius:6px;
+  padding:2px 6px;background:var(--card);
+}
+ol.rules b{display:block;font-weight:600;margin-bottom:2px}
+ol.rules span{color:var(--muted);font-size:14.5px}
+
+/* ── код ── */
+pre{
+  margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:16px;overflow-x:auto;box-shadow:var(--shadow);
+}
+pre code{background:none;padding:0;font-size:12.8px;line-height:1.65;color:var(--ink)}
+.tok-key{color:var(--accent)}
+.tok-bad{color:var(--bad)}
+
+.note{
+  background:var(--warm-soft);border:1px solid var(--line);border-left:3px solid var(--warm);
+  border-radius:8px;padding:16px 18px;font-size:14.5px;
+}
+.note strong{color:var(--ink)}
+
+footer{
+  border-top:1px solid var(--line);padding-top:24px;margin-top:16px;
+  font-size:13.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px 20px;
+}
+footer code{background:none;color:var(--muted);padding:0}
+@media (prefers-reduced-motion:no-preference){
+  tbody tr{transition:background .12s ease}
+}
+
+/* ── печать: светлая тема принудительно, разделы не рвутся пополам ── */
+@media print{
+  :root{
+    --paper:#FFFFFF;--card:#FFFFFF;--ink:#131922;--muted:#4A5462;--faint:#77828F;
+    --line:#D8DEE6;--accent:#1F6B64;--accent-soft:#EDF4F3;--warm:#A9652F;
+    --warm-soft:#FAF3EB;--shadow:none;
+  }
+  body{background:#fff;font-size:10.5pt;line-height:1.5}
+  .wrap{max-width:100%;padding:0}
+  header{padding:0 0 20px;margin-bottom:28px}
+  h1{font-size:26pt}
+  .lede{font-size:11.5pt}
+  h2{font-size:15pt}
+  section{margin-bottom:26px;break-inside:auto}
+  .sec-head{break-after:avoid}
+  .tile,.panel,.finding,.note,pre{break-inside:avoid;box-shadow:none}
+  .scroll{box-shadow:none;overflow:visible}
+  /* таблицы рвём по строкам, а не целиком: иначе внизу страницы остаются дыры */
+  table{min-width:0;font-size:9.5pt}
+  thead{display:table-header-group}
+  tr{break-inside:avoid}
+  th,td{padding:6px 9px}
+  .tiles{grid-template-columns:repeat(4,1fr);gap:10px}
+  .tile{padding:13px}
+  .tile .num{font-size:22pt}
+  .tile .hint{font-size:8.5pt}
+  .split{grid-template-columns:1fr 1fr;gap:12px}
+  .cards{grid-template-columns:1fr 1fr;gap:12px}
+  tbody tr:hover{background:none}
+  ol.rules li{break-inside:avoid}
+  footer{break-inside:avoid}
+  pre code{font-size:8.6pt}
+  a{color:inherit;text-decoration:none}
+}
+@page{size:A4;margin:16mm 14mm}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">X-Raya · модуль JSON-подборок Candy</p>
+  <h1>Как мы измеряли качество движка подборок</h1>
+  <p class="lede">Движок переводит запрос рекрутера в JSON-фильтр поиска Candy. Ниже — как устроен замер, почему цифры дважды «падали» без ухудшения движка и что реально дало прирост.</p>
+</header>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>Текущее состояние</h2>
+  </div>
+  <div class="col"><p>Замер на 29 реальных подборках из хендбука. Запрос берётся дословно из описания подборки, эталон — её же фильтр, написанный живым рекрутером.</p></div>
+  <div class="tiles">
+    <div class="tile"><span class="num">28<span style="font-size:20px;color:var(--faint)">/29</span></span><span class="lbl">Доходимость</span><span class="hint">запросов доведено до готового фильтра</span></div>
+    <div class="tile recall"><span class="num">69%</span><span class="lbl">Полнота</span><span class="hint">условий эталона движок воспроизводит</span></div>
+    <div class="tile prec"><span class="num">66%</span><span class="lbl">Точность по сужающим</span><span class="hint">оправданных условий среди тех, что реально режут выдачу</span></div>
+    <div class="tile"><span class="num">~1&#8202;₽</span><span class="lbl">Цена запроса</span><span class="hint">gpt-5-mini через VseGPT</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>Что именно считаем</h2>
+  </div>
+  <div class="col">
+    <p>Фильтры не сравниваются побайтово: у одной задачи много правильных записей. Каждое условие сводится к признаку «поле + семейство оператора» — например <code>resumes.workExperience.position text≈</code> — и дальше сравниваются множества.</p>
+  </div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Метрика</th><th>Что означает</th><th>Почему важна</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Полнота</strong></td><td class="dim">доля условий эталона, которые движок воспроизвёл</td><td class="dim">потерянное условие рекрутер не заметит и получит не тех людей</td></tr>
+        <tr><td><strong>Точность</strong></td><td class="dim">доля условий движка, которые есть в эталоне</td><td class="dim">лишнее условие сужает выдачу, но видно в таблице проверки</td></tr>
+        <tr><td><strong>Доходимость</strong></td><td class="dim">сколько кейсов дошло до готового фильтра</td><td class="dim">ловит сбои, зацикленные уточнения и отказы движка</td></tr>
+        <tr><td><strong>F1 по значениям</strong></td><td class="dim">совпадение конкретных литералов: id, коды, строки</td><td class="dim">показывает, берутся ли значения из справочников</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <h3>Две нормализации, без которых цифры врут</h3>
+    <p><strong>Семейства операторов.</strong> <code>string_eq</code> и <code>string_one_of</code> по одному набору id дают одинаковую выдачу. Различать их — штрафовать за форму записи, а не за смысл. Даты не склеиваем: <code>date_gt</code> и <code>date_lt</code> — разные вещи.</p>
+    <p><strong>Служебный блок исключений</strong> (сотрудники, читеры, негативное увольнение) движок добавляет сам по ответу «да». К пониманию запроса он отношения не имеет, а в эталонах есть не везде — из сравнения исключён.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>Две выборки, и почему их цифры несравнимы</h2>
+  </div>
+  <div class="col"><p>Это главное, что стоит проговорить при обсуждении результатов.</p></div>
+  <div class="split">
+    <div class="panel a">
+      <span class="tag">Выборка А · 8 кейсов</span>
+      <span class="score">F1 90–93%</span>
+      <p>Формулировки запросов писал я сам, уже видя эталонный фильтр. В такой фразе фактически лежит подсказка — и поле, и дата, и признак:</p>
+      <p class="quote">«риск-менеджеры, которые сейчас работают риск-менеджером и начали до 28 января 2025»</p>
+      <p>Модель решала задачу «переложи готовое ТЗ в JSON», а не «пойми рекрутера». Цифра честная для той постановки, но мерила не то.</p>
+    </div>
+    <div class="panel b">
+      <span class="tag">Выборка Б · 29 кейсов</span>
+      <span class="score">Полнота 69%</span>
+      <p>Запрос берётся дословно из описания боевой подборки — того, что рекрутер писал для коллег, а не для нейросети:</p>
+      <p class="quote">«Потенциальные ML-продакты» · «Исключаем заведомо неподходящих кандидатов»</p>
+      <p>Кейсы собираются автоматически из выгрузки подборок. Четыре подборки-донора few-shot исключены, чтобы не измерять воспроизведение подсказки.</p>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Симулятор рекрутера.</strong> На выборке Б модель начала задавать уточняющие вопросы — и это правильное поведение по CJM. Но метрика их не понимала: 18 кейсов из 21 получили ноль просто потому, что диалог не закрылся. Теперь на вопросы отвечает вторая модель в роли рекрутера: она видит только исходную формулировку, эталон ей недоступен. Доходимость выросла с 3/21 до 28/29.
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>Хронология прогонов</h2>
+  </div>
+  <div class="col"><p>Этап 1 — выборка А, ручные формулировки. Виден рост от базовой версии до потолка этой постановки.</p></div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Шаг</th><th>Что изменилось</th><th>F1 условия</th><th>F1 значения</th></tr></thead>
+      <tbody>
+        <tr><td class="step">A0</td><td>Базовая версия: правила и справочники</td><td class="n">64%</td><td class="n">28%</td></tr>
+        <tr><td class="step">A1</td><td>Внедрены готовые наборы значений — с багами</td><td class="n">13%</td><td class="n">16%</td></tr>
+        <tr><td class="step">A2</td><td>Починены выбор варианта и служебный блок в метрике</td><td class="n">50%</td><td class="n">35%</td></tr>
+        <tr><td class="step">A3</td><td>Синхронизирована проверка оператора в сборщике</td><td class="n">80%</td><td class="n">64%</td></tr>
+        <tr><td class="step">A5</td><td>Нормализация семейств операторов, temperature&nbsp;0</td><td class="n">80%</td><td class="n">69%</td></tr>
+        <tr><td class="step">A6</td><td>Служебный блок приведён к нормализованным именам</td><td class="n">92%</td><td class="n">66%</td></tr>
+        <tr class="peak"><td class="step">A10</td><td>Ретраи на лимит запросов</td><td class="n">93%</td><td class="n">76%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col"><p>Этап 2 — выборка Б, дословные описания подборок. Здесь появляются доходимость, полнота и точность по отдельности.</p></div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Шаг</th><th>Что изменилось</th><th>Доходимость</th><th>Полнота</th><th>Точность</th><th>F1</th></tr></thead>
+      <tbody>
+        <tr><td class="step">B0</td><td>Перевод на описания подборок</td><td class="n">3/21</td><td class="n">—</td><td class="n">—</td><td class="n">32%</td></tr>
+        <tr><td class="step">B1</td><td>Few-shot из боевых подборок, закрытие нескольких уточнений сразу</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">37%</td></tr>
+        <tr><td class="step">B2</td><td>Симулятор рекрутера</td><td class="n">25/25</td><td class="n">—</td><td class="n">—</td><td class="n">54%</td></tr>
+        <tr><td class="step">B5</td><td>Устойчивость к сбоям сети и лимитов</td><td class="n">23/29</td><td class="n">59%</td><td class="n">49%</td><td class="n">51%</td></tr>
+        <tr><td class="step">B6</td><td>Автокоррекция путей полей</td><td class="n">26/29</td><td class="n">67%</td><td class="n">51%</td><td class="n">54%</td></tr>
+        <tr class="peak"><td class="step">B7</td><td>Объединение источников роли в один <code>$or</code></td><td class="n">28/29</td><td class="n">69%</td><td class="n">66%</td><td class="n">55%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="dim" style="font-size:13.5px;margin:0">Точность в строке B7 — по сужающим условиям: после объединения роли в <code>$or</code> старая метрика штрафовала за каждую ветку, хотя ветка <code>$or</code> выдачу расширяет, а не режет.</p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>Что дало прирост</h2>
+  </div>
+  <div class="cards">
+    <div class="finding win">
+      <h3>Готовые наборы значений</h3>
+      <p>Рекрутеры уже выверили списки: 14 написаний банков, топ-вузы, уровни английского, 36 кодов этапа «Трудоустройство». Движок подставляет набор целиком. F1 по значениям вырос с 28% до 76% — модель перестала выдумывать свои списки.</p>
+    </div>
+    <div class="finding win">
+      <h3>Автокоррекция путей</h3>
+      <p>Модель регулярно пишет <code>hiringProcesses.levels</code>, хотя <code>levels</code> живёт на корне кандидата. Рекрутер такую ошибку исправить не может — движок знает модель данных и чинит путь сам. Плюс три дошедших кейса.</p>
+    </div>
+    <div class="finding win">
+      <h3>Симулятор рекрутера</h3>
+      <p>Превратил бессмысленную метрику в осмысленную: уточняющий диалог перестал засчитываться как провал.</p>
+    </div>
+    <div class="finding win">
+      <h3>Нормализация метрики</h3>
+      <p>Трижды «регресс качества» оказывался дефектом измерения: несовпадение имён после нормализации, штраф за служебный блок, штраф за вопросы.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>Развилка, которая снялась одним решением</h2>
+  </div>
+  <div class="col">
+    <p>Три итерации маятника: «всегда добавляй оба поля резюме» — 8 лишних условий; «только по явному упоминанию» — 6 потерянных; «почти всегда должность» — 9 лишних. Причина в данных: половина боевых подборок ищет роль только по специализации процесса, половина — ещё и по резюме, и из текста описания это не выводится.</p>
+    <p>Спор оказался ложным. Правильный ответ — добавлять, но <strong>в тот же <code>$or</code></strong>. Роль подтверждается любым источником; раньше источники попадали в <code>$and</code>, и кандидат должен был подойти сразу по всем — выдача схлопывалась.</p>
+  </div>
+  <pre><code><span class="tok-bad">// было: логическое И — кандидат обязан совпасть по обоим источникам</span>
+{"$and":[
+  {"hiringProcesses":{"nested_any":{"filter":{"specializationId":…}}}},
+  {"resumes":{"nested_any":{"filter":{"workExperience":…"position":…}}}}
+]}
+
+<span class="tok-key">// стало: одно свидетельство роли из любого источника</span>
+{"$or":[
+  {"hiringProcesses":{"nested_any":{"filter":{"specializationId":…}}}},
+  {"resumes":{"nested_any":{"filter":{"$or":[
+     {"declaredSpecialization":…}, {"workExperience":{"nested_any":…"position":…}}
+  ]}}}}
+]}</code></pre>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>Практики, которые из этого следуют</h2>
+  </div>
+  <ol class="rules">
+    <li><b>Детерминированное важнее вероятностного</b><span>Всё, что можно вычислить кодом — id, коды, наборы значений, пути полей — приходит из справочника. Модель ставит ссылку, движок её разрешает. Галлюцинация id исключена архитектурно, а не запретом в промпте.</span></li>
+    <li><b>Fail-closed</b><span>Не подтверждено справочником — фильтр не выдаётся, задаётся вопрос. Лучше уточнить, чем молча выдать не тех кандидатов.</span></li>
+    <li><b>Движок чинит то, чего рекрутер не знает</b><span>Неверный путь поля, массив под одиночным оператором, корневое поле внутри вложенной группы — ошибки формы, а не смысла. Их незачем выносить в диалог.</span></li>
+    <li><b>Метрику проверять так же придирчиво, как код</b><span>Иначе дефект измерения читается как регресс продукта и толкает чинить работающее.</span></li>
+    <li><b>Разделять обучающую и проверочную выборки</b><span>Подборки-доноры few-shot исключены из замера.</span></li>
+    <li><b>Различать сужающие и расширяющие условия</b><span>Лишнее условие в <code>$and</code> отсекает кандидатов, лишняя ветка в <code>$or</code> — нет. Метрика, которая их не различает, ведёт к неверным решениям.</span></li>
+    <li><b>Полнота приоритетнее точности</b><span>Потерянное условие невидимо для рекрутера, лишнее — видно в таблице проверки и снимается одной репликой.</span></li>
+    <li><b>Сохранять результаты прогона</b><span>Прогон занимает ~25 минут и стоит денег; формулу метрики надо уметь пересчитывать на сохранённых фильтрах.</span></li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="sec-num">08</span>
+    <h2>Ограничения и что дальше</h2>
+  </div>
+  <div class="col">
+    <p><strong>У сравнения с эталонами есть потолок.</strong> Описания подборок неоднозначны, и два рекрутера соберут разные, но одинаково правильные фильтры. «Бизнес-аналитики с английским» — искать роль по специализации процесса, по заявленной специализации в резюме, по должности в опыте или по всем сразу? Все варианты защитимы.</p>
+    <p>Поэтому следующий честный шаг — не догонять цифру, а <strong>проверить на живых рекрутерах</strong>: сколько раз выдача устроила с первого раза и сколько реплик ушло на доводку.</p>
+    <p>Ближайший технический прирост лежит в справочниках. Чаще всего теряются условия воронки: коды этапов, причины закрытия, даты перехода в статус. Нужны наборы под формулировки вроде «без отказа на финальном интервью» и расшифровка 42 кодов этапов, которых нет в справочнике.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Модуль: <code>~/sourcing-agent/candy-json</code></span>
+  <span>Замер: <code>node eval.js</code></span>
+  <span>Пересчёт метрик: <code>node remetric.js</code></span>
+  <span>Аудит справочников: <code>node audit.js</code></span>
+</footer>
+
+</div>

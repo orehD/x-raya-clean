@@ -1,0 +1,92 @@
+{
+  "citizenship": {
+    "Россия": 2,
+    "Беларусь": 3,
+    "Казахстан": 4,
+    "Украина": 5,
+    "Киргизия": 6,
+    "Армения": 7,
+    "Узбекистан": 8,
+    "Азербайджан": 9,
+    "Молдова": 10,
+    "Таджикистан": 11,
+    "Другое": 100
+  },
+  "gender": {
+    "Male": 0,
+    "Female": 1,
+    "Any": 2
+  },
+  "contactType": {
+    "Unknown": 0,
+    "Email": 1,
+    "Phone": 2,
+    "Skype": 3,
+    "Telegram": 4,
+    "Viber": 5,
+    "Whatsapp": 6,
+    "Signal": 7,
+    "Icq": 8,
+    "Facebook": 9,
+    "Vk": 10,
+    "Ok": 11,
+    "Instagram": 12,
+    "Twitter": 13,
+    "YouTube": 14,
+    "Tiktok": 15,
+    "Github": 16,
+    "Gitlab": 17,
+    "BitBucket": 18,
+    "HeadHunter": 19,
+    "LinkedIn": 20,
+    "AmazingHiring": 21,
+    "Habr": 22,
+    "CareerHabr": 23,
+    "RabotaRu": 24,
+    "Superjob": 25,
+    "ZarplataRu": 26,
+    "Other": 2147483647
+  },
+  "employeeStatus": {
+    "Unknown": 0,
+    "None": 1,
+    "Induction": 2,
+    "Employed": 3,
+    "Dismissed": 4,
+    "Ambiguous": 5
+  },
+  "speechEvaluationResult": {
+    "NoRemarks": 0,
+    "NonCriticalRemarks": 1,
+    "CriticalRemarks": 2
+  },
+  "educationLevel": {
+    "Higher": 0,
+    "UnfinishedHigher": 1,
+    "SecondarySpecial": 2,
+    "Secondary": 3
+  },
+  "meetupOccupationType": {
+    "LocalCompany": 0,
+    "ForeignCompany": 1,
+    "SelfEmployed": 2,
+    "Student": 3,
+    "School": 4
+  },
+  "meetupExperienceType": {
+    "Junior": 0,
+    "Middle": 1,
+    "Senior": 2,
+    "Lead": 3
+  },
+  "uniqueIdentifierCodes": [
+    "MasterId",
+    "CustomerId",
+    "LkkId",
+    "TWorkId",
+    "CandidateCardId",
+    "EduAccountId",
+    "EstaffId",
+    "HeadHunterUserId"
+  ]
+}

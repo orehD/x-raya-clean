@@ -275,11 +275,105 @@ function handleCandyGate(req, res) {
   });
 }
 
+/* ══════════ Движок подборок (candy-json) ══════════
+ * Собирает фильтр детерминированно: модель только раскладывает запрос по полям и
+ * ставит ссылки на справочники, а конкретные id, коды и операторы подставляет движок
+ * из candy-kb и сверяет со схемой поиска. Промпт candy-prompt.md остаётся запасным
+ * путём: если движок не загрузился, работает прежняя схема «модель пишет JSON сама».
+ * Выключить движок принудительно: CANDY_ENGINE=off
+ */
+const CANDY_ENGINE_ON = String(process.env.CANDY_ENGINE || 'on').toLowerCase() !== 'off';
+let candyMod = null, candyModError = null;
+function candyEngine() {
+  if (candyMod || candyModError || !CANDY_ENGINE_ON) return candyMod;
+  try {
+    // движок ходит в модель через наш askAI: один провайдер, одни лимиты, один учёт
+    require('./candy-json/llm').setTransport(async ({ system, user, maxTokens }) => {
+      const out = await askAI(system, user, { maxTokens: maxTokens || CANDY_MAXTOK });
+      if (out.finish === 'length') throw new Error('LLM: ответ обрезан по лимиту токенов');
+      return out.text;
+    });
+    candyMod = require('./candy-json/dialog');
+    console.log('Candy: движок candy-json подключён');
+  } catch (e) {
+    candyModError = e.message;
+    console.error('Candy: движок не загрузился, работаем по промпту:', e.message);
+  }
+  return candyMod;
+}
+
+// Диалоги рекрутера живут в памяти: подборка часто собирается за несколько реплик.
+const candyDialogs = new Map();
+const CANDY_DIALOG_TTL = 30 * 60e3;
+function candyDialog(id, firstTask) {
+  const now = Date.now();
+  for (const [k, v] of candyDialogs) if (now - v.at > CANDY_DIALOG_TTL) candyDialogs.delete(k);
+  // Первую формулировку запоминаем: дальше идут ответы на уточнения («вариант 1»,
+  // «да, исключить»), и подписывать ими подборку бессмысленно.
+  if (id && candyDialogs.has(id)) {
+    const s = candyDialogs.get(id); s.at = now;
+    return { id, dialog: s.dialog, task: s.task };
+  }
+  const mod = candyEngine();
+  if (!mod) return null;
+  const newId = crypto.randomBytes(9).toString('hex');
+  const dialog = new mod.Dialog();
+  candyDialogs.set(newId, { dialog, at: now, task: firstTask });
+  return { id: newId, dialog, task: firstTask };
+}
+
+/* Ответ движка приводим к формату, который вкладка уже умеет читать: пояснение,
+ * затем блок ```json с фильтром. Так фронт менять не нужно, а его валидатор
+ * подтвердит то, что движок и так проверил по схеме. */
+/* Подпись подборки. Ключи на «#» схема разрешает, а Candy показывает их в интерфейсе:
+ * по ним видно, что фильтр собрала X-Raya, и с какой формулировки началось. */
+function candyLabel(filter, task, explain) {
+  if (!filter || filter['#name']) return filter;
+  const short = String(task).replace(/\s+/g, ' ').trim();
+  return Object.assign({
+    '#name': 'X-Raya · ' + (short.length > 60 ? short.slice(0, 57).trimEnd() + '…' : short),
+    '#description': String(explain || short).slice(0, 300),
+  }, filter);
+}
+
+/* Что изменилось между прошлой и новой версией подборки. Считаем программно,
+ * а не спрашиваем модель: рекрутеру важно знать точно, какие условия ушли и пришли,
+ * особенно когда он просил «дай больше людей». */
+function candyDiff(prev, next) {
+  if (!prev || !next) return null;
+  let metrics, kb;
+  try { metrics = require('./candy-json/eval-metrics'); kb = require('./candy-json/kb'); }
+  catch { return null; }
+  const title = sig => {
+    const p = sig.split(' ')[0];
+    const f = kb.resolveField(p);
+    return f ? f.title + ' (' + p + ')' : p;
+  };
+  const a = metrics.features(prev).cond, b = metrics.features(next).cond;
+  const added = [...b].filter(x => !a.has(x)).map(title);
+  const removed = [...a].filter(x => !b.has(x)).map(title);
+  if (!added.length && !removed.length) return null;
+  return { added, removed };
+}
+
+function candyText(r) {
+  const parts = [];
+  if (r.explain) parts.push(r.explain);
+  parts.push('```json\n' + JSON.stringify(r.filter, null, 2) + '\n```');
+  const rows = (r.table || []).filter(e => e.status === 'найдено');
+  if (rows.length) {
+    parts.push('Из чего собрано:');
+    parts.push(rows.map(e => `• ${e.condition} → ${e.field} ${e.operator} ${e.value !== undefined ? JSON.stringify(e.value) : ''}`
+      + (e.refFile ? ` (${e.refFile})` : '')).join('\n'));
+  }
+  return parts.join('\n\n');
+}
+
 function handleCandy(req, res) {
   const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
   if (overLimit(candyHits, ip, CANDY_LIMIT)) return send(res, 429, 'application/json', JSON.stringify({ error: 'слишком часто — лимит ' + CANDY_LIMIT + ' подборок в час' }));
   const sys = candyPrompt();
-  if (!sys) return send(res, 500, 'application/json', JSON.stringify({ error: 'не найден candy-prompt.md на сервере' }));
+  if (!sys && !candyEngine()) return send(res, 500, 'application/json', JSON.stringify({ error: 'не найден candy-prompt.md на сервере' }));
   if (!aiConfig().ok) return send(res, 500, 'application/json', JSON.stringify({ error: 'AI не настроен: задай AI_BASE_URL + AI_API_KEY' }));
   let raw = '';
   req.on('data', c => { raw += c; if (raw.length > 2e6) req.destroy(); });
@@ -298,6 +392,48 @@ function handleCandy(req, res) {
     const prev = String(body.prev || '').slice(0, 12000);
     bump('candy', req, body.vid);
     track(fix ? 'candy_fix' : refine ? 'candy_refine' : 'candy', req, { vid: body.vid });
+
+    /* Основной путь — движок candy-json. Он ведёт диалог: на неоднозначный запрос
+     * отвечает вопросами со списком вариантов из справочника, а фильтр отдаёт только
+     * когда всё подтверждено. Ветку fix (починка синтаксиса) движку не отдаём:
+     * он собирает JSON сам и чинить за собой ему нечего.
+     * Если движка нет — ниже отрабатывает прежняя схема с промптом. */
+    const eng = !fix && candyEngine();
+    if (eng) {
+      const sess = candyDialog(body.sessionId, refine || task);
+      if (sess) {
+        try {
+          const r = await sess.dialog.send(refine || task);
+          if (r.status === 'clarify') {
+            return send(res, 200, 'application/json', JSON.stringify({
+              sessionId: sess.id, status: 'clarify', explain: r.explain || '',
+              questions: (r.questions || []).map(q => ({ question: q.question, options: q.options || null })),
+              text: '', cut: false,
+            }));
+          }
+          if (r.status === 'ok') {
+            const prevFilter = candyDialogs.get(sess.id) && candyDialogs.get(sess.id).filter;
+            r.filter = candyLabel(r.filter, sess.task || task, r.explain);
+            const changes = candyDiff(prevFilter, r.filter);
+            const st = candyDialogs.get(sess.id);
+            if (st) { st.filter = r.filter; st.version = (st.version || 0) + 1; }
+            return send(res, 200, 'application/json', JSON.stringify({
+              sessionId: sess.id, status: 'ok', text: candyText(r),
+              filter: r.filter, table: r.table || null, cut: false,
+              changes, version: st ? st.version : 1,
+            }));
+          }
+          return send(res, 200, 'application/json', JSON.stringify({
+            sessionId: sess.id, status: 'error', text: '',
+            error: 'Не удалось собрать фильтр: ' + (r.errors || []).join('; '),
+          }));
+        } catch (e) {
+          console.error('Candy: движок упал, откатываюсь на промпт:', e.message);
+          // не прерываем запрос: ниже отработает прежняя схема
+        }
+      }
+    }
+
     // Дату сообщаем сами: у модели часов нет, а «за последние три месяца»
     // в Candy превращается в абсолютную date_gt — иначе она подставит плейсхолдер.
     let user = 'Сегодня: ' + today() + '\n\nЗадача рекрутера:\n' + task;
@@ -318,6 +454,34 @@ function handleCandy(req, res) {
       send(res, e instanceof AIError ? e.status : 500, 'application/json',
         JSON.stringify({ error: String((e && e.message) || e) }));
     }
+  });
+}
+
+/* Обратная связь по подборке: «стало больше людей?» после того, как рекрутер просил
+ * расширить или сузить выдачу. Без этого мы не узнаём, попал ли движок в задачу —
+ * метрика по эталонам такого не показывает. Пишем в отдельный файл рядом с данными. */
+const CANDY_FB_FILE = process.env.CANDY_FEEDBACK_FILE || path.join(__dirname, 'data', 'candy-feedback.jsonl');
+function handleCandyFeedback(req, res) {
+  let raw = '';
+  req.on('data', c => { raw += c; if (raw.length > 1e5) req.destroy(); });
+  req.on('end', () => {
+    let body = {}; try { body = JSON.parse(raw || '{}'); } catch {}
+    if (CANDY_PW && String(body.pw || '') !== CANDY_PW)
+      return send(res, 403, 'application/json', JSON.stringify({ error: 'нужен пароль от вкладки подборок' }));
+    const rec = {
+      t: new Date().toISOString(),
+      v: visitorId(req, body.vid),
+      sid: String(body.sessionId || '').slice(0, 40),
+      // что рекрутер сказал про выдачу: больше / меньше / в самый раз
+      verdict: String(body.verdict || '').slice(0, 20),
+      task: String(body.task || '').slice(0, 500),
+      note: String(body.note || '').slice(0, 500),
+      version: parseInt(body.version, 10) || 1,
+    };
+    try { fs.appendFileSync(CANDY_FB_FILE, JSON.stringify(rec) + '\n'); }
+    catch (e) { console.error('Candy: не записал отзыв:', e.message); }
+    track('candy_fb', req, { vid: body.vid, ch: rec.verdict });
+    send(res, 200, 'application/json', JSON.stringify({ ok: true }));
   });
 }
 
@@ -1007,6 +1171,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/api/ai') return handleAI(req, res);
   if (req.method === 'POST' && req.url === '/api/candy') return handleCandy(req, res);
   if (req.url.split('?')[0] === '/api/candy/gate' && (req.method === 'GET' || req.method === 'POST')) return handleCandyGate(req, res);
+  if (req.method === 'POST' && req.url === '/api/candy/feedback') return handleCandyFeedback(req, res);
   if (req.method === 'GET' && req.url.split('?')[0] === '/api/ai/diag') return handleAIDiag(req, res);
   if (req.method === 'POST' && req.url === '/api/nick') return handleNick(req, res);
   if (req.method === 'POST' && req.url === '/api/count') return handleCount(req, res);

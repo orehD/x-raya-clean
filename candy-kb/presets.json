@@ -1,0 +1,3896 @@
+[
+  {
+    "name": "БА с английским",
+    "description": "Бизнес-аналитики с уровнем английского языка от В1 и выше, с локацией Москва. Без читеров и бывших сотрудников с негативной причиной увольнения.",
+    "url": "https://candy.tbank.ru/candidates/search/standard?sortType=RELEVANCE&locations=0c5b2444-70a0-4932-980c-b4dc0d3f02b5&ageTo=35",
+    "recruiters": [
+      "a.shpadaruk",
+      "m.tyukacheva"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$or": [
+                  {
+                    "specializationId": {
+                      "string_eq": {
+                        "value": "5df4a0e3-dea7-4ef0-bffd-c8170231d38f"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "$or": [
+                                {
+                                  "position": {
+                                    "text_phrase": {
+                                      "value": "Бизнес Аналитик"
+                                    }
+                                  }
+                                },
+                                {
+                                  "position": {
+                                    "text_phrase": {
+                                      "value": "Business Analyst"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "startDate": {
+                                "date_gt": {
+                                  "value": "2023-01-01"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "declaredSkills": {
+                      "text_list_matches_any_of": {
+                        "values": [
+                          "B1",
+                          "B1+",
+                          "B2",
+                          "Upper-Intermediate",
+                          "Advanced"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Клиенты банка",
+    "description": "Подборка кандидатов, которые одновременно являются клиентами Т-Банка",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=facts.sourceCode:%20%22CustomerProfile%22&extended=true&sortType=JOB_SEARCH_STATUS",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Общекорп. развитие",
+    "description": "Кандидаты из компаний доноров с ключевыми словами в опыте и заявленной специализации",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "a.a.sheveleva",
+      "v.podlesnaya",
+      "d.p.grishina"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "$or": [
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "declaredSpecialization": {
+                      "text_match": {
+                        "value": "Strategy"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "declaredSpecialization": {
+                      "text_match": {
+                        "value": "стратегия"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "declaredSpecialization": {
+                      "text_match": {
+                        "value": "стратегический"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "declaredSpecialization": {
+                      "text_match": {
+                        "value": "strategic"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "$or": [
+                                {
+                                  "isCurrent": {
+                                    "bool_eq": {
+                                      "value": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "startDate": {
+                                    "date_gt": {
+                                      "value": "2021-01-01"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "position": {
+                                "text_match": {
+                                  "value": "Strategy"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "$or": [
+                                {
+                                  "isCurrent": {
+                                    "bool_eq": {
+                                      "value": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "startDate": {
+                                    "date_gt": {
+                                      "value": "2021-01-01"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "position": {
+                                "text_match": {
+                                  "value": "стратегия"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "$or": [
+                                {
+                                  "isCurrent": {
+                                    "bool_eq": {
+                                      "value": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "startDate": {
+                                    "date_gt": {
+                                      "value": "2021-01-01"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "position": {
+                                "text_match": {
+                                  "value": "стратегический"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "$or": [
+                                {
+                                  "isCurrent": {
+                                    "bool_eq": {
+                                      "value": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "startDate": {
+                                    "date_gt": {
+                                      "value": "2021-01-01"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "position": {
+                                "text_match": {
+                                  "value": "strategic"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$or": [
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "isCurrent": {
+                                "bool_eq": {
+                                  "value": true
+                                }
+                              }
+                            },
+                            {
+                              "$or": [
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Яндекс"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Авито"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Ozon"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "McK partners"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Strategy partners"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "SBS"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Яков и Партнёры"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "startDate": {
+                                "date_gt": {
+                                  "value": "2021-01-01"
+                                }
+                              }
+                            },
+                            {
+                              "$or": [
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Яндекс"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Авито"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Ozon"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "McK partners"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Strategy partners"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "SBS"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Яков и Партнёры"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Проходили интервью",
+    "description": "Кандидаты, которые проходили технические интервью с 04.2025 по 01.2026, получали оценку от Junior+ до Senior, но не были трудоустроены",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=(NOT%20(employeeStatus.status:3%20OR%20employeeStatus.status:2))%20AND%20levels:(Junior%2B%20OR%20Middle%20OR%20Middle%2B%20OR%20Senior)&extended=true&statesPeriod=01.04.2025-30.01.2026&eventStates=77&eventStates=79&eventStates=81",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Сотрудники",
+    "description": "Подборка текущих сотрудников Т-Банка. Полезно для разбора откликов по ротации",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=employeeStatus.status%20:%203&extended=true&sortType=UPDATED_ASC&size=50",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "PM Discovery",
+    "description": "Product Manager с опытом в Discovery в B2C продуктах с общим стажем с 2022 года в Москве",
+    "url": "https://candy.tbank.ru/candidates/search/standard?locations=0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+    "recruiters": [
+      "d.d.evseev",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "specializationId": {
+                  "string_eq": {
+                    "value": "2868858f-1ede-498f-8511-8e919a6ec7c8"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "workExperience": {
+                  "nested_any": {
+                    "filter": {
+                      "startDate": {
+                        "date_gt": {
+                          "value": "2021-12-31"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "$or": [
+                      {
+                        "declaredSkills": {
+                          "text_list_phrase": {
+                            "value": "B2C"
+                          }
+                        }
+                      },
+                      {
+                        "declaredSkills": {
+                          "text_list_phrase": {
+                            "value": "B2C-продукты"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "$or": [
+                      {
+                        "declaredSkills": {
+                          "text_list_phrase": {
+                            "value": "Исследования"
+                          }
+                        }
+                      },
+                      {
+                        "declaredSkills": {
+                          "text_list_phrase": {
+                            "value": "гипотезы"
+                          }
+                        }
+                      },
+                      {
+                        "declaredSkills": {
+                          "text_list_phrase": {
+                            "value": "A/B тесты"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "PM в резерве",
+    "description": "Продакт-менеджеры, добавленные в резерв",
+    "url": "https://candy.tbank.ru/candidates/search/extended?extended=true&sortType=UPDATED_ASC&size=50&eventStates=47&specializations=2868858f-1ede-498f-8511-8e919a6ec7c8",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Недавно уволившиеся",
+    "description": "Бывшие сотрудники, уволенные в 2026 году",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=employeeStatus.status%20:%204%20AND%20employeeStatus.peopleHubDismissalDate:%20%3E2026-01-01&extended=true&sortType=UPDATED_ASC&size=50",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "PA из топ-вузов",
+    "description": "Продуктовые аналитики из ВШЭ, МГУ, МФТИ",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=resumes.higherEducation.university:%20МГУ%20%20OR%20resumes.higherEducation.university:%20ВШЭ%20OR%20resumes.higherEducation.university:%20%22Высшая%20школа%20экономики%22%20OR%20resumes.higherEducation.university:%20МФТИ%20&extended=true&sortType=UPDATED_ASC&page=106&size=50&specializations=8d663323-b98e-4b47-8b7d-91581dd6896f",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Кандидаты для ЦУ",
+    "description": "Кандидаты с опытом преподавания и высшим образованием",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=location:%20%D0%9C%D0%BE%D1%81%D0%BA*%20AND%20files:(%22%D0%BB%D0%B5%D0%BA%D1%82%D0%BE%D1%80%22%20OR%20%22lecturer%22%20OR%20%22%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%D0%B8%D1%81%D1%82%22%20OR%20%22%D0%BF%D1%80%D0%B5%D0%BF%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%22%20OR%20%22%D0%B4%D0%BE%D1%86%D0%B5%D0%BD%D1%82%22%20OR%20%22%D1%81%D0%BF%D0%B8%D0%BA%D0%B5%D1%80%22)%20AND%20files:(%D0%B2%D1%8B%D1%81%D1%88%D0%B5%D0%B5%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)%20AND%20-tags:(%22%D1%87%D0%B8%D1%82%D0%B5%D1%80%22%20OR%20%22%D1%81%D0%BE%D1%84%D1%82%D1%8B%22)&extended=true",
+    "recruiters": [
+      "d.s.shilina",
+      "v.pernikova",
+      "d.a.tyurina",
+      "a.akishenko",
+      "el.p.shirokova",
+      "va.e.egorova",
+      "d.tsivan",
+      "d.elaneva",
+      "s.v.vetkhova",
+      "g.zarshchikova",
+      "a.a.sheveleva"
+    ],
+    "filter": null
+  },
+  {
+    "name": "Риск-менеджеры",
+    "description": "Кандидаты с опытом работы именно на позиции Риск-менеджера или Тим-лида рисков-аналитиков с опытом от 1,5 года",
+    "url": "https://candy.tbank.ru/candidates/search/standard?locations=2017370",
+    "recruiters": [
+      "k.i.bagaeva",
+      "a.shpadaruk",
+      "v.podberezkina"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "specializationId": {
+                  "string_eq": {
+                    "value": "da838c2c-cc7b-44e3-9dd7-0e288d47ec08"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "workExperience": {
+                  "nested_any": {
+                    "filter": {
+                      "$and": [
+                        {
+                          "isCurrent": {
+                            "bool_eq": {
+                              "value": true
+                            }
+                          }
+                        },
+                        {
+                          "startDate": {
+                            "date_lt": {
+                              "value": "2025-01-28"
+                            }
+                          }
+                        },
+                        {
+                          "$or": [
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Risk Manager"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Риск-менеджер"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Team Lead Risk Analyst"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Тимлид риск-аналитиков"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "ПА/БА Джуны СПБ",
+    "description": "Кандидаты по направлению ПА / БА уровня junior и junior+, отклонённые по причине студент/наличие отпусков за последний год в Санкт-Петербурге",
+    "url": "https://candy.tbank.ru/candidates/search/standard?sortType=RELEVANCE&locations=c2deb16a-0330-4f05-821f-1d09c93331e6",
+    "recruiters": [
+      "a.shpadaruk",
+      "a.d.kukushkina",
+      "y.tyutina"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "specializationId": {
+                      "string_one_of": {
+                        "values": [
+                          "8d663323-b98e-4b47-8b7d-91581dd6896f",
+                          "5df4a0e3-dea7-4ef0-bffd-c8170231d38f"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "closingReasonsIds": {
+                      "int_list_contains_any_of": {
+                        "values": [
+                          21
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "closingReasonsIds": {
+                    "int_list_contains_any_of": {
+                      "values": [
+                        2,
+                        3,
+                        7,
+                        8,
+                        15,
+                        30,
+                        137
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Общекорп. развитие 2",
+    "description": "Тестируем подборку",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "a.a.sheveleva",
+      "d.p.grishina",
+      "v.podlesnaya"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "workExperience": {
+                  "nested_any": {
+                    "filter": {
+                      "$and": [
+                        {
+                          "isCurrent": {
+                            "bool_eq": {
+                              "value": true
+                            }
+                          }
+                        },
+                        {
+                          "$or": [
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Яндекс"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Авито"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Ozon"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "McK partners"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Strategy partners"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "SBS"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Яков и Партнёры"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "МТС"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$or": [
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "стратегический аналитик"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "аналитик стратегии"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "стратег"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "strategy analyst"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "strategic analyst"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "business analyst strategy"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "аналитик по стратегии"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "ведущий аналитик стратегии"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Lead Designers",
+    "description": "Продуктовые дизайнеры, находящиеся на позиции Lead, Head, Staff с опытом работы более 5 лет",
+    "url": "https://candy.tbank.ru/candidates/search/standard?locations=0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+    "recruiters": [
+      "el.a.demidova",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "specializationId": {
+                  "string_eq": {
+                    "value": "581dfa8c-ad16-47a9-8ba6-4d0a21884572"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$or": [
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Head of Design"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Head of Product Design"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Head Designer"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Lead Designer"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Lead Product Designer"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Team Lead Designer"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Руководитель дизайн"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Руководитель группы дизайна"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Руководитель дизайн-команды"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "workExperienceTotalYears": {
+                      "int_gt": {
+                        "value": 4
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Scala",
+    "description": "Scala-разработчики с опытом более 3-х лет и обязательными навыками: cats, zio",
+    "url": "https://candy.tbank.ru/candidates/search/standard?locations=2017370",
+    "recruiters": [
+      "p.korotkikh",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "specializationId": {
+                      "string_eq": {
+                        "value": "8a7ce8be-c092-4e34-8e29-bf48e782f0e2"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "startDate": {
+                            "date_lt": {
+                              "value": "2022-08-01"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "declaredSkills": {
+                      "text_list_matches_any_of": {
+                        "values": [
+                          "cats",
+                          "zio"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Dismissed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Горячие кандидаты",
+    "description": "Кандидаты с высокой вероятностью поиска работы в данный момент",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=jobSearchStatus:%2020%20OR%20jobSearchStatus:%2010&extended=true",
+    "recruiters": [
+      "читер"
+    ],
+    "filter": {
+      "#name": "Горячие кандидаты",
+      "#description": "Кандидаты, которые ищут работу (очищенные)",
+      "$and": [
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalDate": {
+                    "date_gt": {
+                      "value": "2026-04-04"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "events": {
+                    "nested_any": {
+                      "filter": {
+                        "plainEventState": {
+                          "int_eq": {
+                            "value": 18
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            2,
+                            102,
+                            103,
+                            127,
+                            128,
+                            129,
+                            131
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2026-04-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            107,
+                            132
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2026-01-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Бывшие Риски",
+    "description": "Бывшие сотрудники аналитики рисков",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "o.faizova",
+      "a.a.sheveleva",
+      "a.s.sayfulina"
+    ],
+    "filter": {
+      "#name": "Бывшие риски",
+      "#description": "Бывшие сотрудники аналитики рисков",
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "specializationId": {
+                      "string_one_of": {
+                        "values": [
+                          "484c850c-1fc8-4a63-885b-b23053036f2a",
+                          "0070ffb8-1409-4a4b-95bb-d80f0ff32828",
+                          "1d749fa7-86e4-468f-bd42-18283d4ec79a",
+                          "b9d22b46-291e-4125-9b83-6b66473c7cf3",
+                          "a69d8560-7ed3-4293-8cb7-2599a919963e"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "plainEventState": {
+                            "int_one_of": {
+                              "values": [
+                                35,
+                                46,
+                                54,
+                                55,
+                                56,
+                                58,
+                                59,
+                                64,
+                                98,
+                                99,
+                                100,
+                                104,
+                                105,
+                                106,
+                                107,
+                                108,
+                                128,
+                                129,
+                                130,
+                                131,
+                                132,
+                                133,
+                                134,
+                                135,
+                                136,
+                                137,
+                                138,
+                                139,
+                                140,
+                                141,
+                                142,
+                                143,
+                                144,
+                                153,
+                                267,
+                                268
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "employeeStatus": {
+            "string_eq": {
+              "value": "Dismissed"
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Проверенные",
+    "description": "Кандидаты, которые ранее общались с нами и успешно проходили скрининг, техническое или финальное интервью",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "читер"
+    ],
+    "filter": {
+      "#name": "Проверенные кандидаты",
+      "#description": "Кандидаты, которые ранее общались с нами и успешно проходили скрининг, техническое или финальное интервью",
+      "$and": [
+        {
+          "$or": [
+            {
+              "hiringProcesses": {
+                "nested_any": {
+                  "filter": {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "plainEventState": {
+                            "int_eq": {
+                              "value": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "hiringProcesses": {
+                "nested_any": {
+                  "filter": {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "plainEventState": {
+                            "int_one_of": {
+                              "values": [
+                                13,
+                                77
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "hiringProcesses": {
+                "nested_any": {
+                  "filter": {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "plainEventState": {
+                            "int_one_of": {
+                              "values": [
+                                162,
+                                61
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "events": {
+                    "nested_any": {
+                      "filter": {
+                        "plainEventState": {
+                          "int_eq": {
+                            "value": 18
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Бывшие TLPA",
+    "description": "Бывшие сотрудники тимлиды продуктовой аналитики",
+    "url": "https://candy.tbank.ru/candidates/search/standard?vacancies=e517fc3e-8609-49a9-bc3f-2178319a5460&vacancies=fb337043-7cbf-492b-95ff-2aba52893126&eventStates=144",
+    "recruiters": [
+      "a.a.sheveleva",
+      "o.faizova",
+      "a.s.sayfulina",
+      "v.miloserdova",
+      "o.kutakova",
+      "i.palagina",
+      "a.minkova"
+    ],
+    "filter": {
+      "$not": {
+        "facts": {
+          "nested_any": {
+            "filter": {
+              "employeeDismissalReasonId": {
+                "int_one_of": {
+                  "values": [
+                    3,
+                    4
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Внутренние аудиторы",
+    "description": "Внутренние аудиторы без отказа на этапе Финальное интервью и Просмотр резюме заказчиками",
+    "url": "https://candy.tbank.ru/candidates/search/standard?vacancies=c394bb8a-1434-46fd-a5dc-11f86303045c&vacancies=03708338-e45e-4813-b387-d0c1ab76c5aa",
+    "recruiters": [
+      "v.podlesnaya",
+      "a.a.sheveleva",
+      "d.p.grishina"
+    ],
+    "filter": {
+      "#name": "Внутренние аудиторы",
+      "#description": "Внутренние аудиторы",
+      "$and": [
+        {
+          "$not": {
+            "$and": [
+              {
+                "hiringProcesses": {
+                  "nested_any": {
+                    "filter": {
+                      "$and": [
+                        {
+                          "events": {
+                            "nested_any": {
+                              "filter": {
+                                "plainEventState": {
+                                  "int_eq": {
+                                    "value": 14
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "closingReasonsIds": {
+                            "int_list_contains_any_of": {
+                              "values": [
+                                2,
+                                3,
+                                7,
+                                8,
+                                23,
+                                33,
+                                122
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "events": {
+                            "nested_any": {
+                              "filter": {
+                                "createdUtc": {
+                                  "date_gt": {
+                                    "value": "2023-04-01"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "interviewTypes": {
+                  "text_list_matches_any_of": {
+                    "values": [
+                      "Другое"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "plainEventState": {
+                              "int_eq": {
+                                "value": 62
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            2,
+                            3,
+                            7,
+                            8,
+                            23,
+                            33,
+                            122
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2023-04-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "position": {
+                                "text_match": {
+                                  "value": "аудитор"
+                                }
+                              }
+                            },
+                            {
+                              "$or": [
+                                {
+                                  "startDate": {
+                                    "date_gt": {
+                                      "value": "2020-04-01"
+                                    }
+                                  }
+                                },
+                                {
+                                  "endDate": {
+                                    "date_gt": {
+                                      "value": "2020-04-01"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "isCurrent": {
+                                "bool_eq": {
+                                  "value": true
+                                }
+                              }
+                            },
+                            {
+                              "$or": [
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "банк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Банк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Сбер"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "ВТБ"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Газпромбанк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Альфа-банк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Альфабанк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Тинькофф"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Открытие"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Росбанк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "МТС-банк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Райффайзенбанк"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Уралсиб"
+                                    }
+                                  }
+                                },
+                                {
+                                  "company": {
+                                    "text_phrase": {
+                                      "value": "Почта Банк"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Универсальный поиск",
+    "description": "Исключаем заведомо неподходящих кандидатов",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "читер"
+    ],
+    "filter": {
+      "#name": "Универсальный поиск",
+      "#description": "Исключаем заведомо неподходящих кандидатов",
+      "$and": [
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalDate": {
+                    "date_gt": {
+                      "value": "2026-04-04"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "events": {
+                    "nested_any": {
+                      "filter": {
+                        "plainEventState": {
+                          "int_eq": {
+                            "value": 18
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            2,
+                            102,
+                            103,
+                            127,
+                            128,
+                            129,
+                            131
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2026-04-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            107,
+                            132
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2026-01-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Юристы",
+    "description": "Кандидаты со специализацией Юристы, работающие в банках, дилерских и авто-компаниях. Исключены текущие сотрудники, читеры, бывшие с негативной причиной увольнения",
+    "url": "https://candy.tbank.ru/candidates/search/standard?ageTo=45&locations=0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+    "recruiters": [
+      "e.maslennikova",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "specializationId": {
+                  "string_one_of": {
+                    "values": [
+                      "f02f5e33-996c-4212-8af1-83030cc1ba16",
+                      "16174a69-027f-44f9-8b7f-1e674005ef26",
+                      "aac6324c-8c39-43c8-abca-8b96dfa127b3",
+                      "13689410-586f-4708-806e-e7e822cb3d8b",
+                      "52c29dae-d80b-4a8a-a419-6b11714beb2a",
+                      "af71eef6-a6c2-4168-949f-acebff9e83dc"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "workExperience": {
+                  "nested_any": {
+                    "filter": {
+                      "$or": [
+                        {
+                          "$and": [
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Банк"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Юрист"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$and": [
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Дилер"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Юрист"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$and": [
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Авто"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "Юрист"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "ПА с английским",
+    "description": "Продуктовые аналитики со знанием английского и с опытом с 2023 года",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "m.tyukacheva",
+      "o.faizova",
+      "a.a.sheveleva",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$or": [
+                  {
+                    "specializationId": {
+                      "string_eq": {
+                        "value": "8d663323-b98e-4b47-8b7d-91581dd6896f"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "workExperience": {
+                  "nested_any": {
+                    "filter": {
+                      "$and": [
+                        {
+                          "position": {
+                            "text_phrase": {
+                              "value": "Продуктовый аналитик"
+                            }
+                          }
+                        },
+                        {
+                          "startDate": {
+                            "date_gt": {
+                              "value": "2023-01-01"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Скрытые ML-продакты",
+    "description": "Потенциальные ML-продакты",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "vi.pavlova",
+      "a.a.sheveleva",
+      "n.gamarts",
+      "an.a.zyuzina",
+      "m.a.svyatokho",
+      "el.a.demidova"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "$or": [
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "ML"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "AI"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "NLP"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "LLM"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "Machine Learning"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "GenAI"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "Computer Vision"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "Recommendation Systems"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "RecSys"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "Data Science"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "ШАД"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "Школа анализа данных"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "MADE"
+                }
+              }
+            },
+            {
+              "files": {
+                "text_list_phrase": {
+                  "value": "AI360"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$or": [
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "higherEducation": {
+                      "nested_any": {
+                        "filter": {
+                          "university": {
+                            "text_phrase": {
+                              "value": "Московский физико-технический институт"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "higherEducation": {
+                      "nested_any": {
+                        "filter": {
+                          "university": {
+                            "text_phrase": {
+                              "value": "Национальный исследовательский университет «Высшая школа экономики»"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "higherEducation": {
+                      "nested_any": {
+                        "filter": {
+                          "university": {
+                            "text_phrase": {
+                              "value": "Московский государственный университет имени М.В. Ломоносова"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "higherEducation": {
+                      "nested_any": {
+                        "filter": {
+                          "university": {
+                            "text_phrase": {
+                              "value": "Российская экономическая школа"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "higherEducation": {
+                      "nested_any": {
+                        "filter": {
+                          "university": {
+                            "text_phrase": {
+                              "value": "ИТМО"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "higherEducation": {
+                      "nested_any": {
+                        "filter": {
+                          "university": {
+                            "text_phrase": {
+                              "value": "Университет Иннополис"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$or": [
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "ML Product Manager"
+                      }
+                    }
+                  },
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "Менеджер продукта"
+                      }
+                    }
+                  },
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "продуктовый менеджер"
+                      }
+                    }
+                  },
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "Product Manager"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Бывшие сотрудники ПА",
+    "description": "Бывшие сотрудники продуктовые аналитики",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "o.faizova",
+      "a.a.sheveleva",
+      "a.s.sayfulina",
+      "a.minkova",
+      "ale.a.konovalova",
+      "d.a.dorokhova",
+      "e.chernikovich",
+      "a.egupova",
+      "m.papin"
+    ],
+    "filter": {
+      "#name": "Бывшие сотрудники ПА",
+      "#description": "Бывшие сотрудники продуктовые аналитики",
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "specializationId": {
+                      "string_one_of": {
+                        "values": [
+                          "8d663323-b98e-4b47-8b7d-91581dd6896f",
+                          "beddd434-6949-420e-b36f-1bae34758f27"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "plainEventState": {
+                            "int_one_of": {
+                              "values": [
+                                35,
+                                46,
+                                54,
+                                55,
+                                56,
+                                58,
+                                59,
+                                64,
+                                98,
+                                99,
+                                100,
+                                104,
+                                105,
+                                106,
+                                107,
+                                108,
+                                128,
+                                129,
+                                130,
+                                131,
+                                132,
+                                133,
+                                134,
+                                135,
+                                136,
+                                137,
+                                138,
+                                139,
+                                140,
+                                141,
+                                142,
+                                143,
+                                144,
+                                153,
+                                267,
+                                268
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "employeeStatus": {
+            "string_eq": {
+              "value": "Dismissed"
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "_fixed": "specializationId 8d663323-b98e-4b47-8b7d-91581dd68f27 → 8d663323-b98e-4b47-8b7d-91581dd6896f (опечатка в боевых данных, подтверждена 2026-09-04; в хендбуке не исправлена)"
+  },
+  {
+    "name": "Java jun | jun+",
+    "description": "Java-разработчики с опытом от полугода до двух лет. Исключены fullstack-разработчики и фрилансеры. Исключена МСК и МО.",
+    "url": "https://candy.tbank.ru/candidates/search/standard?locations=c2deb16a-0330-4f05-821f-1d09c93331e6&locations=d13945a8-7017-46ab-b1e6-ede1e89317ad&locations=7b6de6a5-86d0-4735-b11a-499081111af8&locations=a52b7389-0cfe-46fb-ae15-298652a64cf8&locations=5bf5ddff-6353-4a3d-80c4-6fb27f00c6c1&locations=2763c110-cb8b-416a-9dac-ad28a55b4402&locations=deb1d05a-71ce-40d1-b726-6ba85d70d58f&locations=93b3df57-4c89-44df-ac42-96f05e9cd3b9&locations=7dfa745e-aa19-4688-b121-b655c11e482f&locations=9b968c73-f4d4-4012-8da8-3dacd4d4c1bd&locations=94bb19a3-c1fa-410b-8651-ac1bf7c050cd&locations=727cdf1e-1b70-4e07-8995-9bf7ca9abefb&locations=555e7d61-d9a7-4ba6-9770-6caa8198c483&locations=8dea00e3-9aab-4d8e-887c-ef2aaa546456&locations=140e31da-27bf-4519-9ea0-6185d681d44e&locations=dce97bff-deb2-4fd9-9aec-4f4327bbf89b&locations=a309e4ce-2f36-4106-b1ca-53e0f48a6d95&locations=c1cfe4b9-f7c2-423c-abfa-6ed1c05a15c5&locations=bb035cc3-1dc2-4627-9d25-a1bf2d4b936b&locations=bf465fda-7834-47d5-986b-ccdb584a85a6&locations=242e87c1-584d-4360-8c4c-aae2fe90048e&locations=e3b0eae8-a4ce-4779-ae04-5c0797de66be&locations=9ae64229-9f7b-4149-b27a-d1f6ec74b5ce&locations=bebfd75d-a0da-4bf9-8307-2e2c85eac463&locations=7339e834-2cb4-4734-a4c7-1fca2c66e562&locations=a4859da8-9977-4b62-8436-4e1b98c5d13f&locations=a376e68d-724a-4472-be7c-891bdb09ae32&locations=6b1bab7d-ee45-4168-a2a6-4ce2880d90d3",
+    "recruiters": [
+      "m.papina",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "specializationId": {
+                  "string_eq": {
+                    "value": "ffb9e99f-8a8f-4830-9f5b-b9bc59250ce4"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "position": {
+                                "text_match": {
+                                  "value": "Java"
+                                }
+                              }
+                            },
+                            {
+                              "startDate": {
+                                "date_eq": {
+                                  "value": "2024-08-01"
+                                }
+                              }
+                            },
+                            {
+                              "$not": {
+                                "position": {
+                                  "text_match": {
+                                    "value": "Fullstack"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "higherEducation": {
+                  "nested_any": {
+                    "filter": {
+                      "startYear": {
+                        "int_eq": {
+                          "value": 2022
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Юристы HQ",
+    "description": "Юристы с высшим образованием и опытом работы в университетах.",
+    "url": "https://candy.tbank.ru/candidates/search/standard?sortType=RELEVANCE&specializations=16174a69-027f-44f9-8b7f-1e674005ef26&locations=0c5b2444-70a0-4932-980c-b4dc0d3f02b5&ageTo=32",
+    "recruiters": [
+      "d.p.grishina",
+      "ekat.alekseeva",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "workExperience": {
+                  "nested_any": {
+                    "filter": {
+                      "$and": [
+                        {
+                          "company": {
+                            "text_phrase_any_of": {
+                              "values": [
+                                "МГУ",
+                                "НИУ ВШЭ",
+                                "МГИМО",
+                                "МГЮА",
+                                "РАНХиГС",
+                                "РУДН",
+                                "Финансовый университет"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "educations": {
+            "nested_any": {
+              "filter": {
+                "educationLevel": {
+                  "string_eq": {
+                    "value": "Higher"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "PM 23-25",
+    "description": "Product Manager с финальным уровнем - middle, middle+, senior и senior+ за 2023 - 2025 год из НСК.",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=levels:(Middle%20OR%20Middle%2B%20OR%20Senior%20OR%20Senior%2B)%20&extended=true&specializations=f18451fb-b6f7-46f9-84bf-6480a786126d&specializations=12897c30-0090-4da4-9380-0246f67728cb&specializations=2868858f-1ede-498f-8511-8e919a6ec7c8&specializations=e1466793-3190-409c-aa71-88d735e7cf6f&specializations=3690368e-eb0d-4d90-946d-eed5f908fd58&locations=8dea00e3-9aab-4d8e-887c-ef2aaa546456&statesPeriod=01.01.2023-31.12.2025",
+    "recruiters": [
+      "i.v.ryabkova",
+      "a.shpadaruk"
+    ],
+    "filter": null
+  },
+  {
+    "name": "BA с английским",
+    "description": "BA с английским от В2, проходивших секции в Т-Банк на middle-senior включительно",
+    "url": "https://candy.tbank.ru/candidates/search/standard?locations=0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+    "recruiters": [
+      "k.a.makarova",
+      "a.shpadaruk"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "specializationId": {
+                  "string_eq": {
+                    "value": "5df4a0e3-dea7-4ef0-bffd-c8170231d38f"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "levels": {
+            "text_list_matches_any_of": {
+              "values": [
+                "middle",
+                "middle+",
+                "senior",
+                "senior+"
+              ]
+            }
+          }
+        },
+        {
+          "educations": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "educationLevel": {
+                      "string_eq": {
+                        "value": "Higher"
+                      }
+                    }
+                  },
+                  {
+                    "organizationName": {
+                      "text_phrase_any_of": {
+                        "values": [
+                          "МФТИ",
+                          "ИТМО",
+                          "НИЯУ МИФИ",
+                          "МГУ",
+                          "МГТУ Баумана",
+                          "ВШЭ",
+                          "СПбГУ",
+                          "МАИ",
+                          "Политех",
+                          "ЛЭТИ"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "languages": {
+                      "nested_any": {
+                        "filter": {
+                          "$or": [
+                            {
+                              "level": {
+                                "string_eq": {
+                                  "value": "B2"
+                                }
+                              }
+                            },
+                            {
+                              "level": {
+                                "string_eq": {
+                                  "value": "C1"
+                                }
+                              }
+                            },
+                            {
+                              "level": {
+                                "string_eq": {
+                                  "value": "C2"
+                                }
+                              }
+                            },
+                            {
+                              "level": {
+                                "string_eq": {
+                                  "value": "Upper-Intermediate"
+                                }
+                              }
+                            },
+                            {
+                              "level": {
+                                "string_eq": {
+                                  "value": "Advanced"
+                                }
+                              }
+                            },
+                            {
+                              "level": {
+                                "string_eq": {
+                                  "value": "средне-продвинутый"
+                                }
+                              }
+                            },
+                            {
+                              "level": {
+                                "string_eq": {
+                                  "value": "продвинутый"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "БА с секциями",
+    "description": "Бизнес-аналитики с пройденными секциями не из Москвы",
+    "url": "https://candy.tbank.ru/candidates/search/extended",
+    "recruiters": [
+      "a.a.sheveleva",
+      "o.kutakova"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "specializationId": {
+                      "string_eq": {
+                        "value": "5df4a0e3-dea7-4ef0-bffd-c8170231d38f"
+                      }
+                    }
+                  },
+                  {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "plainEventState": {
+                                "int_eq": {
+                                  "value": 77
+                                }
+                              }
+                            },
+                            {
+                              "createdUtc": {
+                                "date_gt": {
+                                  "value": "2023-12-31"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "$or": [
+                      {
+                        "declaredSpecialization": {
+                          "text_phrase": {
+                            "value": "бизнес-аналитик"
+                          }
+                        }
+                      },
+                      {
+                        "declaredSpecialization": {
+                          "text_phrase": {
+                            "value": "business analyst"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$or": [
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "бизнес-аналитик"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "business analyst"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "location": {
+                    "text_phrase": {
+                      "value": "Москва"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Сопровождение",
+    "description": "Кандидаты, подходящие в нормативное сопровождение, с опытом работы в банках за последние три года",
+    "url": "https://candy.tbank.ru/candidates/search/standard",
+    "recruiters": [
+      "i.a.prokhorova",
+      "a.a.sheveleva",
+      "d.p.grishina"
+    ],
+    "filter": {
+      "$and": [
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "workExperience": {
+                  "nested_any": {
+                    "filter": {
+                      "$and": [
+                        {
+                          "$or": [
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "банк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Банк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Сбер"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "ВТБ"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Газпромбанк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Альфа-банк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Альфабанк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Тинькофф"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Открытие"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Росбанк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "МТС-банк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Райффайзенбанк"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Уралсиб"
+                                }
+                              }
+                            },
+                            {
+                              "company": {
+                                "text_phrase": {
+                                  "value": "Почта Банк"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$or": [
+                            {
+                              "isCurrent": {
+                                "bool_eq": {
+                                  "value": true
+                                }
+                              }
+                            },
+                            {
+                              "startDate": {
+                                "date_gt": {
+                                  "value": "2023-07-01"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$or": [
+            {
+              "hiringProcesses": {
+                "nested_any": {
+                  "filter": {
+                    "$and": [
+                      {
+                        "specializationId": {
+                          "string_eq": {
+                            "value": "0711623d-1495-4571-9b24-5035db09344f"
+                          }
+                        }
+                      },
+                      {
+                        "events": {
+                          "nested_any": {
+                            "filter": {
+                              "plainEventState": {
+                                "int_eq": {
+                                  "value": 22
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "resumes": {
+                "nested_any": {
+                  "filter": {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$and": [
+                            {
+                              "description": {
+                                "text_phrase": {
+                                  "value": "бухгалтерский учет"
+                                }
+                              }
+                            },
+                            {
+                              "$or": [
+                                {
+                                  "description": {
+                                    "text_phrase": {
+                                      "value": "производные финансовые инструменты"
+                                    }
+                                  }
+                                },
+                                {
+                                  "description": {
+                                    "text_phrase": {
+                                      "value": "форвард"
+                                    }
+                                  }
+                                },
+                                {
+                                  "description": {
+                                    "text_phrase": {
+                                      "value": "фьючерс"
+                                    }
+                                  }
+                                },
+                                {
+                                  "description": {
+                                    "text_phrase": {
+                                      "value": "своп"
+                                    }
+                                  }
+                                },
+                                {
+                                  "description": {
+                                    "text_phrase": {
+                                      "value": "деривативы"
+                                    }
+                                  }
+                                },
+                                {
+                                  "description": {
+                                    "text_phrase": {
+                                      "value": "цифровые финансовые активы"
+                                    }
+                                  }
+                                },
+                                {
+                                  "description": {
+                                    "text_phrase": {
+                                      "value": "ценные бумаги"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Работают в бигтехе",
+    "description": "Кандидаты с последним местом работы из Яндекса, Озона, Сбера, ВК и МТС",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=((resumes.workExperience.records.company%20:%20%22Яндекс%22)%20AND%20(resumes.workExperience.records.isCurrent%20:%20true))%20OR%20((resumes.workExperience.records.company%20:%20%22Yandex%22)%20AND%20(resumes.workExperience.records.isCurrent%20:%20true))%20OR%20((resumes.workExperience.records.company%20:%20%22VK%22)%20AND%20(resumes.workExperience.records.isCurrent%20:%20true))%20OR%20((resumes.workExperience.records.company%20:%20%22Вконтакте%22)%20AND%20(resumes.workExperience.records.isCurrent%20:%20true))%20OR%20((resumes.workExperience.records.company%20:%20%22Сбер%22)%20AND%20(resumes.workExperience.records.isCurrent%20:%20true))%20OR%20%20((resumes.workExperience.records.company%20:%20%22Ozon%22)%20AND%20(resumes.workExperience.records.isCurrent%20:%20true))%20OR%20((resumes.workExperience.records.company%20:%20%22Озон%22)%20AND%20(resumes.workExperience.records.isCurrent%20:%20true))%20&extended=true",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Кандидаты из Яндекса",
+    "description": "Кандидаты из Яндекса, которые успешно прошли техническую секцию",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=resumes.workExperience.records.company%20:%20%22Яндекс%22%20OR%20(resumes.workExperience.records.company%20:%20%22Yandex%22)&extended=true&sortType=UPDATED_ASC&size=50&eventStates=77&statesPeriod=01.01.2024-30.04.2026",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Джависты из Казани",
+    "description": "Java-разработчики из Казани с учетом портрета кандидата",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=location:%20Казань%20AND%20birthYear:%20(%3E1999%20AND%20%3C2005)&extended=true&sortType=UPDATED_ASC&page=2&size=50&specializations=ffb9e99f-8a8f-4830-9f5b-b9bc59250ce4",
+    "recruiters": [
+      "n.gamarts",
+      "m.papina",
+      "e.sigina",
+      "m.barkovets",
+      "e.davydok",
+      "n.e.osipova",
+      "p.isaenko",
+      "a.o.sultanova",
+      "o.faizova"
+    ],
+    "filter": null
+  },
+  {
+    "name": "Английский от B1",
+    "description": "Кандидаты со знанием английского языка от уровня B1 и выше",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=resumes.languages.language:%20Английский%20AND%20(resumes.languages.level:%20B1%20OR%20resumes.languages.level:%20B2%20OR%20resumes.languages.level:%20C1%20OR%20resumes.languages.level:%20fluent)&extended=true&sortType=UPDATED_ASC&size=50",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "ML инженеры",
+    "description": "ML инженеры, которых не смогли нанять из-за фриза в начале 2025",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=hiringProcesses.closingReasonsIds:%2027&extended=true&sortType=UPDATED_ASC&size=50&eventStates=1&statesPeriod=01.01.2025-31.07.2025&specializations=f698cfa7-6816-4d15-86d7-3e74e58c8523&specializations=e2c772eb-5d45-4a43-a2d7-6594f8935729",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Олимпиадники",
+    "description": "Стипендиаты Т-Банка, а также победители и призеры топ-олимпиад: Всероссийская олимпиада школьников, IOI, IMO, ICPC",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=resumes.about:%20%22Всероссийская%20олимпиада%22%20OR%20resumes.about:%20%22Стипендиат%20Т-Банка%22%20OR%20resumes.about:%20%22IOI%22%20OR%20resumes.about:%20%22IMO%22%20OR%20resumes.about:%20%22ICPC%22&extended=true",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "Внешние кандидаты",
+    "description": "Кандидаты, не являющиеся сотрудниками Т-Банка",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=employeeStatus.status%20:%20((%3E%3D0%20AND%20%3C3)%20OR%20%3E3)&extended=true",
+    "recruiters": [],
+    "filter": null
+  },
+  {
+    "name": "HiPo",
+    "description": "Кандидаты с \"высоким потенциалом\" – молодые звездочки из топовых школ и вузов с высокими достижениями в математике, информатике и информационной безопасности",
+    "url": "https://candy.tbank.ru/candidates/search/extended?query=tags:%20%22HiPo_mass_import%22&extended=true&sortType=UPDATED_DESC",
+    "recruiters": [],
+    "filter": null
+  }
+]

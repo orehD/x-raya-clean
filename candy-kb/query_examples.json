@@ -1,0 +1,1188 @@
+[
+  {
+    "explanation": "бывшие сотрудники без тэга \"читер\" и без негативной причины увольнения",
+    "filter": {
+      "$and": [
+        {
+          "employeeStatus": {
+            "string_eq": {
+              "value": "Dismissed"
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "исключить текущих сотрудников, читеров, бывших с негативной причиной увольнения",
+    "filter": {
+      "$and": [
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "кандидаты с причинами закрытия процесса 1 и 2",
+    "filter": {
+      "hiringProcesses": {
+        "nested_any": {
+          "filter": {
+            "closingReasonsIds": {
+              "int_list_contains_any_of": {
+                "values": [
+                  1,
+                  2
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "explanation": "то же, что и 3 (очищенные), но те, кто дошел до оффера",
+    "filter": {
+      "$and": [
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "events": {
+                  "nested_any": {
+                    "filter": {
+                      "plainEventState": {
+                        "int_one_of": {
+                          "values": [
+                            19,
+                            20,
+                            21,
+                            39,
+                            44,
+                            73,
+                            74,
+                            75,
+                            166,
+                            167,
+                            232
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "кандидаты, которые дошли до этапа трудоустройство по специализации рисков, исключая бывших с негативной причиной и читеров",
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "specializationId": {
+                      "string_one_of": {
+                        "values": [
+                          "484c850c-1fc8-4a63-885b-b23053036f2a",
+                          "0070ffb8-1409-4a4b-95bb-d80f0ff32828",
+                          "1d749fa7-86e4-468f-bd42-18283d4ec79a",
+                          "b9d22b46-291e-4125-9b83-6b66473c7cf3",
+                          "a69d8560-7ed3-4293-8cb7-2599a919963e"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "plainEventState": {
+                            "int_one_of": {
+                              "values": [
+                                35,
+                                46,
+                                54,
+                                55,
+                                56,
+                                58,
+                                59,
+                                64,
+                                98,
+                                99,
+                                100,
+                                104,
+                                105,
+                                106,
+                                107,
+                                108,
+                                128,
+                                129,
+                                130,
+                                131,
+                                132,
+                                133,
+                                134,
+                                135,
+                                136,
+                                137,
+                                138,
+                                139,
+                                140,
+                                141,
+                                142,
+                                143,
+                                144,
+                                153,
+                                267,
+                                268
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "employeeStatus": {
+            "string_eq": {
+              "value": "Dismissed"
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "для Вики Подлесной, исключить тех, у кого не пройдено другое собеседование и просмотр резюме заказчиками за последние три года и кому после этого отказали по хардам. исключить читеров, сотрудников, плохих бывших",
+    "filter": {
+      "$and": [
+        {
+          "$not": {
+            "$and": [
+              {
+                "hiringProcesses": {
+                  "nested_any": {
+                    "filter": {
+                      "$and": [
+                        {
+                          "events": {
+                            "nested_any": {
+                              "filter": {
+                                "plainEventState": {
+                                  "int_eq": {
+                                    "value": 14
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "closingReasonsIds": {
+                            "int_list_contains_any_of": {
+                              "values": [
+                                2,
+                                3,
+                                7,
+                                8,
+                                23,
+                                33,
+                                122
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "events": {
+                            "nested_any": {
+                              "filter": {
+                                "createdUtc": {
+                                  "date_gt": {
+                                    "value": "2023-04-01"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "interviewTypes": {
+                  "text_list_matches_any_of": {
+                    "values": [
+                      "Другое"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "plainEventState": {
+                              "int_eq": {
+                                "value": 62
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            2,
+                            3,
+                            7,
+                            8,
+                            23,
+                            33,
+                            122
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2023-04-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "универсальная очищенная подборка: \nисключить текущих сотрудников, бывших сотрудников с негавтиной причиной или по низкой эффективности/пропавших,\nсотрудников, которые уволились после 01.04.2026\nс непройденным СБ за все время. исключить читеров\n\nисключить с причинами отказа по контрофферу и софтам за последние 2 месяца\nисключить с причина отказа по локации за последние 6 месяцев",
+    "filter": {
+      "$and": [
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalDate": {
+                    "date_gt": {
+                      "value": "2026-04-04"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "events": {
+                    "nested_any": {
+                      "filter": {
+                        "plainEventState": {
+                          "int_eq": {
+                            "value": 18
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            2,
+                            102,
+                            103,
+                            127,
+                            128,
+                            129,
+                            131
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2026-04-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "hiringProcesses": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "closingReasonsIds": {
+                        "int_list_contains_any_of": {
+                          "values": [
+                            107,
+                            132
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "events": {
+                        "nested_any": {
+                          "filter": {
+                            "createdUtc": {
+                              "date_gt": {
+                                "value": "2026-01-01"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "нетрудоустроенные бизнес-аналитики",
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "specializationId": {
+                  "string_eq": {
+                    "value": "5df4a0e3-dea7-4ef0-bffd-c8170231d38f"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "$or": [
+                      {
+                        "declaredSpecialization": {
+                          "text_phrase": {
+                            "value": "бизнес-аналитик"
+                          }
+                        }
+                      },
+                      {
+                        "declaredSpecialization": {
+                          "text_phrase": {
+                            "value": "business analyst"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "workExperience": {
+                      "nested_any": {
+                        "filter": {
+                          "$or": [
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "бизнес-аналитик"
+                                }
+                              }
+                            },
+                            {
+                              "position": {
+                                "text_phrase": {
+                                  "value": "business analyst"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "тимлиды джависты",
+    "filter": {
+      "$and": [
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "specializationId": {
+                      "string_eq": {
+                        "value": "7fc87809-892c-48d4-8b0d-e2a4d273db56"
+                      }
+                    }
+                  },
+                  {
+                    "events": {
+                      "nested_any": {
+                        "filter": {
+                          "plainEventState": {
+                            "int_one_of": {
+                              "values": [
+                                65,
+                                66,
+                                67,
+                                68,
+                                236,
+                                278
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "$or": [
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "Team Lead"
+                      }
+                    }
+                  },
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "TeamLead"
+                      }
+                    }
+                  },
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "Руководитель группы разработки"
+                      }
+                    }
+                  },
+                  {
+                    "declaredSpecialization": {
+                      "text_phrase": {
+                        "value": "тимлид"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "resumes": {
+            "nested_any": {
+              "filter": {
+                "declaredSkills": {
+                  "text_list_matches_any_of": {
+                    "values": [
+                      "Java",
+                      "Kotlin"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "explanation": "причины увольнения, не являющиеся негативными, но не подходящие нам",
+    "filter": {
+      "_raw": "\"$not\": {\n        \"facts\": {\n          \"nested_any\": {\n            \"filter\": {\n              \"employeeDismissalReasonId\": {\n                \"int_one_of\": {\n                  \"values\": [3, 4]",
+      "_parse_error": "не удалось разобрать"
+    }
+  },
+  {
+    "explanation": "опыт работы в любом банке",
+    "filter": {
+      "resumes": {
+        "nested_any": {
+          "filter": {
+            "workExperience": {
+              "nested_any": {
+                "filter": {
+                  "$or": [
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "банк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Банк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Сбер"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "ВТБ"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Газпромбанк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Альфа-банк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Альфабанк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Тинькофф"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Открытие"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Росбанк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "МТС-банк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Райффайзенбанк"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Уралсиб"
+                        }
+                      }
+                    },
+                    {
+                      "company": {
+                        "text_phrase": {
+                          "value": "Почта Банк"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "explanation": "опыт в работы в любом банке сейчас или за последние три года",
+    "filter": {
+      "resumes": {
+        "nested_any": {
+          "filter": {
+            "workExperience": {
+              "nested_any": {
+                "filter": {
+                  "$and": [
+                    {
+                      "$or": [
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "банк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Банк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Сбер"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "ВТБ"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Газпромбанк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Альфа-банк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Альфабанк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Тинькофф"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Открытие"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Росбанк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "МТС-банк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Райффайзенбанк"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Уралсиб"
+                            }
+                          }
+                        },
+                        {
+                          "company": {
+                            "text_phrase": {
+                              "value": "Почта Банк"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "$or": [
+                        {
+                          "endDate": {
+                            "date_gt": {
+                              "value": "2023-01-01"
+                            }
+                          }
+                        },
+                        {
+                          "isCurrent": {
+                            "bool_eq": {
+                              "value": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "explanation": "дл ПА/па(da), которые получили финальный уровень от джун+ и выше",
+    "filter": {
+      "$and": [
+        {
+          "levels": {
+            "text_list_matches_any_of": {
+              "values": [
+                "junior+",
+                "middle",
+                "middle+",
+                "senior",
+                "senior+",
+                "staff"
+              ]
+            }
+          }
+        },
+        {
+          "hiringProcesses": {
+            "nested_any": {
+              "filter": {
+                "$and": [
+                  {
+                    "$or": [
+                      {
+                        "specializationId": {
+                          "string_eq": {
+                            "value": "8d663323-b98e-4b47-8b7d-91581dd6896f"
+                          }
+                        }
+                      },
+                      {
+                        "specializationId": {
+                          "string_eq": {
+                            "value": "beddd434-6949-420e-b36f-1bae34758f27"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeStatus": {
+              "string_eq": {
+                "value": "Employed"
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "tags": {
+              "text_list_matches_any_of": {
+                "values": [
+                  "читер"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "employeeDismissalReasonIsNegative": {
+              "bool_eq": {
+                "value": true
+              }
+            }
+          }
+        },
+        {
+          "$not": {
+            "facts": {
+              "nested_any": {
+                "filter": {
+                  "employeeDismissalReasonId": {
+                    "int_one_of": {
+                      "values": [
+                        3,
+                        4
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]

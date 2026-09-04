@@ -1,0 +1,821 @@
+[
+  {
+    "id": 101,
+    "name": "Низкий уровень дохода",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 30,
+    "name": "Психологически тяжело выполнять/не подходящий по складу характера функционал",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 130,
+    "name": "Не устраивает график",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 111,
+    "name": "Недостаточно четко поставленные задачи/ часто изменяющиеся задачи и цели",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 129,
+    "name": "Не подходит формат работы",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 94,
+    "name": "Не хватает навыков/знаний/компетенций",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 7,
+    "name": "Оптимизация",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 103,
+    "name": "Доход не совпадает с ожиданиями/ описанием вакансии",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 141,
+    "name": "Смерть",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 107,
+    "name": "Неинтересные/ монотонные/ недостаточно амбициозные задачи",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 115,
+    "name": "Большой минимальный план/ амбициозные цели (KPI/OKR)",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 96,
+    "name": "Смена профессии/ свой бизнес/ переход на фриланс",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 139,
+    "name": "Не соответствует духу команды/компании",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 23,
+    "name": "Смерть",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 102,
+    "name": "Доход не соответствует уровню нагрузки/ ответственности",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 131,
+    "name": "Большой минимальный план/ амбициозные цели (KPI/OKR)",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 35,
+    "name": "Не могу обеспечить условия оказания услуг",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Не получается обеспечить условия оказания услуг"
+  },
+  {
+    "id": 140,
+    "name": "Тюрьма",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 124,
+    "name": "Не устраивает график",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 127,
+    "name": "Не устраивают процессы/ регламенты или их отсутствие",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 128,
+    "name": "Не устраивает оборудование/ программное обеспечение",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 20,
+    "name": "Армия/СВО",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 122,
+    "name": "Взаимодействие с клиентами/ партнерами компании",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  },
+  {
+    "id": 104,
+    "name": "Не устраивают изменения в расчете/ давно не было перерасчета",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 147,
+    "name": "Не пройдено первичное обучение",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 18,
+    "name": "Заключение другого договора с заказчиком",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 99,
+    "name": "Доход не совпадает с ожиданиями/ описанием вакансии",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 10,
+    "name": "Личное - не могу/ не хочу работать",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": false,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 132,
+    "name": "Условия не совпадают с заявленными в вакансии",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 138,
+    "name": "Мошенничество",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 120,
+    "name": "Взаимодействие с руководителем",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  },
+  {
+    "id": 110,
+    "name": "Большой минимальный план/ амбициозные цели (KPI/OKR)",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 1,
+    "name": "Несоблюдение условий договора/правил оказания услуг",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 108,
+    "name": "Неудовлетворенность перспективами профессионального/ карьерного роста",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 134,
+    "name": "Не устраивает оборудование/ программное обеспечение",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 148,
+    "name": "Причина уточняется в связи с отменой увольнения",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 109,
+    "name": "Психологически тяжело/ высокий уровень нагрузки и ответственности",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 143,
+    "name": "Некорректное оформление",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 13,
+    "name": "Неинтересные/монотонные/недостаточно амбициозные задачи",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 28,
+    "name": "Не согласен с финансовым вознаграждением",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Не согласен с финансовым вознаграждением"
+  },
+  {
+    "id": 31,
+    "name": "Неудовлетворённость перспективами личного/профессионального развития",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 11,
+    "name": "Смена профессии/переход в свой проект/изначально рассматривал как подработку",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 93,
+    "name": "Не хватает навыков/знаний/компетенций",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 125,
+    "name": "Большой минимальный план/ амбициозные цели (KPI/OKR)",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 4,
+    "name": "Низкая эффективность - Низкая скорость/качество выполнения задач",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 2,
+    "name": "Мошенничество",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 146,
+    "name": "Прогульщик (глухарь)",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 121,
+    "name": "Взаимодействие с командой",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  },
+  {
+    "id": 135,
+    "name": "Несоблюдение условий договора/нарушение дисциплины",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 123,
+    "name": "Не подходит формат работы",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 145,
+    "name": "Уход аутстаффера (обстоятельства неизвестны)",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 136,
+    "name": "Причина уточняется",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 137,
+    "name": "Срок договора",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 26,
+    "name": "Личное - не могу/не хочу работать",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": false,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 27,
+    "name": "Смена профессии/переход в свой проект/изначально рассматривал как подработку",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 100,
+    "name": "Не устраивают изменения в расчете/ давно не было перерасчета",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 40,
+    "name": "Переезд на ПМЖ в другую страну/город",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 126,
+    "name": "Условия не совпадают с заявленными в вакансии",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 29,
+    "name": "Неинтересные/монотонные/недостаточно амбициозные задачи",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 133,
+    "name": "Не устраивают процессы/ регламенты или их отсутствие",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Условия работы"
+  },
+  {
+    "id": 105,
+    "name": "Низкий уровень дохода",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 21,
+    "name": "Тюрьма",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 3,
+    "name": "Неактивность (глухарь)",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 25,
+    "name": "По состоянию здоровья/декрет",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 117,
+    "name": "Взаимодействие с руководителем",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  },
+  {
+    "id": 37,
+    "name": "Заключение другого договора с заказчиком",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Заключение другого договора"
+  },
+  {
+    "id": 144,
+    "name": "Перевод внутри группы компаний",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Заключение другого договора (перевод)"
+  },
+  {
+    "id": 118,
+    "name": "Взаимодействие с командой",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  },
+  {
+    "id": 5,
+    "name": "Низкая эффективность - Низкая мотивация/выгорание",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 106,
+    "name": "Доход не соответствует уровню нагрузки/ ответственности",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Финансы"
+  },
+  {
+    "id": 22,
+    "name": "Переезд на ПМЖ в другую страну/город",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 142,
+    "name": "Перевод внутри группы компаний",
+    "reporterType": "Head",
+    "initiator": "Other",
+    "isActive": true,
+    "isNegative": false,
+    "category": null
+  },
+  {
+    "id": 95,
+    "name": "Смена профессии/ свой бизнес/ переход на фриланс",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 112,
+    "name": "Неинтересные/ монотонные/ недостаточно амбициозные задачи",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 113,
+    "name": "Неудовлетворенность перспективами профессионального/ карьерного роста",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 12,
+    "name": "Не согласен с финансовым вознаграждением",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Не согласен с финансовым вознаграждением"
+  },
+  {
+    "id": 6,
+    "name": "Не соответствует духу команды/компании",
+    "reporterType": "Head",
+    "initiator": "Customer",
+    "isActive": true,
+    "isNegative": true,
+    "category": null
+  },
+  {
+    "id": 8,
+    "name": "Нет возможности совмещать с учебой/семейными обстоятельствами",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 9,
+    "name": "По состоянию здоровья/декрет",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 14,
+    "name": "Психологически тяжело выполнять/не подходящий по складу характера функционал",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 15,
+    "name": "Неудовлетворённость перспективами личного/профессионального развития",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Неудовлетворённость функционалом"
+  },
+  {
+    "id": 16,
+    "name": "Не подходят предложенные условия оказания услуг",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Не подходят предложенные условия оказания услуг"
+  },
+  {
+    "id": 17,
+    "name": "Дискомфорт при взаимодействии с людьми",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  },
+  {
+    "id": 24,
+    "name": "Нет возможности совмещать с учебой/семейными обстоятельствами",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 32,
+    "name": "Не подходят предложенные условия оказания услуг",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Не подходят предложенные условия оказания услуг"
+  },
+  {
+    "id": 33,
+    "name": "Дискомфорт при взаимодействии с людьми",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  },
+  {
+    "id": 36,
+    "name": "Не могу обеспечить условия оказания услуг",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Не получается обеспечить условия оказания услуг"
+  },
+  {
+    "id": 38,
+    "name": "Армия/СВО",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Личные причины"
+  },
+  {
+    "id": 114,
+    "name": "Психологически тяжело/ высокий уровень нагрузки и ответственности",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 116,
+    "name": "Недостаточно четко поставленные задачи/ часто изменяющиеся задачи и цели",
+    "reporterType": "Employee",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Функционал/задачи"
+  },
+  {
+    "id": 119,
+    "name": "Взаимодействие с клиентами/ партнерами компании",
+    "reporterType": "Head",
+    "initiator": "Contractor",
+    "isActive": true,
+    "isNegative": false,
+    "category": "Дискомфорт при взаимодействии с людьми"
+  }
+]

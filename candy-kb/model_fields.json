@@ -1,0 +1,899 @@
+{
+  "rootDocument": "Candidate",
+  "documents": {
+    "Candidate": {
+      "title": "Кандидат",
+      "root": true,
+      "fields": {
+        "name": {
+          "title": "Имя",
+          "operatorSet": "Text"
+        },
+        "surname": {
+          "title": "Фамилия",
+          "operatorSet": "Text"
+        },
+        "patronymic": {
+          "title": "Отчество",
+          "operatorSet": "Text"
+        },
+        "birthDay": {
+          "title": "День рождения",
+          "operatorSet": "Int"
+        },
+        "birthMonth": {
+          "title": "Месяц рождения",
+          "operatorSet": "Int"
+        },
+        "birthYear": {
+          "title": "Год рождения",
+          "operatorSet": "Int"
+        },
+        "birthdate": {
+          "title": "Дата рождения",
+          "operatorSet": "Date"
+        },
+        "gender": {
+          "title": "Пол",
+          "operatorSet": "String",
+          "enumType": "GenderV2"
+        },
+        "locationId": {
+          "title": "Идентификатор местоположения",
+          "operatorSet": "String"
+        },
+        "location": {
+          "title": "Местоположение",
+          "operatorSet": "Text"
+        },
+        "citizenshipId": {
+          "title": "Идентификатор гражданства",
+          "operatorSet": "String"
+        },
+        "citizenship": {
+          "title": "Гражданство",
+          "operatorSet": "Text"
+        },
+        "specializationIds": {
+          "title": "Специализации (из любого источника)",
+          "operatorSet": "StringList"
+        },
+        "hiringProcesses": {
+          "title": "Процессы отбора",
+          "operatorSet": "Nested",
+          "nestedDocument": "HiringProcess"
+        },
+        "contacts": {
+          "title": "Контакты",
+          "operatorSet": "Nested",
+          "nestedDocument": "StructuredContact"
+        },
+        "tagsIds": {
+          "title": "Идентификаторы тегов",
+          "operatorSet": "StringList"
+        },
+        "tags": {
+          "title": "Теги",
+          "operatorSet": "TextList"
+        },
+        "employeeStatus": {
+          "title": "Статус сотрудника",
+          "operatorSet": "String",
+          "enumType": "EmployeeStatusTypeV2"
+        },
+        "employeeDismissalReasonId": {
+          "title": "Идентификатор причины увольнения (из справочника people-hub)",
+          "operatorSet": "Int"
+        },
+        "employeeDismissalReason": {
+          "title": "Причина увольнения (из справочника people-hub)",
+          "operatorSet": "Text"
+        },
+        "employeeDismissalReasonIsNegative": {
+          "title": "Флаг, является ли причина увольнения негативной",
+          "operatorSet": "Bool"
+        },
+        "employeeDismissalDate": {
+          "title": "Дата увольнения сотрудника",
+          "operatorSet": "Date"
+        },
+        "speechEvaluationResult": {
+          "title": "Результат оценки речи",
+          "operatorSet": "String",
+          "enumType": "SpeechEvaluationResult"
+        },
+        "speechEvaluationRatedByMasterId": {
+          "title": "MasterId сотрудника, проводившего оценку речи",
+          "operatorSet": "Int"
+        },
+        "speechEvaluationRatedAtUtc": {
+          "title": "Дата проведения оценки речи",
+          "operatorSet": "Date"
+        },
+        "educations": {
+          "title": "Образование",
+          "operatorSet": "Nested",
+          "nestedDocument": "Education"
+        },
+        "workExperience": {
+          "title": "Опыт работы",
+          "operatorSet": "Nested",
+          "nestedDocument": "WorkExperience"
+        },
+        "uniqueIdentifiers": {
+          "title": "Уникальные идентификаторы",
+          "operatorSet": "Nested",
+          "nestedDocument": "UniqueIdentifier"
+        },
+        "facts": {
+          "title": "Факты в составе кандидата",
+          "operatorSet": "Nested",
+          "nestedDocument": "Fact"
+        },
+        "meetups": {
+          "title": "Заявки на участие в митапах",
+          "operatorSet": "Nested",
+          "nestedDocument": "Meetup"
+        },
+        "internships": {
+          "title": "Заявки на участие в стажировках",
+          "operatorSet": "Nested",
+          "nestedDocument": "Internship"
+        },
+        "resumes": {
+          "title": "Резюме",
+          "operatorSet": "Nested",
+          "nestedDocument": "Resume"
+        },
+        "changedUtc": {
+          "title": "Дата изменения",
+          "operatorSet": "Date"
+        },
+        "files": {
+          "title": "Сырой текст резюме",
+          "operatorSet": "TextList"
+        },
+        "recruitersMasterIds": {
+          "title": "Master ID закрепленных рекрутеров",
+          "operatorSet": "IntList"
+        },
+        "offices": {
+          "title": "Офисы из процессов отбора",
+          "operatorSet": "TextList"
+        },
+        "levels": {
+          "title": "Уровни кандидата из процессов отбора",
+          "operatorSet": "TextList"
+        },
+        "interviewTypes": {
+          "title": "Типы проведенных собеседований",
+          "operatorSet": "TextList"
+        }
+      }
+    },
+    "HiringProcess": {
+      "title": "Процесс отбора",
+      "fields": {
+        "specializationId": {
+          "title": "Специализация",
+          "operatorSet": "String"
+        },
+        "closingReasonsIds": {
+          "title": "Причины завершения",
+          "operatorSet": "IntList"
+        },
+        "events": {
+          "title": "Статусы",
+          "operatorSet": "Nested",
+          "nestedDocument": "HiringProcessEvent"
+        },
+        "assigneesMasterIds": {
+          "title": "Master ID ответственных за процесс",
+          "operatorSet": "IntList"
+        },
+        "state": {
+          "title": "Статус процесса отбора",
+          "operatorSet": "String",
+          "enumType": "HiringProcessState"
+        }
+      }
+    },
+    "HiringProcessEvent": {
+      "title": "Статус процесса отбора",
+      "fields": {
+        "plainEventState": {
+          "title": "Статус",
+          "operatorSet": "Int"
+        },
+        "createdUtc": {
+          "title": "Дата перехода в статус",
+          "operatorSet": "Date"
+        }
+      }
+    },
+    "StructuredContact": {
+      "title": "Контакт",
+      "fields": {
+        "type": {
+          "title": "Тип контакта",
+          "operatorSet": "String",
+          "enumType": "ContactTypeV2"
+        },
+        "value": {
+          "title": "Значение контакта",
+          "operatorSet": "String"
+        }
+      }
+    },
+    "Education": {
+      "title": "Образование",
+      "fields": {
+        "faculty": {
+          "title": "Факультет",
+          "operatorSet": "Text"
+        },
+        "organizationName": {
+          "title": "Учебное заведение",
+          "operatorSet": "Text"
+        },
+        "specialization": {
+          "title": "Специализация",
+          "operatorSet": "Text"
+        },
+        "educationLevel": {
+          "title": "Уровень образования",
+          "operatorSet": "String",
+          "enumType": "EducationLevelV2"
+        },
+        "graduationYear": {
+          "title": "Год окончания",
+          "operatorSet": "Int"
+        }
+      }
+    },
+    "WorkExperience": {
+      "title": "Опыт работы",
+      "fields": {
+        "title": {
+          "title": "Должность",
+          "operatorSet": "Text"
+        },
+        "organization": {
+          "title": "Организация",
+          "operatorSet": "Text"
+        },
+        "cityId": {
+          "title": "Идентификатор города",
+          "operatorSet": "String"
+        },
+        "city": {
+          "title": "Город",
+          "operatorSet": "Text"
+        },
+        "dateStart": {
+          "title": "Дата начала",
+          "operatorSet": "Date"
+        },
+        "dateEnd": {
+          "title": "Дата окончания",
+          "operatorSet": "Date"
+        },
+        "organizationUrl": {
+          "title": "Сайт организации",
+          "operatorSet": "Text"
+        },
+        "description": {
+          "title": "Описание",
+          "operatorSet": "Text"
+        }
+      }
+    },
+    "UniqueIdentifier": {
+      "title": "Уникальный идентификатор кандидата",
+      "fields": {
+        "code": {
+          "title": "Код идентификатора",
+          "operatorSet": "String"
+        },
+        "value": {
+          "title": "Значение идентификатора",
+          "operatorSet": "String"
+        }
+      }
+    },
+    "Fact": {
+      "title": "Факт в составе кандидата",
+      "fields": {
+        "sourceCode": {
+          "title": "Код источника",
+          "operatorSet": "String"
+        },
+        "sourceId": {
+          "title": "Идентификатор в источнике",
+          "operatorSet": "String"
+        },
+        "name": {
+          "title": "Имя",
+          "operatorSet": "Text"
+        },
+        "surname": {
+          "title": "Фамилия",
+          "operatorSet": "Text"
+        },
+        "patronymic": {
+          "title": "Отчество",
+          "operatorSet": "Text"
+        },
+        "birthDay": {
+          "title": "День рождения",
+          "operatorSet": "Int"
+        },
+        "birthMonth": {
+          "title": "Месяц рождения",
+          "operatorSet": "Int"
+        },
+        "birthYear": {
+          "title": "Год рождения",
+          "operatorSet": "Int"
+        },
+        "birthdate": {
+          "title": "Дата рождения",
+          "operatorSet": "Date"
+        },
+        "gender": {
+          "title": "Пол",
+          "operatorSet": "String",
+          "enumType": "GenderV2"
+        },
+        "locationId": {
+          "title": "Идентификатор местоположения",
+          "operatorSet": "String"
+        },
+        "location": {
+          "title": "Местоположение",
+          "operatorSet": "Text"
+        },
+        "citizenshipId": {
+          "title": "Идентификатор гражданства",
+          "operatorSet": "String"
+        },
+        "citizenship": {
+          "title": "Гражданство",
+          "operatorSet": "Text"
+        },
+        "contacts": {
+          "title": "Контакты",
+          "operatorSet": "Nested",
+          "nestedDocument": "StructuredContact"
+        },
+        "tagsIds": {
+          "title": "Идентификаторы тегов",
+          "operatorSet": "StringList"
+        },
+        "tags": {
+          "title": "Теги",
+          "operatorSet": "TextList"
+        },
+        "employeeStatus": {
+          "title": "Статус сотрудника",
+          "operatorSet": "String"
+        },
+        "employeeDismissalReasonId": {
+          "title": "Идентификатор причины увольнения (из справочника people-hub)",
+          "operatorSet": "Int"
+        },
+        "employeeDismissalReason": {
+          "title": "Причина увольнения (из справочника people-hub)",
+          "operatorSet": "Text"
+        },
+        "employeeDismissalReasonIsNegative": {
+          "title": "Флаг, является ли причина увольнения негативной",
+          "operatorSet": "Bool"
+        },
+        "employeeDismissalDate": {
+          "title": "Дата увольнения сотрудника",
+          "operatorSet": "Date"
+        },
+        "speechEvaluationResult": {
+          "title": "Результат оценки речи",
+          "operatorSet": "String"
+        },
+        "speechEvaluationRatedByMasterId": {
+          "title": "MasterId сотрудника, проводившего оценку речи",
+          "operatorSet": "Int"
+        },
+        "speechEvaluationRatedAtUtc": {
+          "title": "Дата проведения оценки речи",
+          "operatorSet": "Date"
+        },
+        "educations": {
+          "title": "Образование",
+          "operatorSet": "Nested",
+          "nestedDocument": "Education"
+        },
+        "workExperience": {
+          "title": "Опыт работы",
+          "operatorSet": "Nested",
+          "nestedDocument": "WorkExperience"
+        },
+        "uniqueIdentifiers": {
+          "title": "Уникальные идентификаторы",
+          "operatorSet": "Nested",
+          "nestedDocument": "UniqueIdentifier"
+        }
+      }
+    },
+    "Meetup": {
+      "title": "Заявка на участие в митапе",
+      "fields": {
+        "id": {
+          "title": "Идентификатор митапа",
+          "operatorSet": "String"
+        },
+        "title": {
+          "title": "Название митапа",
+          "operatorSet": "Text"
+        },
+        "format": {
+          "title": "Формат митапа",
+          "operatorSet": "String"
+        },
+        "cityId": {
+          "title": "Идентификатор города проведения митапа",
+          "operatorSet": "String"
+        },
+        "city": {
+          "title": "Город проведения митапа",
+          "operatorSet": "Text"
+        },
+        "startUtc": {
+          "title": "Время начала митапа",
+          "operatorSet": "Date"
+        },
+        "endUtc": {
+          "title": "Время окончания митапа",
+          "operatorSet": "Date"
+        },
+        "name": {
+          "title": "Имя участника",
+          "operatorSet": "Text"
+        },
+        "surname": {
+          "title": "Фамилия участника",
+          "operatorSet": "Text"
+        },
+        "participantCity": {
+          "title": "Город участника",
+          "operatorSet": "Text"
+        },
+        "occupation": {
+          "title": "Вид занятости участника",
+          "operatorSet": "String",
+          "enumType": "OccupationType"
+        },
+        "company": {
+          "title": "Место работы/школа/ВУЗ",
+          "operatorSet": "Text"
+        },
+        "experience": {
+          "title": "Опыт",
+          "operatorSet": "String",
+          "enumType": "ExperienceType"
+        },
+        "specializationId": {
+          "title": "Идентификатор специализации",
+          "operatorSet": "String"
+        },
+        "specialization": {
+          "title": "Специализация",
+          "operatorSet": "Text"
+        },
+        "programmingLanguages": {
+          "title": "Языки программирования",
+          "operatorSet": "Text"
+        },
+        "comment": {
+          "title": "Комментарий к заявке",
+          "operatorSet": "Text"
+        },
+        "marketingCommunicationConsentGivenAt": {
+          "title": "Дата получения согласия на маркетинговые коммуникации",
+          "operatorSet": "Date"
+        },
+        "personalDataProcessingConsentGivenAt": {
+          "title": "Дата получения согласия на обработку ПД",
+          "operatorSet": "Date"
+        },
+        "contacts": {
+          "title": "Контакты",
+          "operatorSet": "Nested",
+          "nestedDocument": "StructuredContact"
+        }
+      }
+    },
+    "Internship": {
+      "title": "Заявка на участие в стажировке",
+      "fields": {
+        "id": {
+          "title": "Идентификатор отбора на стажировку",
+          "operatorSet": "String"
+        },
+        "title": {
+          "title": "Название стажировки",
+          "operatorSet": "Text"
+        },
+        "program": {
+          "title": "Программа стажировки",
+          "operatorSet": "String",
+          "enumType": "SelectionProgram"
+        },
+        "streamId": {
+          "title": "Идентификатор стрима",
+          "operatorSet": "String"
+        },
+        "stream": {
+          "title": "Стрим",
+          "operatorSet": "Text"
+        },
+        "specializationsIds": {
+          "title": "Идентификаторы специализаций",
+          "operatorSet": "StringList"
+        },
+        "specializations": {
+          "title": "Специализации",
+          "operatorSet": "TextList"
+        },
+        "examsStartDate": {
+          "title": "Дата начала экзаменов",
+          "operatorSet": "Date"
+        },
+        "examsFinishDate": {
+          "title": "Дата завершения экзаменов",
+          "operatorSet": "Date"
+        },
+        "name": {
+          "title": "Имя участника",
+          "operatorSet": "Text"
+        },
+        "surname": {
+          "title": "Фамилия участника",
+          "operatorSet": "Text"
+        },
+        "patronymic": {
+          "title": "Отчество участника",
+          "operatorSet": "Text"
+        },
+        "birthDay": {
+          "title": "Дата рождения участника",
+          "operatorSet": "Date"
+        },
+        "preferredLearningCity": {
+          "title": "Предпочитаемый город для обучения",
+          "operatorSet": "Text"
+        },
+        "schoolCityId": {
+          "title": "Идентификатор города школы",
+          "operatorSet": "String"
+        },
+        "schoolCity": {
+          "title": "Город школы",
+          "operatorSet": "Text"
+        },
+        "schoolId": {
+          "title": "Идентификатор школы",
+          "operatorSet": "String"
+        },
+        "school": {
+          "title": "Школа",
+          "operatorSet": "Text"
+        },
+        "schoolGraduationYear": {
+          "title": "Год окончания школы",
+          "operatorSet": "Int"
+        },
+        "universityCityId": {
+          "title": "Идентификатор города университета",
+          "operatorSet": "String"
+        },
+        "universityCity": {
+          "title": "Город университета",
+          "operatorSet": "Text"
+        },
+        "universityId": {
+          "title": "Идентификатор университета",
+          "operatorSet": "String"
+        },
+        "university": {
+          "title": "Университет",
+          "operatorSet": "Text"
+        },
+        "universityFacultyId": {
+          "title": "Идентификатор факультета университета",
+          "operatorSet": "String"
+        },
+        "universityFaculty": {
+          "title": "Факультет университета",
+          "operatorSet": "Text"
+        },
+        "universityChairId": {
+          "title": "Идентификатор кафедры университета",
+          "operatorSet": "String"
+        },
+        "universityChair": {
+          "title": "Кафедра университета",
+          "operatorSet": "Text"
+        },
+        "universityGraduationYear": {
+          "title": "Год окончания университета",
+          "operatorSet": "Int"
+        },
+        "companyName": {
+          "title": "Место работы",
+          "operatorSet": "Text"
+        },
+        "position": {
+          "title": "Должность",
+          "operatorSet": "Text"
+        },
+        "about": {
+          "title": "'О себе' в заявке",
+          "operatorSet": "Text"
+        },
+        "bankClient": {
+          "title": "Является ли участник клиентом банка",
+          "operatorSet": "Bool"
+        },
+        "marketingCommunicationConsentGivenAt": {
+          "title": "Дата получения согласия на маркетинговые коммуникации",
+          "operatorSet": "Date"
+        },
+        "personalDataProcessingConsentGivenAt": {
+          "title": "Дата получения согласия на обработку ПД",
+          "operatorSet": "Date"
+        },
+        "eduAccountId": {
+          "title": "Идентификатор участника в Edu",
+          "operatorSet": "Int"
+        },
+        "contacts": {
+          "title": "Контакты",
+          "operatorSet": "Nested",
+          "nestedDocument": "StructuredContact"
+        }
+      }
+    },
+    "Resume": {
+      "title": "Резюме",
+      "fields": {
+        "name": {
+          "title": "Имя",
+          "operatorSet": "Text"
+        },
+        "surname": {
+          "title": "Фамилия",
+          "operatorSet": "Text"
+        },
+        "patronymic": {
+          "title": "Отчество",
+          "operatorSet": "Text"
+        },
+        "birthDay": {
+          "title": "День рождения",
+          "operatorSet": "Int"
+        },
+        "birthMonth": {
+          "title": "Месяц рождения",
+          "operatorSet": "Int"
+        },
+        "birthYear": {
+          "title": "Год рождения",
+          "operatorSet": "Int"
+        },
+        "birthdate": {
+          "title": "Дата рождения",
+          "operatorSet": "Date"
+        },
+        "gender": {
+          "title": "Пол",
+          "operatorSet": "String",
+          "enumType": "GenderV2"
+        },
+        "citizenshipId": {
+          "title": "Идентификатор гражданства",
+          "operatorSet": "String"
+        },
+        "citizenship": {
+          "title": "Гражданство",
+          "operatorSet": "Text"
+        },
+        "locationId": {
+          "title": "Идентификатор местоположения",
+          "operatorSet": "String"
+        },
+        "location": {
+          "title": "Местоположение",
+          "operatorSet": "Text"
+        },
+        "declaredSpecialization": {
+          "title": "Заявляемая специализация",
+          "operatorSet": "Text"
+        },
+        "about": {
+          "title": "О себе",
+          "operatorSet": "Text"
+        },
+        "declaredSkills": {
+          "title": "Заявленные в резюме навыки",
+          "operatorSet": "TextList"
+        },
+        "InferredSkills": {
+          "title": "Определенные моделью навыки в резюме",
+          "operatorSet": "TextList"
+        },
+        "hobbies": {
+          "title": "Хобби",
+          "operatorSet": "TextList"
+        },
+        "languages": {
+          "title": "Языки",
+          "operatorSet": "Nested",
+          "nestedDocument": "ResumeLanguage"
+        },
+        "preferredSchedules": {
+          "title": "Предпочитаемые графики работы",
+          "operatorSet": "TextList"
+        },
+        "additionalEducation": {
+          "title": "Дополнительное образование",
+          "operatorSet": "Nested",
+          "nestedDocument": "ResumeAdditionalEducation"
+        },
+        "higherEducation": {
+          "title": "Высшее образование",
+          "operatorSet": "Nested",
+          "nestedDocument": "ResumeHigherEducation"
+        },
+        "workExperienceTotalMonths": {
+          "title": "Общее количество месяцев опыта работы",
+          "operatorSet": "Int"
+        },
+        "workExperienceTotalYears": {
+          "title": "Общее количество полных лет опыта работы",
+          "operatorSet": "Int"
+        },
+        "workExperience": {
+          "title": "Опыт работы",
+          "operatorSet": "Nested",
+          "nestedDocument": "ResumeWorkExperience"
+        },
+        "preferredLocations": {
+          "title": "Предпочитаемые локации",
+          "operatorSet": "Nested",
+          "nestedDocument": "ResumePreferredLocations"
+        },
+        "contacts": {
+          "title": "Контакты",
+          "operatorSet": "Nested",
+          "nestedDocument": "StructuredContact"
+        },
+        "createdUtc": {
+          "title": "Дата загрузки резюме",
+          "operatorSet": "Date"
+        }
+      }
+    },
+    "ResumeLanguage": {
+      "title": "Язык из резюме",
+      "fields": {
+        "language": {
+          "title": "Язык",
+          "operatorSet": "String"
+        },
+        "level": {
+          "title": "Уровень владения",
+          "operatorSet": "String"
+        }
+      }
+    },
+    "ResumeAdditionalEducation": {
+      "title": "Дополнительное образование из резюме",
+      "fields": {
+        "name": {
+          "title": "Название",
+          "operatorSet": "Text"
+        },
+        "type": {
+          "title": "Тип",
+          "operatorSet": "Text"
+        },
+        "year": {
+          "title": "Год окончания",
+          "operatorSet": "Int"
+        }
+      }
+    },
+    "ResumeHigherEducation": {
+      "title": "Высшее образование из резюме",
+      "fields": {
+        "university": {
+          "title": "Университет",
+          "operatorSet": "Text"
+        },
+        "faculty": {
+          "title": "Факультет",
+          "operatorSet": "Text"
+        },
+        "major": {
+          "title": "Специальность",
+          "operatorSet": "Text"
+        },
+        "degree": {
+          "title": "Степень образования",
+          "operatorSet": "Text"
+        },
+        "startYear": {
+          "title": "Год начала обучения",
+          "operatorSet": "Int"
+        },
+        "endYear": {
+          "title": "Год окончания обучения",
+          "operatorSet": "Int"
+        }
+      }
+    },
+    "ResumeWorkExperience": {
+      "title": "Опыт работы из резюме",
+      "fields": {
+        "company": {
+          "title": "Название компании",
+          "operatorSet": "Text"
+        },
+        "locationId": {
+          "title": "Идентификатор местоположения компании",
+          "operatorSet": "String"
+        },
+        "location": {
+          "title": "Местоположение компании",
+          "operatorSet": "Text"
+        },
+        "position": {
+          "title": "Должность",
+          "operatorSet": "Text"
+        },
+        "description": {
+          "title": "Дата начала работы",
+          "operatorSet": "Text"
+        },
+        "startDate": {
+          "title": "Дата начала работы",
+          "operatorSet": "Date"
+        },
+        "endDate": {
+          "title": "Дата окончания работы",
+          "operatorSet": "Date"
+        },
+        "isCurrent": {
+          "title": "Является ли текущей работой",
+          "operatorSet": "Bool"
+        },
+        "isIt": {
+          "title": "Является ли должность кандидата IT специальностью",
+          "operatorSet": "Bool"
+        }
+      }
+    },
+    "ResumePreferredLocations": {
+      "title": "Предпочитаемое местоположение из резюме",
+      "fields": {
+        "locationId": {
+          "title": "Идентификатор местоположения",
+          "operatorSet": "String"
+        },
+        "location": {
+          "title": "Местоположение",
+          "operatorSet": "Text"
+        }
+      }
+    }
+  }
+}

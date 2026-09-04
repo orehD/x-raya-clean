@@ -745,6 +745,32 @@ input.aiin:focus{outline:none;border-color:rgba(242,169,59,.5)}
 .pod-ok::before{content:"✓ ";font-weight:700}
 .pod-warn{color:var(--red-hi)}
 .pod-warn::before{content:"! ";font-weight:700}
+/* Что изменилось между версиями подборки и опрос «стало больше людей?» */
+.pod-changes{margin-top:18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px}
+.pod-changes b{display:block;font:600 12px var(--f-body);color:var(--txt);margin-bottom:9px}
+.pod-ch-list{display:flex;flex-wrap:wrap;gap:6px}
+.pod-ch{font:400 11.5px var(--f-mono);font-style:normal;padding:4px 9px;border-radius:999px;
+  border:1px solid var(--line2)}
+.pod-ch.in{color:var(--amber-hi);border-color:var(--amber-dim);background:var(--amber-ghost)}
+.pod-ch.in::before{content:"+ ";font-weight:700}
+.pod-ch.out{color:var(--muted);text-decoration:line-through}
+.pod-ch.out::before{content:"− ";font-weight:700;text-decoration:none;display:inline-block}
+.pod-fb{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  font:400 12.5px var(--f-body);color:var(--muted)}
+.pod-fb span{margin-right:2px}
+
+/* Уточняющий диалог: вопрос движка и варианты из справочника Candy */
+.pod-q{margin-top:14px}
+.pod-q p{margin:0 0 8px;font:400 13.5px/1.6 var(--f-body);color:var(--txt)}
+.pod-opts{display:flex;flex-direction:column;gap:6px}
+.pod-opt{text-align:left;cursor:pointer;background:var(--panel);border:1px solid var(--line2);
+  border-radius:8px;padding:9px 12px;font:400 12.5px/1.45 var(--f-body);color:var(--data);
+  transition:border-color .15s var(--ease),color .15s var(--ease)}
+.pod-opt b{color:var(--amber-hi);font:600 11px var(--f-mono);margin-right:6px}
+.pod-opt:hover{border-color:var(--amber);color:var(--txt)}
+.pod-hint{margin-top:16px;font:400 12.5px/1.6 var(--f-body);color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .pod-btns{display:flex;gap:8px;flex-wrap:wrap}
 .pod-btn{cursor:pointer;background:transparent;border:1px solid var(--line2);border-radius:7px;
   padding:8px 14px;font:500 11.5px var(--f-mono);color:var(--data);text-decoration:none;
@@ -1637,14 +1663,28 @@ async function podRun(task, opt){
   const wait=o.refine?'Уточняю подборку…':o.fix?'Правлю синтаксис…':'Собираю подборку — это дольше обычного поиска, в промпте вся схема Candy…';
   res.innerHTML='<div class="pod-wait"><span class="pod-spin"></span>'+wait+'</div>';
   ev(o.refine?'candy_refine':'candy');
-  let text, cut=false;
+  if(!o.refine && !o.fix) POD_TASK = task;   // исходная формулировка — для отзыва
+  let text, cut=false, got;
   try{
-    const got = await podAsk({task, refine:o.refine||'', fix:o.fix||'', prev:o.prev||''});
+    got = await podAsk({task, refine:o.refine||'', fix:o.fix||'', prev:o.prev||'', sessionId:POD_SID});
     text = got.text; cut = got.cut;
   }catch(e){
     if(e.message==='__locked__') return;   // экран замка уже показан
     res.innerHTML='<div class="empty">Не удалось собрать подборку: '+esc(e.message)+'<br><br>'+
       '<button class="pod-btn" onclick="run()">Попробовать снова</button></div>';
+    return;
+  }
+  if(got.sessionId) POD_SID=got.sessionId;
+  POD_CHANGES = got.changes || null;
+  POD_VER = got.version || 1;
+  // Движок ведёт диалог: на неоднозначный запрос он отвечает вопросами со списком
+  // вариантов из справочника. Показываем их и ждём ответ рекрутера — чинить тут нечего.
+  if(got.status==='clarify'){ _pod=null; res.innerHTML=podAskHTML(got); return; }
+  if(got.status==='error' && got.error){
+    _pod=null;
+    res.innerHTML='<div class="pod"><div class="pod-head"><div><h3>Подборка не собралась</h3>'+
+      '<span class="pod-warn">'+esc(got.error)+'</span></div></div>'+
+      '<div class="pod-hint">Переформулируй запрос или начни заново — <button class="pod-btn" onclick="podReset()">Сбросить диалог</button></div></div>';
     return;
   }
   let json=null, errs=[], parseErr='';
@@ -1665,6 +1705,64 @@ async function podRun(task, opt){
   _pod={task, text, json, errs, cut};
   res.innerHTML=podHTML(_pod);
 }
+/* ── диалог с движком: id сессии и экран уточняющих вопросов (CJM, шаг «XRaya
+   уточняет запрос → рекрутер отвечает») ── */
+let POD_SID = null, POD_CHANGES = null, POD_VER = 1, POD_TASK = '';
+
+/* Что поменялось в подборке после уточнения и помогло ли это. Рекрутер видит выдачу
+   в Candy, а мы — нет, поэтому спрашиваем прямо: стало больше людей или нет. */
+function podChangesHTML(){
+  if(!POD_CHANGES) return '';
+  const li = (arr,cls) => arr.map(x=>'<i class="pod-ch '+cls+'">'+esc(x)+'</i>').join('');
+  return '<div class="pod-changes">'+
+    '<b>Что изменилось в этой версии</b>'+
+    '<div class="pod-ch-list">'+
+      li(POD_CHANGES.removed||[],'out')+
+      li(POD_CHANGES.added||[],'in')+
+    '</div>'+
+    '<div class="pod-fb"><span>Посмотри выдачу в Candy — стало больше людей?</span>'+
+      '<button class="pod-btn" onclick="podFb(\'more\',this)">Да, больше</button>'+
+      '<button class="pod-btn" onclick="podFb(\'same\',this)">Без изменений</button>'+
+      '<button class="pod-btn" onclick="podFb(\'less\',this)">Стало меньше</button>'+
+    '</div>'+
+  '</div>';
+}
+function podFb(verdict, btn){
+  const row = btn.closest('.pod-fb');
+  if(row) row.innerHTML='<span class="pod-ok">Спасибо, записал — это помогает настраивать движок</span>';
+  try{
+    fetch('/api/candy/feedback',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({sessionId:POD_SID, verdict, task:POD_TASK, version:POD_VER, pw:podPw(), vid:vid()})});
+  }catch(_){}
+}
+
+function podAskHTML(d){
+  const qs=(d.questions||[]).map(q=>{
+    const opts=(q.options||[]).map((o,i)=>
+      '<button class="pod-opt" onclick="podAnswer(this)" data-a="'+esc(String(i+1))+'">'+
+      '<b>'+(i+1)+'</b> '+esc(o.label)+'</button>').join('');
+    return '<div class="pod-q"><p>'+esc(q.question)+'</p>'+(opts?'<div class="pod-opts">'+opts+'</div>':'')+'</div>';
+  }).join('');
+  return '<div class="pod">'+
+    '<div class="pod-head"><div><h3>Уточню, чтобы собрать именно то</h3>'+
+      (d.explain?'<span class="pod-ok">'+esc(d.explain)+'</span>':'')+'</div></div>'+
+    qs+
+    '<div class="pod-hint">Ответь в поле поиска: номером варианта, несколькими номерами через «и» или словами. '+
+    'Начать новую подборку — <button class="pod-btn" onclick="podReset()">сбросить диалог</button></div>'+
+  '</div>';
+}
+// Клик по варианту подставляет его номер в поле и сразу отправляет ответ.
+function podAnswer(btn){
+  const q=document.getElementById('q');
+  q.value='вариант '+btn.dataset.a;
+  autoGrow(q); run();
+}
+function podReset(){
+  POD_SID=null; _pod=null;
+  const q=document.getElementById('q'); if(q){ q.value=''; autoGrow(q); }
+  podScreen();
+}
+
 async function podAsk(body){
   const r=await fetch('/api/candy',{method:'POST',headers:{'content-type':'application/json'},
     body:JSON.stringify(Object.assign({vid:vid(), pw:podPw()}, body))});
@@ -1672,8 +1770,10 @@ async function podAsk(body){
   if(r.status===403){ lsSet('xraya_pod_pw',''); _podLock=true; podLockOpen(); throw new Error('__locked__'); }
   if(!r.ok){ let msg='HTTP '+r.status; try{ const e=await r.json(); if(e&&e.error) msg=e.error; }catch(_){} throw new Error(msg); }
   const d=await r.json();
-  if(!d.text) throw new Error('пустой ответ модели');
-  return {text:d.text, cut:!!d.cut};
+  // движок отвечает вопросами или ошибкой — текста в этих случаях нет, и это нормально
+  if(!d.text && !d.status) throw new Error('пустой ответ модели');
+  return { text:d.text||'', cut:!!d.cut, status:d.status||'', sessionId:d.sessionId||'',
+           questions:d.questions||null, explain:d.explain||'', error:d.error||'', filter:d.filter||null };
 }
 /* Модели любят пояснять фильтр комментариями прямо в JSON и оставлять запятую перед
    закрывающей скобкой. JSON.parse на этом падает, и Candy тоже — поэтому чистим,
@@ -1747,11 +1847,12 @@ function podHTML(p){
                 : 'JSON собрать не удалось — ниже ответ модели целиком, разбери руками.')+
               '<br><br><button class="pod-btn" onclick="podRetry()">Собрать заново</button></div>')+
     (p.errs.length ? '<div class="pod-errs"><b>Что проверить руками</b><ul>'+p.errs.map(e=>'<li>'+esc(e)+'</li>').join('')+'</ul></div>' : '')+
+    podChangesHTML()+
     podMdHTML(p.text)+
     '<div class="pod-refine">'+
       '<label for="podRef">Уточнить подборку</label>'+
       '<div class="pod-refin">'+
-        '<input id="podRef" placeholder="например: добавь только Москву и убери стажёров" onkeydown="if(event.key===\'Enter\')podRefine()">'+
+        '<input id="podRef" placeholder="например: выдача 7 человек, нужно больше — ослабь условия" onkeydown="if(event.key===\'Enter\')podRefine()">'+
         '<button class="pod-btn" onclick="podRefine()">Пересобрать</button>'+
       '</div>'+
     '</div>'+
