@@ -1244,4 +1244,10 @@ server.listen(PORT, () => {
   else console.log('⚠ AI не настроен: задай AI_BASE_URL + AI_API_KEY');
   console.log('Подборки Candy: лимит ответа ' + CANDY_MAXTOK +
     ', вкладка ' + (CANDY_PW ? 'под паролем (CANDY_PASSWORD)' : 'открыта всем — пароль не задан'));
+  // Движок грузится лениво, но проверяем его сразу: иначе о том, что в образ не попали
+  // candy-json или candy-kb, узнаем только когда рекрутер уже ждёт ответа.
+  if (!CANDY_ENGINE_ON) console.log('Подборки Candy: движок выключен (CANDY_ENGINE=off), работает промпт candy-prompt.md');
+  else if (candyEngine()) console.log('Подборки Candy: движок candy-json готов, справочники на месте');
+  else console.error('Подборки Candy: движок недоступен' + (candyModError ? ' (' + candyModError + ')' : '') +
+    ' — работает запасной путь по промпту');
 });
