@@ -35,10 +35,16 @@ function send(res, code, type, body) {
   res.end(body);
 }
 
+// Пароль страницы метрик. Историческое имя переменной — STATS_TOKEN_X, оно и задано
+// в окружении прода; принимаем оба, чтобы переключение версий не гасило /stats.
+function statsToken() {
+  return String(process.env.STATS_TOKEN || process.env.STATS_TOKEN_X || '').trim();
+}
+
 // Диагностика AI: куда уходит запрос и что отвечает ретранслятор.
 // Защищено паролем статистики. Секреты наружу не отдаём — только хост и текст ошибки.
 async function handleAIDiag(req, res) {
-  const token = process.env.STATS_TOKEN;
+  const token = statsToken();
   const url = new URL(req.url, 'http://x');
   const given = req.headers['x-stats-token'] || url.searchParams.get('token') || '';
   if (!token || given !== token) return send(res, 401, 'application/json', JSON.stringify({ error: 'неверный пароль' }));
@@ -914,7 +920,7 @@ function metricsDays() {
 }
 
 function handleStats(req, res) {
-  const token = process.env.STATS_TOKEN;
+  const token = statsToken();
   if (!token) return send(res, 501, 'application/json', JSON.stringify({ error: 'STATS_TOKEN_X (или STATS_TOKEN) не задан на сервере' }));
   const url = new URL(req.url, 'http://x');
   const given = req.headers['x-stats-token'] || url.searchParams.get('token') || '';
