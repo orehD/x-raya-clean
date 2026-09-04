@@ -463,6 +463,30 @@ function handleCandy(req, res) {
   });
 }
 
+/* Проверка готового JSON. Правила живут в одном месте — в движке, который сверяет
+ * фильтр с моделью полей и реестром операторов из candy-kb. Раньше такая же проверка
+ * дублировалась в браузере плоским списком полей, без привязки к документу: она
+ * пропускала выдуманное поле и ругалась на соседнее, существующее. */
+function handleCandyValidate(req, res) {
+  let raw = '';
+  req.on('data', c => { raw += c; if (raw.length > 2e6) req.destroy(); });
+  req.on('end', () => {
+    let body = {}; try { body = JSON.parse(raw || '{}'); } catch {}
+    if (CANDY_PW && String(body.pw || '') !== CANDY_PW)
+      return send(res, 403, 'application/json', JSON.stringify({ error: 'нужен пароль от вкладки подборок' }));
+    if (!body.filter || typeof body.filter !== 'object')
+      return send(res, 400, 'application/json', JSON.stringify({ error: 'нет фильтра для проверки' }));
+    let validate;
+    try { validate = require('./candy-json/builder').validateFilter; }
+    catch (e) { return send(res, 200, 'application/json', JSON.stringify({ available: false, errors: [] })); }
+    try {
+      send(res, 200, 'application/json', JSON.stringify({ available: true, errors: validate(body.filter) }));
+    } catch (e) {
+      send(res, 200, 'application/json', JSON.stringify({ available: false, errors: [], error: String(e.message || e) }));
+    }
+  });
+}
+
 /* Обратная связь по подборке: «стало больше людей?» после того, как рекрутер просил
  * расширить или сузить выдачу. Без этого мы не узнаём, попал ли движок в задачу —
  * метрика по эталонам такого не показывает. Пишем в отдельный файл рядом с данными. */
@@ -1178,6 +1202,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/api/candy') return handleCandy(req, res);
   if (req.url.split('?')[0] === '/api/candy/gate' && (req.method === 'GET' || req.method === 'POST')) return handleCandyGate(req, res);
   if (req.method === 'POST' && req.url === '/api/candy/feedback') return handleCandyFeedback(req, res);
+  if (req.method === 'POST' && req.url === '/api/candy/validate') return handleCandyValidate(req, res);
   if (req.method === 'GET' && req.url.split('?')[0] === '/api/ai/diag') return handleAIDiag(req, res);
   if (req.method === 'POST' && req.url === '/api/nick') return handleNick(req, res);
   if (req.method === 'POST' && req.url === '/api/count') return handleCount(req, res);

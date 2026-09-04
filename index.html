@@ -1485,127 +1485,20 @@ function buildCandy(p, cards){
    а валидатор ниже ловит ошибки синтаксиса ДО того, как их увидит ATS: Candy на часть
    из них не жалуется, а молча отдаёт пустую выдачу, и это самое дорогое.             */
 
-/* Классы операторов: имя → семейство поля, к которому оператор применим. */
-const POD_OPS = {
-  int_eq:'int', int_one_of:'int', int_gt:'int', int_lt:'int', int_between:'int',
-  int_list_contains_any_of:'int_list', int_list_contains_all_of:'int_list',
-  text_match:'text', text_phrase:'text', text_phrase_any_of:'text', text_eq:'text', text_one_of:'text',
-  text_list_phrase:'text_list', text_list_matches_any_of:'text_list', text_list_matches_all_of:'text_list',
-  string_eq:'string', string_one_of:'string',
-  string_list_contains_any_of:'string_list', string_list_contains_all_of:'string_list',
-  bool_eq:'bool',
-  date_gt:'date', date_lt:'date', date_eq:'date', date_between:'date',
-  nested_any:'nested',
-};
-/* Операторы, которых в Candy нет, но модели их регулярно выдумывают. */
-const POD_FAKE_OPS = {
-  int_ne:'нет такого оператора — исключение делается через $not вокруг поля',
-  int_not_one_of:'нет такого оператора — оберни поле в $not с int_one_of',
-  string_ne:'нет такого оператора — оберни поле в $not со string_eq',
-  text_ne:'нет такого оператора — оберни поле в $not',
-  like:'нет такого оператора — для текста бери text_match или text_phrase',
-  wildcard:'нет такого оператора — маски не поддерживаются',
-  regex:'нет такого оператора',
-  exists:'нет такого оператора',
-  int_gte:'нет такого оператора — есть только int_gt',
-  int_lte:'нет такого оператора — есть только int_lt',
-  date_gte:'нет такого оператора — есть только date_gt',
-  date_lte:'нет такого оператора — есть только date_lt',
-};
-/* Типы известных полей. Ловим главную ловушку: скалярный оператор на списочном поле
-   проходит валидацию Candy и возвращает ноль кандидатов. */
-const POD_FIELDS = {
-  name:'text', surname:'text', patronymic:'text', location:'text', citizenship:'text',
-  birthYear:'int', birthdate:'date',
-  tags:'text_list', tagsIds:'string_list', specializationIds:'string_list',
-  employeeStatus:'string', employeeDismissalReasonId:'int',
-  employeeDismissalReasonIsNegative:'bool', employeeDismissalDate:'date', changedUtc:'date',
-  files:'text_list', offices:'text_list', levels:'text_list', interviewTypes:'text_list',
-  recruitersMasterIds:'int_list',
-  hiringProcesses:'nested', resumes:'nested', facts:'nested',
-  specializationId:'string', closingReasonsIds:'int_list', events:'nested',
-  plainEventState:'int', createdUtc:'date',
-  declaredSpecialization:'text', about:'text', declaredSkills:'text_list', inferredSkills:'text_list',
-  hobbies:'text_list', preferredSchedules:'text_list', workExperienceTotalYears:'int',
-  workExperience:'nested', higherEducation:'nested', additionalEducation:'nested', languages:'nested',
-  company:'text', position:'text', description:'text', isCurrent:'bool',
-  startDate:'date', endDate:'date',
-  university:'text', faculty:'text', major:'text', degree:'text', startYear:'int', endYear:'int',
-};
-const POD_STATUSES = ['Unknown','None','Induction','Employed','Dismissed','Ambiguous'];
-const podCut = v => { const s=String(v); return s.length>40 ? s.slice(0,40)+'…' : s; };
-const POD_MULTI = /_one_of$|_any_of$|_all_of$|_between$/;   // операторы, берущие values, а не value
-
-/* Проверка собранного JSON. Возвращает массив строк-ошибок (пусто — всё чисто). */
-function podCheck(root){
-  const errs=[];
-  const add=(where,msg)=>{ if(errs.length<14) errs.push((where?where+': ':'')+msg); };
-  if(!root || typeof root!=='object' || Array.isArray(root)) return ['корень подборки должен быть объектом'];
-  if(root.filter) add('корень','обёртка "filter" на верхнем уровне запрещена — условия кладутся прямо в корень');
-  const logical = Object.keys(root).filter(k=>k==='$and'||k==='$or'||k==='$not');
-  const fields = Object.keys(root).filter(k=>k[0]!=='#'&&k!=='filter'&&k!=='$and'&&k!=='$or'&&k!=='$not');
-  if(!logical.length && !fields.length) add('корень','нет ни одного условия');
-  walkNode(root,'корень');
-  return errs;
-
-  function walkNode(node, where){
-    if(!node || typeof node!=='object') return add(where,'ожидался объект с условиями');
-    if(Array.isArray(node)) return node.forEach((n,i)=>walkNode(n, where+'['+i+']'));
-    for(const k of Object.keys(node)){
-      if(k[0]==='#') continue;                       // #name / #description — метаданные подборки
-      if(k==='$and'||k==='$or'){
-        if(!Array.isArray(node[k])) add(where+' → '+k, 'значение '+k+' должно быть массивом условий');
-        else if(!node[k].length) add(where+' → '+k, k+' пустой');
-        else node[k].forEach((n,i)=>walkNode(n, where+' → '+k+'['+i+']'));
-      } else if(k==='$not'){
-        walkNode(node[k], where+' → $not');
-      } else if(k==='filter'){
-        if(where!=='корень') add(where,'лишняя обёртка "filter" — она нужна только сразу внутри nested_any');
-      } else {
-        walkField(k, node[k], where+' → '+k);
-      }
-    }
-  }
-  function walkField(name, val, where){
-    if(!val || typeof val!=='object' || Array.isArray(val)) return add(where,'у поля должен быть объект с оператором');
-    const ftype = POD_FIELDS[name];
-    if(!ftype) add(where,'поля "'+name+'" нет в схеме Candy — проверь название');
-    for(const op of Object.keys(val)){
-      if(op==='$not'){ add(where,'"$not" стоит внутри поля — он должен оборачивать поле целиком: {"$not":{"'+name+'":{…}}}'); continue; }
-      if(POD_FAKE_OPS[op]){ add(where+' → '+op, POD_FAKE_OPS[op]); continue; }
-      const cls = POD_OPS[op];
-      if(!cls){ add(where+' → '+op, 'неизвестный оператор'); continue; }
-      if(ftype && cls!==ftype){
-        add(where+' → '+op, ftype==='nested'
-          ? 'поле вложенное — нужен nested_any с filter внутри'
-          : 'поле типа '+ftype+', а оператор для '+cls+(ftype.endsWith('_list')?' — на списке скалярный оператор молча даёт пустую выдачу':''));
-      }
-      const arg = val[op];
-      if(op==='nested_any'){
-        if(!arg || typeof arg!=='object') { add(where+' → nested_any','ожидался объект'); continue; }
-        if(!('filter' in arg)) add(where+' → nested_any','внутри nested_any обёртка "filter" обязательна');
-        else walkNode(arg.filter, where+' → nested_any.filter');
-        continue;
-      }
-      if(!arg || typeof arg!=='object'){ add(where+' → '+op,'ожидался объект {"value":…} или {"values":[…]}'); continue; }
-      const multi = POD_MULTI.test(op);
-      if(multi && !Array.isArray(arg.values)) add(where+' → '+op,'нужен массив "values"');
-      else if(multi && !arg.values.length) add(where+' → '+op,'"values" пустой');
-      else if(!multi && !('value' in arg)) add(where+' → '+op,'нужно "value"');
-      if(/^date_/.test(op)){
-        const ds=[].concat(arg.value!==undefined?arg.value:[], Array.isArray(arg.values)?arg.values:[]);
-        ds.forEach(d=>{ if(typeof d!=='string'||!/^\d{4}-\d{2}-\d{2}/.test(d)) add(where+' → '+op,'дата должна быть строкой "YYYY-MM-DD", а не «'+podCut(d)+'»'); });
-      }
-      if(name==='employeeStatus'){
-        const vs=[].concat(arg.value!==undefined?arg.value:[], Array.isArray(arg.values)?arg.values:[]);
-        vs.forEach(v=>{ if(!POD_STATUSES.includes(v)) add(where,'employeeStatus — строковый enum: '+POD_STATUSES.join(' / ')+', а не «'+podCut(v)+'»'); });
-      }
-    }
-  }
+/* Проверку синтаксиса делает сервер: правила живут в движке подборок, рядом со
+   справочниками Candy. Здесь их копии больше нет — две копии правил неизбежно
+   разъезжаются, и в одном из случаев валидатор пропустил выдуманное поле,
+   а пожаловался на соседнее, существующее. */
+async function podValidate(json){
+  try{
+    const r=await fetch('/api/candy/validate',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({filter:json, pw:podPw()})});
+    if(!r.ok) return {available:false, errors:[]};
+    const d=await r.json();
+    return {available:d.available!==false, errors:d.errors||[]};
+  }catch(_){ return {available:false, errors:[]}; }
 }
 
-let _pod = null;      // {task, text, json, errs} — последняя собранная подборка
-let _podLock = null;  // null — ещё не спрашивали сервер, true/false — заперта ли вкладка
 function podPw(){ return lsGet('xraya_pod_pw')||''; }
 /* Состояние замка узнаём у сервера заранее, чтобы клик по вкладке не ждал сети.
    Самого пароля в коде страницы нет — только ответ «заперто / открыто». */
@@ -1690,7 +1583,13 @@ async function podRun(task, opt){
   let json=null, errs=[], parseErr='';
   const src=podJsonSrc(text);
   if(src){ try{ json=JSON.parse(src); }catch(e){ parseErr=e.message; } }
-  if(json) errs=podCheck(json);
+  // Фильтр, собранный движком, сервер уже сверил с моделью полей и реестром
+  // операторов — второй раз не гоняем. Проверяем то, что пришло запасным путём.
+  let vAvail=true;
+  if(json && !got.filter){
+    const v=await podValidate(json);
+    errs=v.errors; vAvail=v.available;
+  }
   // одна автоматическая попытка исправления: рекрутер не должен видеть кривой JSON.
   // Обрыв по лимиту лечится иначе, чем ошибка синтаксиса — просим ужаться.
   if((!json || errs.length) && !o.fix){
@@ -1702,7 +1601,7 @@ async function podRun(task, opt){
          : 'Нашёл '+(json?plural(errs.length,'ошибку','ошибки','ошибок'):'проблему')+' в синтаксисе — правлю…')+'</div>';
     return podRun(task, {fix:fixMsg, prev:cut?'':text, refine:o.refine});
   }
-  _pod={task, text, json, errs, cut};
+  _pod={task, text, json, errs, cut, byEngine:!!got.filter, vAvail};
   res.innerHTML=podHTML(_pod);
 }
 /* ── диалог с движком: id сессии и экран уточняющих вопросов (CJM, шаг «XRaya
@@ -1831,7 +1730,9 @@ function podHTML(p){
   return '<div class="pod">'+
     '<div class="pod-head">'+
       '<div><h3>Подборка для Candy'+(nm?' · <i>'+esc(nm)+'</i>':'')+'</h3>'+
-        (ok ? '<span class="pod-ok">синтаксис проверен — операторы, вложенность и типы полей сходятся</span>'
+        (ok ? '<span class="pod-ok">'+(p.byEngine
+                ? 'собрано по справочникам Candy — поля, операторы и значения сверены со схемой'
+                : 'синтаксис проверен — операторы, вложенность и типы полей сходятся')+'</span>'
          : !p.json ? '<span class="pod-warn">'+(p.cut?'ответ модели оборвался — JSON недописан':'модель не вернула JSON')+'</span>'
          : '<span class="pod-warn">валидатор оставил '+plural(p.errs.length,'замечание','замечания','замечаний')+' — смотри ниже</span>')+
       '</div>'+
