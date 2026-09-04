@@ -1,9 +1,13 @@
 // LLM-слой через VseGPT (OpenAI-совместимый агрегатор, api.vsegpt.ru).
 // Через него доступны и Claude (anthropic/*), и GPT (openai/*) — модель задаётся env.
 //   VSEGPT_API_KEY   — ключ (sk-or-…)
-//   VSEGPT_MODEL     — модель, по умолчанию anthropic/claude-sonnet-4.5
+//   VSEGPT_MODEL     — модель, по умолчанию openai/gpt-5-mini (на ней сделаны замеры,
+//                      см. таблицу сравнения в README модуля)
 //   VSEGPT_BASE_URL  — переопределение эндпоинта (по умолчанию https://api.vsegpt.ru/v1)
-// Стиль — как в api/ai.js X-Raya: чистый fetch, без зависимостей (Node ≥18).
+// Чистый fetch, без зависимостей (Node ≥18).
+// В сервере этот слой не решает, какая модель работает: server.js подменяет транспорт,
+// и запрос уходит через общий askAI с моделью из AI_MODEL. Переменные выше нужны,
+// когда движок запускают отдельно — из CLI, тестов или замеров.
 'use strict';
 
 // Подхватываем .env из candy-json/ или корня sourcing-agent (без зависимостей).
@@ -22,7 +26,7 @@
 })();
 
 const BASE_URL = process.env.VSEGPT_BASE_URL || 'https://api.vsegpt.ru/v1';
-const MODEL = process.env.VSEGPT_MODEL || 'anthropic/claude-sonnet-4.5';
+const MODEL = process.env.VSEGPT_MODEL || 'openai/gpt-5-mini';
 
 /* Сменный транспорт. На сервере X-Raya провайдер уже настроен (askAI: AI_BASE_URL,
  * ключ, ретранслятор, лимиты, учёт расходов) — движку незачем ходить в сеть своим
